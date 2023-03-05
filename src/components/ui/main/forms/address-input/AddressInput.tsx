@@ -1,4 +1,3 @@
-import { clientEnv } from '@/env/schema.mjs'
 import { useAppTranslation } from '@/hooks/use-app-translation'
 import { _isEmpty } from '@/utils/common'
 import { LoaderOptions } from '@googlemaps/js-api-loader'
@@ -32,7 +31,7 @@ export const AddressInput = React.forwardRef<HTMLInputElement, AddressInputProps
    
    
    const { suggestions, fetchSuggestions } = useGoogleMapsAutocomplete({
-      apiKey: clientEnv.NEXT_PUBLIC_GOOGLE_API_KEY!,
+      apiKey: "",
       minLengthAutocomplete: 0,
       withSessionToken: false,
       debounce: 300,
