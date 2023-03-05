@@ -1,0 +1,34 @@
+@import "nprogress/nprogress.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#nprogress .bar {
+    background: #6152df;
+}
+
+#nprogress .peg {
+    box-shadow: 0 0 10px #6152df, 0 0 5px #6152df;
+}
+
+#nprogress .spinner-icon {
+    border-top-color: #6152df;
+    border-left-color: #6152df;
+}
+
+html,
+body {
+    padding: 0;
+    margin: 0;
+    /*font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, Fira Sans, sans-serif;*/
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+* {
+    box-sizing: border-box;
+}
