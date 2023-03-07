@@ -9,6 +9,38 @@ export const siteLinks = {
       home: {
          href: `/`,
       },
+      login: {
+         href: '/login',
+      },
+      new: {
+         href: `/new`,
+      },
+   },
+   admin: {
+      home: {
+         href: '/admin',
+      },
+      menu: {
+         href: '/admin/menu',
+      },
+      createItem: {
+         href: '/admin/menu/create',
+      },
+      editItem: {
+         href: '/admin/menu/[iid]/edit',
+      },
+      tables: {
+         href: '/admin/tables',
+      },
+      createTable: {
+         href: '/admin/tables/create',
+      },
+      editTable: {
+         href: '/admin/tables/[tid]/edit',
+      },
+      customization: {
+         href: '/admin/customization',
+      },
    },
 } satisfies Routes
 

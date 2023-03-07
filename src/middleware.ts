@@ -64,7 +64,7 @@ export default withAuth(
       if (isAuthPage) {
          if (isAuth) {
             console.log(`You are logged in trying to access an auth page`)
-            return NextResponse.redirect(new URL(linkTo('/dashboard', lng), req.url))
+            return NextResponse.redirect(new URL(linkTo('/admin', lng), req.url))
          }
          
          return null

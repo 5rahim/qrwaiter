@@ -10,5 +10,5 @@ export const siteConfig: SiteConfig = {
     * If you disable i18n, remove routes from [lng] directory
     */
    i18n: false,
-   protectedPages: ["/ws", "/csr", "/ssr", "/dashboard", "/login", "/register", "/create/*"],
+   protectedPages: ["/ws", "/csr", "/ssr", "/dashboard", "/login", "/register", "/new"],
 }

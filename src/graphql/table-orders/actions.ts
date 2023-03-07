@@ -22,9 +22,10 @@ export const GetTableOrders = gql`
 `
 
 export const GetTableOrder = gql`
-  ${OrderFragment}
   ${TableFragment}
-  
+  ${TableOrderFragment}
+  ${OrderFragment}
+
   query GetTableOrder($id: uuid!) {
     table_orders_by_pk(id: $id) {
       ...TableOrderFragment

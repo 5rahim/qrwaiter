@@ -1,5 +1,4 @@
-import { Category } from '@/graphql/categories/types'
-import { useCreateCategoryMutation, useCreateOrdersMutation, useGetOrderQuery } from '@/graphql/generated'
+import { useCreateOrdersMutation, useGetOrderQuery } from '@/graphql/generated'
 import { Order } from '@/graphql/orders/types'
 import { useMutationService } from '@/graphql/use-mutation-service'
 import { useQueryClient } from '@/graphql/use-query-client'
@@ -29,7 +28,7 @@ export const useCreateOrdersService = (tableOrderId: Nullable<string>) => {
    
    const createOrdersMutation = useCreateOrdersMutation(queryClient.get(), {
       onSuccess: data => {
-         queryClient.successAlert('Category created')
+         queryClient.successAlert('Order placed')
       },
    })
    useMutationService(createOrdersMutation)

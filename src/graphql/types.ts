@@ -13,6 +13,7 @@ export type ItemChoice = {
    id: string
    name: string
    choiceOptions: ItemChoiceOption[]
+   type: 'single' | 'multiple'
    available: boolean
 }
 

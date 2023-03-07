@@ -49,9 +49,9 @@ export const DangerZone = React.forwardRef<HTMLDivElement, DangerZoneProps>((pro
             <LayoutPaper className="p-4 flex flex-col sm:flex-row gap-2 text-center sm:text-left border-red-400">
                <IconDisplay icon={<FiAlertTriangle />} intent="alert-basic" className="place-self-center sm:place-self-start" />
                <div>
-                  <h2 className="text-lg text-red-500 font-semibold">{t('danger_zone.name')}</h2>
-                  <p className=""><span className="font-semibold">{action}</span>. {t('danger_zone.irreversible_action')}</p>
-                  <Button size="sm" intent="alert-subtle" className="mt-2" leftIcon={<BiTrash />} onClick={modal.open}>{t('form:delete')}</Button>
+                  <h2 className="text-lg text-red-500 font-semibold">Danger zone</h2>
+                  <p className=""><span className="font-semibold">{action}</span>. This action is irreversible.</p>
+                  <Button size="sm" intent="alert-subtle" className="mt-2" leftIcon={<BiTrash />} onClick={modal.open}>Delete</Button>
                </div>
             </LayoutPaper>
          </div>
@@ -86,23 +86,23 @@ export const DangerZone = React.forwardRef<HTMLDivElement, DangerZoneProps>((pro
                               as="h3"
                               className="text-lg font-medium leading-6 text-gray-900"
                            >
-                              {t('danger_zone.confirm_delete')}
+                              Are you sure you want to delete this item?
                            </Dialog.Title>
                            <div className="mt-2">
                               <p className="text-sm text-gray-500">
-                                 {t('danger_zone.irreversible_action')}
+                                 This action is irreversible.
                               </p>
                            </div>
                            
                            <div className="mt-4 flex gap-2">
-                              <Button intent="gray-outline" size="sm" onClick={modal.close}>{t('form:cancel')}</Button>
+                              <Button intent="gray-outline" size="sm" onClick={modal.close}>Cancel</Button>
                               <Button
                                  intent="alert" size="sm" onClick={() => {
                                  modal.close()
                                  setBlockScreen(true)
                                  onDelete && onDelete()
                               }}
-                              >{t('form:delete')}</Button>
+                              >Delete</Button>
                            </div>
                         </Dialog.Panel>
                      </Transition.Child>

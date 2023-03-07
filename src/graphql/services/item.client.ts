@@ -1,7 +1,4 @@
-import { Categories, Category } from '@/graphql/categories/types'
-import {
-   useCreateItemMutation, useDeleteItemMutation, useGetCategoriesQuery, useGetCategoryQuery, useGetItemQuery, useGetItemsQuery, useUpdateItemMutation,
-} from '@/graphql/generated'
+import { useCreateItemMutation, useDeleteItemMutation, useGetItemQuery, useGetItemsQuery, useUpdateItemMutation } from '@/graphql/generated'
 import { Item, Items } from '@/graphql/items/types'
 import { useMutationService } from '@/graphql/use-mutation-service'
 import { useQueryClient } from '@/graphql/use-query-client'
@@ -63,7 +60,7 @@ export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 
    
    const deleteItem = () => deleteItemMutation.mutate({ id: item?.id })
    
-   const itemDefaultValues: InferType<typeof itemSchema> | null = item ? {
+   const itemDefaultValues: InferType<typeof itemSchema> | undefined = item ? {
       available: item.available,
       category_id: item.category_id,
       choices: item.choices,
@@ -73,7 +70,7 @@ export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 
       price: item.price,
       related_to: item.related_to,
       variations: item.variations,
-   } : null
+   } : undefined
    
    return {
       itemDefaultValues,

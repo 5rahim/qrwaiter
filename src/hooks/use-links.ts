@@ -1,19 +1,17 @@
-import { useCurrentLocale } from '@/atoms/locale.atom'
 import { SiteLinks, siteLinks, SiteRoute } from '@/config/links.config'
 import { usePathname, useSearchParams } from 'next/navigation'
 
 export const useLinks = () => {
    
-   const { locale } = useCurrentLocale()
    const currentPath = usePathname()
    const segments = useSearchParams()
    
    return {
       href: (path: string) => {
-         return `/${locale}${path}`
+         return `/${path}`
       },
       to: (callback: (links: SiteLinks) => SiteRoute, ...parameters: { key: string, value: string }[]) => {
-         let returnLink = `/${locale}` + callback(siteLinks).href
+         let returnLink = callback(siteLinks).href
          
          if (parameters) {
             for (const parameter of parameters) {
@@ -24,7 +22,7 @@ export const useLinks = () => {
          return returnLink
       },
       toHref: (href: string, ...parameters: { key: string, value: string }[]) => {
-         let returnLink = `/${locale}` + href
+         let returnLink = href
          
          if (parameters) {
             for (const parameter of parameters) {

@@ -3890,11 +3890,11 @@ export type Tables = {
    id: Scalars['uuid'];
    name: Scalars['String'];
    no_of_chairs: Scalars['Int'];
+   order: Scalars['Int'];
    qr_codes?: Maybe<Scalars['jsonb']>;
    /** An object relationship */
    restaurant: Restaurants;
    restaurant_id: Scalars['uuid'];
-   table_number?: Maybe<Scalars['Int']>;
    /** An array relationship */
    table_orders: Array<Table_Orders>;
    /** An aggregate relationship */
@@ -3999,13 +3999,13 @@ export type Tables_Arr_Rel_Insert_Input = {
 export type Tables_Avg_Fields = {
    __typename?: 'tables_avg_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "tables" */
 export type Tables_Avg_Order_By = {
    no_of_chairs?: InputMaybe<Order_By>;
-   table_number?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "tables". All fields are combined with a logical 'AND'. */
@@ -4016,10 +4016,10 @@ export type Tables_Bool_Exp = {
    id?: InputMaybe<Uuid_Comparison_Exp>;
    name?: InputMaybe<String_Comparison_Exp>;
    no_of_chairs?: InputMaybe<Int_Comparison_Exp>;
+   order?: InputMaybe<Int_Comparison_Exp>;
    qr_codes?: InputMaybe<Jsonb_Comparison_Exp>;
    restaurant?: InputMaybe<Restaurants_Bool_Exp>;
    restaurant_id?: InputMaybe<Uuid_Comparison_Exp>;
-   table_number?: InputMaybe<Int_Comparison_Exp>;
    table_orders?: InputMaybe<Table_Orders_Bool_Exp>;
    table_orders_aggregate?: InputMaybe<Table_Orders_Aggregate_Bool_Exp>;
 };
@@ -4047,7 +4047,7 @@ export type Tables_Delete_Key_Input = {
 /** input type for incrementing numeric columns in table "tables" */
 export type Tables_Inc_Input = {
    no_of_chairs?: InputMaybe<Scalars['Int']>;
-   table_number?: InputMaybe<Scalars['Int']>;
+   order?: InputMaybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "tables" */
@@ -4055,10 +4055,10 @@ export type Tables_Insert_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    name?: InputMaybe<Scalars['String']>;
    no_of_chairs?: InputMaybe<Scalars['Int']>;
+   order?: InputMaybe<Scalars['Int']>;
    qr_codes?: InputMaybe<Scalars['jsonb']>;
    restaurant?: InputMaybe<Restaurants_Obj_Rel_Insert_Input>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
-   table_number?: InputMaybe<Scalars['Int']>;
    table_orders?: InputMaybe<Table_Orders_Arr_Rel_Insert_Input>;
 };
 
@@ -4068,8 +4068,8 @@ export type Tables_Max_Fields = {
    id?: Maybe<Scalars['uuid']>;
    name?: Maybe<Scalars['String']>;
    no_of_chairs?: Maybe<Scalars['Int']>;
+   order?: Maybe<Scalars['Int']>;
    restaurant_id?: Maybe<Scalars['uuid']>;
-   table_number?: Maybe<Scalars['Int']>;
 };
 
 /** order by max() on columns of table "tables" */
@@ -4077,8 +4077,8 @@ export type Tables_Max_Order_By = {
    id?: InputMaybe<Order_By>;
    name?: InputMaybe<Order_By>;
    no_of_chairs?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
    restaurant_id?: InputMaybe<Order_By>;
-   table_number?: InputMaybe<Order_By>;
 };
 
 /** aggregate min on columns */
@@ -4087,8 +4087,8 @@ export type Tables_Min_Fields = {
    id?: Maybe<Scalars['uuid']>;
    name?: Maybe<Scalars['String']>;
    no_of_chairs?: Maybe<Scalars['Int']>;
+   order?: Maybe<Scalars['Int']>;
    restaurant_id?: Maybe<Scalars['uuid']>;
-   table_number?: Maybe<Scalars['Int']>;
 };
 
 /** order by min() on columns of table "tables" */
@@ -4096,8 +4096,8 @@ export type Tables_Min_Order_By = {
    id?: InputMaybe<Order_By>;
    name?: InputMaybe<Order_By>;
    no_of_chairs?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
    restaurant_id?: InputMaybe<Order_By>;
-   table_number?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "tables" */
@@ -4128,10 +4128,10 @@ export type Tables_Order_By = {
    id?: InputMaybe<Order_By>;
    name?: InputMaybe<Order_By>;
    no_of_chairs?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
    qr_codes?: InputMaybe<Order_By>;
    restaurant?: InputMaybe<Restaurants_Order_By>;
    restaurant_id?: InputMaybe<Order_By>;
-   table_number?: InputMaybe<Order_By>;
    table_orders_aggregate?: InputMaybe<Table_Orders_Aggregate_Order_By>;
 };
 
@@ -4154,59 +4154,59 @@ export type Tables_Select_Column =
    /** column name */
    | 'no_of_chairs'
    /** column name */
+   | 'order'
+   /** column name */
    | 'qr_codes'
    /** column name */
-   | 'restaurant_id'
-   /** column name */
-   | 'table_number';
+   | 'restaurant_id';
 
 /** input type for updating data in table "tables" */
 export type Tables_Set_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    name?: InputMaybe<Scalars['String']>;
    no_of_chairs?: InputMaybe<Scalars['Int']>;
+   order?: InputMaybe<Scalars['Int']>;
    qr_codes?: InputMaybe<Scalars['jsonb']>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
-   table_number?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate stddev on columns */
 export type Tables_Stddev_Fields = {
    __typename?: 'tables_stddev_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "tables" */
 export type Tables_Stddev_Order_By = {
    no_of_chairs?: InputMaybe<Order_By>;
-   table_number?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
 export type Tables_Stddev_Pop_Fields = {
    __typename?: 'tables_stddev_pop_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "tables" */
 export type Tables_Stddev_Pop_Order_By = {
    no_of_chairs?: InputMaybe<Order_By>;
-   table_number?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
 export type Tables_Stddev_Samp_Fields = {
    __typename?: 'tables_stddev_samp_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "tables" */
 export type Tables_Stddev_Samp_Order_By = {
    no_of_chairs?: InputMaybe<Order_By>;
-   table_number?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
 };
 
 /** Streaming cursor of the table "tables" */
@@ -4222,22 +4222,22 @@ export type Tables_Stream_Cursor_Value_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    name?: InputMaybe<Scalars['String']>;
    no_of_chairs?: InputMaybe<Scalars['Int']>;
+   order?: InputMaybe<Scalars['Int']>;
    qr_codes?: InputMaybe<Scalars['jsonb']>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
-   table_number?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
 export type Tables_Sum_Fields = {
    __typename?: 'tables_sum_fields';
    no_of_chairs?: Maybe<Scalars['Int']>;
-   table_number?: Maybe<Scalars['Int']>;
+   order?: Maybe<Scalars['Int']>;
 };
 
 /** order by sum() on columns of table "tables" */
 export type Tables_Sum_Order_By = {
    no_of_chairs?: InputMaybe<Order_By>;
-   table_number?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
 };
 
 /** update columns of table "tables" */
@@ -4249,11 +4249,11 @@ export type Tables_Update_Column =
    /** column name */
    | 'no_of_chairs'
    /** column name */
+   | 'order'
+   /** column name */
    | 'qr_codes'
    /** column name */
-   | 'restaurant_id'
-   /** column name */
-   | 'table_number';
+   | 'restaurant_id';
 
 export type Tables_Updates = {
    /** append existing jsonb value of filtered columns with new jsonb value */
@@ -4278,39 +4278,39 @@ export type Tables_Updates = {
 export type Tables_Var_Pop_Fields = {
    __typename?: 'tables_var_pop_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "tables" */
 export type Tables_Var_Pop_Order_By = {
    no_of_chairs?: InputMaybe<Order_By>;
-   table_number?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
 };
 
 /** aggregate var_samp on columns */
 export type Tables_Var_Samp_Fields = {
    __typename?: 'tables_var_samp_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "tables" */
 export type Tables_Var_Samp_Order_By = {
    no_of_chairs?: InputMaybe<Order_By>;
-   table_number?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
 };
 
 /** aggregate variance on columns */
 export type Tables_Variance_Fields = {
    __typename?: 'tables_variance_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "tables" */
 export type Tables_Variance_Order_By = {
    no_of_chairs?: InputMaybe<Order_By>;
-   table_number?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
@@ -4738,266 +4738,6 @@ export type Verification_Tokens_Updates = {
    where: Verification_Tokens_Bool_Exp;
 };
 
-export type GetCategoriesQueryVariables = Exact<{
-   restaurant_id: Scalars['uuid'];
-}>;
-
-
-export type GetCategoriesQuery = { __typename?: 'query_root', categories: Array<{ __typename?: 'categories', id: any, name: string, restaurant_id: any }> };
-
-export type GetHomePageCategoriesQueryVariables = Exact<{
-   restaurant_id: Scalars['uuid'];
-}>;
-
-
-export type GetHomePageCategoriesQuery = { __typename?: 'query_root', categories: Array<{ __typename?: 'categories', id: any, name: string, restaurant_id: any, items: Array<{ __typename?: 'items', available: boolean, category_id?: any | null, choices: any, description?: string | null, id: any, images: any, name: string, price: number, related_to?: any | null, restaurant_id: any, variations: any }> }> };
-
-export type GetCategoryQueryVariables = Exact<{
-   id: Scalars['uuid'];
-}>;
-
-
-export type GetCategoryQuery = { __typename?: 'query_root', categories_by_pk?: { __typename?: 'categories', id: any, name: string, restaurant_id: any } | null };
-
-export type CreateCategoryMutationVariables = Exact<{
-   name: Scalars['String'];
-   restaurant_id: Scalars['uuid'];
-}>;
-
-
-export type CreateCategoryMutation = { __typename?: 'mutation_root', insert_categories_one?: { __typename?: 'categories', id: any } | null };
-
-export type UpdateCategoryMutationVariables = Exact<{
-   id: Scalars['uuid'];
-   name: Scalars['String'];
-}>;
-
-
-export type UpdateCategoryMutation = { __typename?: 'mutation_root', update_categories_by_pk?: { __typename?: 'categories', id: any } | null };
-
-export type DeleteCategoryMutationVariables = Exact<{
-   id: Scalars['uuid'];
-}>;
-
-
-export type DeleteCategoryMutation = { __typename?: 'mutation_root', delete_categories_by_pk?: { __typename?: 'categories', id: any } | null, update_items?: { __typename?: 'items_mutation_response', affected_rows: number } | null };
-
-export type ItemFragmentFragment = { __typename?: 'items', available: boolean, category_id?: any | null, choices: any, description?: string | null, id: any, images: any, name: string, price: number, related_to?: any | null, restaurant_id: any, variations: any };
-
-export type GetItemsQueryVariables = Exact<{
-   restaurant_id: Scalars['uuid'];
-}>;
-
-
-export type GetItemsQuery = { __typename?: 'query_root', items: Array<{ __typename?: 'items', available: boolean, category_id?: any | null, choices: any, description?: string | null, id: any, images: any, name: string, price: number, related_to?: any | null, restaurant_id: any, variations: any }> };
-
-export type GetItemQueryVariables = Exact<{
-   id: Scalars['uuid'];
-}>;
-
-
-export type GetItemQuery = { __typename?: 'query_root', items_by_pk?: { __typename?: 'items', available: boolean, category_id?: any | null, choices: any, description?: string | null, id: any, images: any, name: string, price: number, related_to?: any | null, restaurant_id: any, variations: any } | null };
-
-export type CreateItemMutationVariables = Exact<{
-   available: Scalars['Boolean'];
-   category_id: Scalars['uuid'];
-   choices: Scalars['jsonb'];
-   description?: InputMaybe<Scalars['String']>;
-   images: Scalars['jsonb'];
-   name: Scalars['String'];
-   price: Scalars['Int'];
-   related_to: Scalars['jsonb'];
-   restaurant_id: Scalars['uuid'];
-   variations: Scalars['jsonb'];
-}>;
-
-
-export type CreateItemMutation = { __typename?: 'mutation_root', insert_items_one?: { __typename?: 'items', id: any } | null };
-
-export type UpdateItemMutationVariables = Exact<{
-   id: Scalars['uuid'];
-   available: Scalars['Boolean'];
-   category_id: Scalars['uuid'];
-   choices: Scalars['jsonb'];
-   description?: InputMaybe<Scalars['String']>;
-   images: Scalars['jsonb'];
-   name: Scalars['String'];
-   price: Scalars['Int'];
-   related_to: Scalars['jsonb'];
-   variations: Scalars['jsonb'];
-}>;
-
-
-export type UpdateItemMutation = { __typename?: 'mutation_root', update_items_by_pk?: { __typename?: 'items', id: any } | null };
-
-export type DeleteItemMutationVariables = Exact<{
-   id: Scalars['uuid'];
-}>;
-
-
-export type DeleteItemMutation = { __typename?: 'mutation_root', delete_items_by_pk?: { __typename?: 'items', id: any } | null };
-
-export type OrderFragmentFragment = { __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number };
-
-export type GetOrderQueryVariables = Exact<{
-   id: Scalars['uuid'];
-}>;
-
-
-export type GetOrderQuery = { __typename?: 'query_root', orders_by_pk?: { __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number, table_order: { __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null } } | null };
-
-export type CreateOrdersMutationVariables = Exact<{
-   chair_number: Scalars['Int'];
-   items: Scalars['jsonb'];
-   subtotal: Scalars['Int'];
-   total: Scalars['Int'];
-   total_tax: Scalars['Int'];
-   table_order_id: Scalars['uuid'];
-}>;
-
-
-export type CreateOrdersMutation = { __typename?: 'mutation_root', insert_orders?: { __typename?: 'orders_mutation_response', affected_rows: number, returning: Array<{ __typename?: 'orders', id: any, chair_number: number }> } | null };
-
-export type CreateRestaurantMutationVariables = Exact<{
-   slug: Scalars['String'];
-   name: Scalars['String'];
-   owner_id: Scalars['uuid'];
-   description?: InputMaybe<Scalars['String']>;
-   customization: Scalars['jsonb'];
-}>;
-
-
-export type CreateRestaurantMutation = { __typename?: 'mutation_root', insert_restaurants_one?: { __typename?: 'restaurants', id: any, slug: string } | null };
-
-export type GetRestaurantBySlugQueryVariables = Exact<{
-   slug: Scalars['String'];
-}>;
-
-
-export type GetRestaurantBySlugQuery = { __typename?: 'query_root', restaurants: Array<{ __typename?: 'restaurants', id: any, description?: string | null, customization: any, name: string, owner_id: any, slug: string }> };
-
-export type UpdateRestaurantThemeMutationVariables = Exact<{
-   id: Scalars['uuid'];
-   customization: Scalars['jsonb'];
-}>;
-
-
-export type UpdateRestaurantThemeMutation = { __typename?: 'mutation_root', update_restaurants_by_pk?: { __typename?: 'restaurants', customization: any } | null };
-
-export type UpdateRestaurantDetailsMutationVariables = Exact<{
-   id: Scalars['uuid'];
-   name: Scalars['String'];
-   description?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type UpdateRestaurantDetailsMutation = { __typename?: 'mutation_root', update_restaurants_by_pk?: { __typename?: 'restaurants', customization: any } | null };
-
-export type TableOrderFragmentFragment = { __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null };
-
-export type GetTableOrdersQueryVariables = Exact<{
-   restaurant_id: Scalars['uuid'];
-}>;
-
-
-export type GetTableOrdersQuery = { __typename?: 'query_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null }> };
-
-export type GetTableOrderQueryVariables = Exact<{
-   id: Scalars['uuid'];
-}>;
-
-
-export type GetTableOrderQuery = { __typename?: 'query_root', table_orders_by_pk?: { __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null, table?: { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string } | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> } | null };
-
-export type CreateTableOrderMutationVariables = Exact<{
-   status: Scalars['String'];
-   table_id: Scalars['uuid'];
-}>;
-
-
-export type CreateTableOrderMutation = { __typename?: 'mutation_root', insert_table_orders_one?: { __typename?: 'table_orders', id: any, status: string, table_id?: any | null } | null };
-
-export type TableFragmentFragment = { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string };
-
-export type GetTablesQueryVariables = Exact<{
-   restaurant_id: Scalars['uuid'];
-}>;
-
-
-export type GetTablesQuery = { __typename?: 'query_root', tables: Array<{ __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string }> };
-
-export type GetTableInfoQueryVariables = Exact<{
-   id: Scalars['uuid'];
-}>;
-
-
-export type GetTableInfoQuery = { __typename?: 'query_root', tables_by_pk?: { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string } | null };
-
-export type GetTableQueryVariables = Exact<{
-   id: Scalars['uuid'];
-}>;
-
-
-export type GetTableQuery = { __typename?: 'query_root', tables_by_pk?: { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> }> } | null };
-
-export type SubscribeTablesSubscriptionVariables = Exact<{
-   restaurant_id: Scalars['uuid'];
-}>;
-
-
-export type SubscribeTablesSubscription = { __typename?: 'subscription_root', tables: Array<{ __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string }> };
-
-export type CreateTableMutationVariables = Exact<{
-   no_of_chairs: Scalars['Int'];
-   qr_codes?: InputMaybe<Scalars['jsonb']>;
-   restaurant_id: Scalars['uuid'];
-   name: Scalars['String'];
-}>;
-
-
-export type CreateTableMutation = { __typename?: 'mutation_root', insert_tables_one?: { __typename?: 'tables', id: any } | null };
-
-export type UpdateTableMutationVariables = Exact<{
-   id: Scalars['uuid'];
-   no_of_chairs: Scalars['Int'];
-   name: Scalars['String'];
-   qr_codes?: InputMaybe<Scalars['jsonb']>;
-}>;
-
-
-export type UpdateTableMutation = { __typename?: 'mutation_root', update_tables_by_pk?: { __typename?: 'tables', id: any } | null };
-
-export type DeleteTableMutationVariables = Exact<{
-   id: Scalars['uuid'];
-}>;
-
-
-export type DeleteTableMutation = { __typename?: 'mutation_root', delete_tables_by_pk?: { __typename?: 'tables', id: any } | null, update_table_orders?: { __typename?: 'table_orders_mutation_response', affected_rows: number } | null };
-
-export type GetUserByIdQueryVariables = Exact<{
-   id: Scalars['uuid'];
-}>;
-
-
-export type GetUserByIdQuery = { __typename?: 'query_root', users_by_pk?: { __typename?: 'users', created_at?: any | null, email?: string | null, emailVerified?: any | null, id: any, image?: string | null, name?: string | null, role?: string | null } | null };
-
-export type UpdateUserProfilePictureMutationVariables = Exact<{
-   id: Scalars['uuid'];
-   image: Scalars['String'];
-}>;
-
-
-export type UpdateUserProfilePictureMutation = { __typename?: 'mutation_root', update_users?: { __typename?: 'users_mutation_response', affected_rows: number } | null };
-
-export type UpdateUserDetailsMutationVariables = Exact<{
-   id: Scalars['uuid'];
-   name: Scalars['String'];
-   email: Scalars['String'];
-}>;
-
-
-export type UpdateUserDetailsMutation = { __typename?: 'mutation_root', update_users?: { __typename?: 'users_mutation_response', affected_rows: number } | null };
-
 export type CreateAccountMutationVariables = Exact<{
    data: Accounts_Insert_Input;
 }>;
@@ -5101,50 +4841,6 @@ export type DeleteVerificationTokenMutationVariables = Exact<{
 
 export type DeleteVerificationTokenMutation = { __typename?: 'mutation_root', delete_verification_tokens?: { __typename?: 'verification_tokens_mutation_response', returning: Array<{ __typename: 'verification_tokens', token: string, expires?: any | null, identifier: string }> } | null };
 
-export const ItemFragmentFragmentDoc = gql`
-  fragment ItemFragment on items {
-    available
-    category_id
-    choices
-    description
-    id
-    images
-    name
-    price
-    related_to
-    restaurant_id
-    variations
-  }
-`
-export const OrderFragmentFragmentDoc = gql`
-  fragment OrderFragment on orders {
-    chair_number
-    created_at
-    id
-    items
-    subtotal
-    table_order_id
-    total
-    total_tax
-  }
-`
-export const TableOrderFragmentFragmentDoc = gql`
-  fragment TableOrderFragment on table_orders {
-    id
-    created_at
-    status
-    table_id
-  }
-`
-export const TableFragmentFragmentDoc = gql`
-  fragment TableFragment on tables {
-    id
-    no_of_chairs
-    qr_codes
-    restaurant_id
-    name
-  }
-`
 export const UserFragmentDoc = gql`
   fragment User on users {
     __typename
@@ -5191,289 +4887,6 @@ export const VerificationTokenFragmentDoc = gql`
     token
     expires
     identifier
-  }
-`
-export const GetCategoriesDocument = gql`
-  query GetCategories($restaurant_id: uuid!) {
-    categories(where: {restaurant_id: {_eq: $restaurant_id}}) {
-      id
-      name
-      restaurant_id
-    }
-  }
-`
-export const GetHomePageCategoriesDocument = gql`
-  query GetHomePageCategories($restaurant_id: uuid!) {
-    categories(where: {restaurant_id: {_eq: $restaurant_id}}) {
-      id
-      name
-      restaurant_id
-      items(where: {available: {_eq: true}}) {
-        ...ItemFragment
-      }
-    }
-  }
-${ItemFragmentFragmentDoc}`
-export const GetCategoryDocument = gql`
-  query GetCategory($id: uuid!) {
-    categories_by_pk(id: $id) {
-      id
-      name
-      restaurant_id
-    }
-  }
-`
-export const CreateCategoryDocument = gql`
-  mutation CreateCategory($name: String!, $restaurant_id: uuid!) {
-    insert_categories_one(object: {name: $name, restaurant_id: $restaurant_id}) {
-      id
-    }
-  }
-`
-export const UpdateCategoryDocument = gql`
-  mutation UpdateCategory($id: uuid!, $name: String!) {
-    update_categories_by_pk(pk_columns: {id: $id}, _set: {name: $name}) {
-      id
-    }
-  }
-`
-export const DeleteCategoryDocument = gql`
-  mutation DeleteCategory($id: uuid!) {
-    delete_categories_by_pk(id: $id) {
-      id
-    }
-    update_items(where: {category_id: {_eq: $id}}, _set: {category_id: null}) {
-      affected_rows
-    }
-  }
-`
-export const GetItemsDocument = gql`
-  query GetItems($restaurant_id: uuid!) {
-    items(where: {restaurant_id: {_eq: $restaurant_id}}) {
-      ...ItemFragment
-    }
-  }
-${ItemFragmentFragmentDoc}`
-export const GetItemDocument = gql`
-  query GetItem($id: uuid!) {
-    items_by_pk(id: $id) {
-      ...ItemFragment
-    }
-  }
-${ItemFragmentFragmentDoc}`
-export const CreateItemDocument = gql`
-  mutation CreateItem($available: Boolean!, $category_id: uuid!, $choices: jsonb!, $description: String, $images: jsonb!, $name: String!, $price: Int!, $related_to: jsonb!, $restaurant_id: uuid!, $variations: jsonb!) {
-    insert_items_one(
-      object: {available: $available, category_id: $category_id, choices: $choices, description: $description, images: $images, name: $name, price: $price, related_to: $related_to, restaurant_id: $restaurant_id, variations: $variations}
-    ) {
-      id
-    }
-  }
-`
-export const UpdateItemDocument = gql`
-  mutation UpdateItem($id: uuid!, $available: Boolean!, $category_id: uuid!, $choices: jsonb!, $description: String, $images: jsonb!, $name: String!, $price: Int!, $related_to: jsonb!, $variations: jsonb!) {
-    update_items_by_pk(
-      pk_columns: {id: $id}
-      _set: {available: $available, category_id: $category_id, choices: $choices, description: $description, images: $images, name: $name, price: $price, related_to: $related_to, variations: $variations}
-    ) {
-      id
-    }
-  }
-`
-export const DeleteItemDocument = gql`
-  mutation DeleteItem($id: uuid!) {
-    delete_items_by_pk(id: $id) {
-      id
-    }
-  }
-`
-export const GetOrderDocument = gql`
-  query GetOrder($id: uuid!) {
-    orders_by_pk(id: $id) {
-      ...OrderFragment
-      table_order {
-        ...TableOrderFragment
-      }
-    }
-  }
-  ${OrderFragmentFragmentDoc}
-${TableOrderFragmentFragmentDoc}`
-export const CreateOrdersDocument = gql`
-  mutation CreateOrders($chair_number: Int!, $items: jsonb!, $subtotal: Int!, $total: Int!, $total_tax: Int!, $table_order_id: uuid!) {
-    insert_orders(
-      objects: {chair_number: $chair_number, items: $items, subtotal: $subtotal, total: $total, total_tax: $total_tax, table_order_id: $table_order_id}
-    ) {
-      affected_rows
-      returning {
-        id
-        chair_number
-      }
-    }
-  }
-`
-export const CreateRestaurantDocument = gql`
-  mutation CreateRestaurant($slug: String!, $name: String!, $owner_id: uuid!, $description: String, $customization: jsonb!) {
-    insert_restaurants_one(
-      object: {slug: $slug, owner_id: $owner_id, description: $description, customization: $customization, name: $name}
-    ) {
-      id
-      slug
-    }
-  }
-`
-export const GetRestaurantBySlugDocument = gql`
-  query GetRestaurantBySlug($slug: String!) {
-    restaurants(where: {slug: {_eq: $slug}}) {
-      id
-      description
-      customization
-      name
-      owner_id
-      slug
-    }
-  }
-`
-export const UpdateRestaurantThemeDocument = gql`
-  mutation UpdateRestaurantTheme($id: uuid!, $customization: jsonb!) {
-    update_restaurants_by_pk(
-      pk_columns: {id: $id}
-      _set: {customization: $customization}
-    ) {
-      customization
-    }
-  }
-`
-export const UpdateRestaurantDetailsDocument = gql`
-  mutation UpdateRestaurantDetails($id: uuid!, $name: String!, $description: String) {
-    update_restaurants_by_pk(
-      pk_columns: {id: $id}
-      _set: {name: $name, description: $description}
-    ) {
-      customization
-    }
-  }
-`
-export const GetTableOrdersDocument = gql`
-  query GetTableOrders($restaurant_id: uuid!) {
-    table_orders(where: {table: {restaurant_id: {_eq: $restaurant_id}}}) {
-      ...TableOrderFragment
-    }
-  }
-${TableOrderFragmentFragmentDoc}`
-export const GetTableOrderDocument = gql`
-  query GetTableOrder($id: uuid!) {
-    table_orders_by_pk(id: $id) {
-      ...TableOrderFragment
-      table {
-        ...TableFragment
-      }
-      orders {
-        ...OrderFragment
-      }
-    }
-  }
-  ${TableOrderFragmentFragmentDoc}
-  ${TableFragmentFragmentDoc}
-${OrderFragmentFragmentDoc}`
-export const CreateTableOrderDocument = gql`
-  mutation CreateTableOrder($status: String!, $table_id: uuid!) {
-    insert_table_orders_one(object: {status: $status, table_id: $table_id}) {
-      id
-      status
-      table_id
-    }
-  }
-`
-export const GetTablesDocument = gql`
-  query GetTables($restaurant_id: uuid!) {
-    tables(order_by: {name: asc}, where: {restaurant_id: {_eq: $restaurant_id}}) {
-      ...TableFragment
-    }
-  }
-${TableFragmentFragmentDoc}`
-export const GetTableInfoDocument = gql`
-  query GetTableInfo($id: uuid!) {
-    tables_by_pk(id: $id) {
-      ...TableFragment
-    }
-  }
-${TableFragmentFragmentDoc}`
-export const GetTableDocument = gql`
-  query GetTable($id: uuid!) {
-    tables_by_pk(id: $id) {
-      ...TableFragment
-      table_orders {
-        ...TableOrderFragment
-        orders {
-          ...OrderFragment
-        }
-      }
-    }
-  }
-  ${TableFragmentFragmentDoc}
-  ${TableOrderFragmentFragmentDoc}
-${OrderFragmentFragmentDoc}`
-export const SubscribeTablesDocument = gql`
-  subscription SubscribeTables($restaurant_id: uuid!) {
-    tables(order_by: {name: asc}, where: {restaurant_id: {_eq: $restaurant_id}}) {
-      ...TableFragment
-    }
-  }
-${TableFragmentFragmentDoc}`
-export const CreateTableDocument = gql`
-  mutation CreateTable($no_of_chairs: Int!, $qr_codes: jsonb, $restaurant_id: uuid!, $name: String!) {
-    insert_tables_one(
-      object: {no_of_chairs: $no_of_chairs, qr_codes: $qr_codes, restaurant_id: $restaurant_id, name: $name}
-    ) {
-      id
-    }
-  }
-`
-export const UpdateTableDocument = gql`
-  mutation UpdateTable($id: uuid!, $no_of_chairs: Int!, $name: String!, $qr_codes: jsonb) {
-    update_tables_by_pk(
-      pk_columns: {id: $id}
-      _set: {no_of_chairs: $no_of_chairs, name: $name, qr_codes: $qr_codes}
-    ) {
-      id
-    }
-  }
-`
-export const DeleteTableDocument = gql`
-  mutation DeleteTable($id: uuid!) {
-    delete_tables_by_pk(id: $id) {
-      id
-    }
-    update_table_orders(where: {table_id: {_eq: $id}}, _set: {table_id: null}) {
-      affected_rows
-    }
-  }
-`
-export const GetUserByIdDocument = gql`
-  query GetUserById($id: uuid!) {
-    users_by_pk(id: $id) {
-      created_at
-      email
-      emailVerified
-      id
-      image
-      name
-      role
-    }
-  }
-`
-export const UpdateUserProfilePictureDocument = gql`
-  mutation UpdateUserProfilePicture($id: uuid!, $image: String!) {
-    update_users(where: {id: {_eq: $id}}, _set: {image: $image}) {
-      affected_rows
-    }
-  }
-`
-export const UpdateUserDetailsDocument = gql`
-  mutation UpdateUserDetails($id: uuid!, $name: String!, $email: String!) {
-    update_users(where: {id: {_eq: $id}}, _set: {name: $name, email: $email}) {
-      affected_rows
-    }
   }
 `
 export const CreateAccountDocument = gql`
@@ -5591,96 +5004,6 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
    return {
-      GetCategories(variables: GetCategoriesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetCategoriesQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetCategoriesQuery>(GetCategoriesDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetCategories', 'query')
-      },
-      GetHomePageCategories(variables: GetHomePageCategoriesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetHomePageCategoriesQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetHomePageCategoriesQuery>(GetHomePageCategoriesDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetHomePageCategories', 'query')
-      },
-      GetCategory(variables: GetCategoryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetCategoryQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetCategoryQuery>(GetCategoryDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetCategory', 'query')
-      },
-      CreateCategory(variables: CreateCategoryMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateCategoryMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<CreateCategoryMutation>(CreateCategoryDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'CreateCategory', 'mutation')
-      },
-      UpdateCategory(variables: UpdateCategoryMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdateCategoryMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<UpdateCategoryMutation>(UpdateCategoryDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'UpdateCategory', 'mutation')
-      },
-      DeleteCategory(variables: DeleteCategoryMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteCategoryMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<DeleteCategoryMutation>(DeleteCategoryDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'DeleteCategory', 'mutation')
-      },
-      GetItems(variables: GetItemsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetItemsQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetItemsQuery>(GetItemsDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetItems', 'query')
-      },
-      GetItem(variables: GetItemQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetItemQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetItemQuery>(GetItemDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetItem', 'query')
-      },
-      CreateItem(variables: CreateItemMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateItemMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<CreateItemMutation>(CreateItemDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'CreateItem', 'mutation')
-      },
-      UpdateItem(variables: UpdateItemMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdateItemMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<UpdateItemMutation>(UpdateItemDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'UpdateItem', 'mutation')
-      },
-      DeleteItem(variables: DeleteItemMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteItemMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<DeleteItemMutation>(DeleteItemDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'DeleteItem', 'mutation')
-      },
-      GetOrder(variables: GetOrderQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetOrderQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetOrderQuery>(GetOrderDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetOrder', 'query')
-      },
-      CreateOrders(variables: CreateOrdersMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateOrdersMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<CreateOrdersMutation>(CreateOrdersDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'CreateOrders', 'mutation')
-      },
-      CreateRestaurant(variables: CreateRestaurantMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateRestaurantMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<CreateRestaurantMutation>(CreateRestaurantDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'CreateRestaurant', 'mutation')
-      },
-      GetRestaurantBySlug(variables: GetRestaurantBySlugQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetRestaurantBySlugQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetRestaurantBySlugQuery>(GetRestaurantBySlugDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetRestaurantBySlug', 'query')
-      },
-      UpdateRestaurantTheme(variables: UpdateRestaurantThemeMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdateRestaurantThemeMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<UpdateRestaurantThemeMutation>(UpdateRestaurantThemeDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'UpdateRestaurantTheme', 'mutation')
-      },
-      UpdateRestaurantDetails(variables: UpdateRestaurantDetailsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdateRestaurantDetailsMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<UpdateRestaurantDetailsMutation>(UpdateRestaurantDetailsDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'UpdateRestaurantDetails', 'mutation')
-      },
-      GetTableOrders(variables: GetTableOrdersQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetTableOrdersQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetTableOrdersQuery>(GetTableOrdersDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetTableOrders', 'query')
-      },
-      GetTableOrder(variables: GetTableOrderQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetTableOrderQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetTableOrderQuery>(GetTableOrderDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetTableOrder', 'query')
-      },
-      CreateTableOrder(variables: CreateTableOrderMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateTableOrderMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<CreateTableOrderMutation>(CreateTableOrderDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'CreateTableOrder', 'mutation')
-      },
-      GetTables(variables: GetTablesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetTablesQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetTablesQuery>(GetTablesDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetTables', 'query')
-      },
-      GetTableInfo(variables: GetTableInfoQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetTableInfoQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetTableInfoQuery>(GetTableInfoDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetTableInfo', 'query')
-      },
-      GetTable(variables: GetTableQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetTableQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetTableQuery>(GetTableDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetTable', 'query')
-      },
-      SubscribeTables(variables: SubscribeTablesSubscriptionVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<SubscribeTablesSubscription> {
-         return withWrapper((wrappedRequestHeaders) => client.request<SubscribeTablesSubscription>(SubscribeTablesDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'SubscribeTables', 'subscription')
-      },
-      CreateTable(variables: CreateTableMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateTableMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<CreateTableMutation>(CreateTableDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'CreateTable', 'mutation')
-      },
-      UpdateTable(variables: UpdateTableMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdateTableMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<UpdateTableMutation>(UpdateTableDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'UpdateTable', 'mutation')
-      },
-      DeleteTable(variables: DeleteTableMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<DeleteTableMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<DeleteTableMutation>(DeleteTableDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'DeleteTable', 'mutation')
-      },
-      GetUserById(variables: GetUserByIdQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetUserByIdQuery> {
-         return withWrapper((wrappedRequestHeaders) => client.request<GetUserByIdQuery>(GetUserByIdDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'GetUserById', 'query')
-      },
-      UpdateUserProfilePicture(variables: UpdateUserProfilePictureMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdateUserProfilePictureMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<UpdateUserProfilePictureMutation>(UpdateUserProfilePictureDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'UpdateUserProfilePicture', 'mutation')
-      },
-      UpdateUserDetails(variables: UpdateUserDetailsMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<UpdateUserDetailsMutation> {
-         return withWrapper((wrappedRequestHeaders) => client.request<UpdateUserDetailsMutation>(UpdateUserDetailsDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'UpdateUserDetails', 'mutation')
-      },
       CreateAccount(variables: CreateAccountMutationVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<CreateAccountMutation> {
          return withWrapper((wrappedRequestHeaders) => client.request<CreateAccountMutation>(CreateAccountDocument, variables, { ...requestHeaders, ...wrappedRequestHeaders }), 'CreateAccount', 'mutation')
       },
@@ -5722,5 +5045,4 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
       },
    }
 }
-
 export type Sdk = ReturnType<typeof getSdk>;

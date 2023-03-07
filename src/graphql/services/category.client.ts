@@ -54,9 +54,9 @@ export const useCreateCategoryService = (restaurantId: Nullable<string>, role: '
    
    const deleteCategory = () => deleteCategoryMutation.mutate({ id: category?.id })
    
-   const categoryDefaultValues: InferType<typeof categorySchema> | null = category ? {
+   const categoryDefaultValues: InferType<typeof categorySchema> | undefined = category ? {
       name: category.name,
-   } : null
+   } : undefined
    
    return {
       categoryDefaultValues,

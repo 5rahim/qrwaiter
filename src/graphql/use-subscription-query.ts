@@ -2,11 +2,9 @@ import { useQueryClient } from '@/graphql/use-query-client'
 import { getWSClient } from '@/lib/graphql-clients'
 import { useEffect, useState } from 'react'
 
-export const useSubscriptionQuery = <TData, TVariables = undefined>(document: string, options?: { variables?: TVariables }) => {
-   const { variables } = options ?? {}
+export const useSubscriptionQuery = <TData, TVariables = undefined>(document: string, variables?: TVariables) => {
    
    const { clientSession } = useQueryClient()
-   
    
    const [data, setData] = useState<TData | null>(null)
    const [isLoading, setIsLoading] = useState<boolean>(true)

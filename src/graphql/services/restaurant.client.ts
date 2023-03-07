@@ -1,29 +1,37 @@
 import { useCreateRestaurantMutation, useUpdateRestaurantDetailsMutation, useUpdateRestaurantThemeMutation } from '@/graphql/generated'
 import { useMutationService } from '@/graphql/use-mutation-service'
 import { useQueryClient } from '@/graphql/use-query-client'
+import { useLinks } from '@/hooks/use-links'
 import { InferType, Nullable } from '@/types'
 import { createTypesafeFormSchema } from '@ui/main/forms/typesafe-form/CreateTypesafeFormSchema'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 export const useCreateRestaurantService = () => {
    
    const queryClient = useQueryClient()
    const session = useSession()
+   const router = useRouter()
+   const links = useLinks()
    
    const createRestaurantMutation = useCreateRestaurantMutation(queryClient.get(), {
       onSuccess: data => {
          queryClient.successAlert('Restaurant created')
+         router.push(links.to(s => s.admin.home))
       },
    })
    useMutationService(createRestaurantMutation)
    
    const createRestaurantSchema = createTypesafeFormSchema(({ z, presets }) => z.object({
       name: presets.name,
-      slug: z.string().min(4),
-      description: z.string().nullable(),
+      slug: z.string().min(4, 'URL slug must contain at least 4 characters')
+         // .transform(v => v.replaceAll(/\s/g, ''))
+             .refine((val) => !val.match(/[^a-z-]/g) && !val.match(/\s/g), { message: 'Invalid URL' }),
+      description: z.string().trim().nullish(),
    }))
    
    const createRestaurant = (data: InferType<typeof createRestaurantSchema>) => {
+      // console.log(data)
       createRestaurantMutation.mutate({
          owner_id: session.data?.user?.id,
          customization: {}, // TODO: Add default customization

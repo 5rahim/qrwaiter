@@ -91,3 +91,6 @@ Google API Key (Address Input...)
 
 `npm run dev`
 
+### Features
+ 
+- Everything you edit or modify is saved in real time in the online menu.

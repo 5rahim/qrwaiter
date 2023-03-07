@@ -59,7 +59,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) =
                </Transition.Child>
                
                <div className="fixed inset-0 overflow-y-auto">
-                  <div className="flex min-h-full items-end sm:items-center justify-center p-0 sm:p-4 text-center">
+                  <div className="flex min-h-full items-end sm:items-start justify-center p-0 sm:p-4 text-center">
                      <Transition.Child
                         as={Fragment}
                         enter="ease-out duration-300"
@@ -71,7 +71,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) =
                      >
                         <Dialog.Panel
                            className={cn(
-                              "w-full transform overflow-hidden rounded-none sm:rounded-md bg-white p-6 text-left align-middle shadow-xl transition-all",
+                              "w-full transform overflow-hidden mt-16 rounded-none sm:rounded-md bg-white p-6 text-left align-middle shadow-xl transition-all",
                               modalStyles({ size }),
                            )}
                         >
@@ -81,7 +81,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>((props, ref) =
                            >
                               {title}
                            </Dialog.Title>}
-                           <div className="mt-2">
+                           <div className="">
                               {children}
                            </div>
                            

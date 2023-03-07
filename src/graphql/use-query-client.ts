@@ -20,25 +20,25 @@ export const useQueryClient = () => {
          return client
       },
       successAlert: (successMessage?: string) => {
-         let title: string = t(`alerts:success`)
+         let title: string = 'Success'
          
          if (successMessage) {
-            title = t(`alerts:${successMessage}`)
+            title = successMessage
          }
          
          toast.success(title)
          
       },
-      errorAlert: (errorMessage?: string | { title: string, description: string }) => {
-         
-         let title: string = t(`alerts:error`)
-         
+      errorAlert: (errorMessage?: string) => {
+      
+         let title: string = 'An error occurred'
+      
          if (errorMessage) {
-            title = t(`alerts:${errorMessage}`)
+            title = errorMessage
          }
-         
+      
          toast.error(title)
-         
+      
       },
    }
    

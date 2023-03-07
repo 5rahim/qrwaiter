@@ -1,6 +1,6 @@
+import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { GraphQLClient } from 'graphql-request'
 import { RequestInit } from 'graphql-request/dist/types.dom'
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query'
 
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -15,7 +15,6 @@ function fetcher<TData, TVariables extends { [key: string]: any }>(client: Graph
       requestHeaders,
    })
 }
-
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
    ID: string;
@@ -3899,11 +3898,11 @@ export type DB_Tables = {
    id: Scalars['uuid'];
    name: Scalars['String'];
    no_of_chairs: Scalars['Int'];
+   order: Scalars['Int'];
    qr_codes?: Maybe<Scalars['jsonb']>;
    /** An object relationship */
    restaurant: DB_Restaurants;
    restaurant_id: Scalars['uuid'];
-   table_number?: Maybe<Scalars['Int']>;
    /** An array relationship */
    table_orders: Array<DB_Table_Orders>;
    /** An aggregate relationship */
@@ -4008,13 +4007,13 @@ export type DB_Tables_Arr_Rel_Insert_Input = {
 export type DB_Tables_Avg_Fields = {
    __typename?: 'tables_avg_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by avg() on columns of table "tables" */
 export type DB_Tables_Avg_Order_By = {
    no_of_chairs?: InputMaybe<DB_Order_By>;
-   table_number?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "tables". All fields are combined with a logical 'AND'. */
@@ -4025,10 +4024,10 @@ export type DB_Tables_Bool_Exp = {
    id?: InputMaybe<DB_Uuid_Comparison_Exp>;
    name?: InputMaybe<DB_String_Comparison_Exp>;
    no_of_chairs?: InputMaybe<DB_Int_Comparison_Exp>;
+   order?: InputMaybe<DB_Int_Comparison_Exp>;
    qr_codes?: InputMaybe<DB_Jsonb_Comparison_Exp>;
    restaurant?: InputMaybe<DB_Restaurants_Bool_Exp>;
    restaurant_id?: InputMaybe<DB_Uuid_Comparison_Exp>;
-   table_number?: InputMaybe<DB_Int_Comparison_Exp>;
    table_orders?: InputMaybe<DB_Table_Orders_Bool_Exp>;
    table_orders_aggregate?: InputMaybe<DB_Table_Orders_Aggregate_Bool_Exp>;
 };
@@ -4056,7 +4055,7 @@ export type DB_Tables_Delete_Key_Input = {
 /** input type for incrementing numeric columns in table "tables" */
 export type DB_Tables_Inc_Input = {
    no_of_chairs?: InputMaybe<Scalars['Int']>;
-   table_number?: InputMaybe<Scalars['Int']>;
+   order?: InputMaybe<Scalars['Int']>;
 };
 
 /** input type for inserting data into table "tables" */
@@ -4064,10 +4063,10 @@ export type DB_Tables_Insert_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    name?: InputMaybe<Scalars['String']>;
    no_of_chairs?: InputMaybe<Scalars['Int']>;
+   order?: InputMaybe<Scalars['Int']>;
    qr_codes?: InputMaybe<Scalars['jsonb']>;
    restaurant?: InputMaybe<DB_Restaurants_Obj_Rel_Insert_Input>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
-   table_number?: InputMaybe<Scalars['Int']>;
    table_orders?: InputMaybe<DB_Table_Orders_Arr_Rel_Insert_Input>;
 };
 
@@ -4077,8 +4076,8 @@ export type DB_Tables_Max_Fields = {
    id?: Maybe<Scalars['uuid']>;
    name?: Maybe<Scalars['String']>;
    no_of_chairs?: Maybe<Scalars['Int']>;
+   order?: Maybe<Scalars['Int']>;
    restaurant_id?: Maybe<Scalars['uuid']>;
-   table_number?: Maybe<Scalars['Int']>;
 };
 
 /** order by max() on columns of table "tables" */
@@ -4086,8 +4085,8 @@ export type DB_Tables_Max_Order_By = {
    id?: InputMaybe<DB_Order_By>;
    name?: InputMaybe<DB_Order_By>;
    no_of_chairs?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
    restaurant_id?: InputMaybe<DB_Order_By>;
-   table_number?: InputMaybe<DB_Order_By>;
 };
 
 /** aggregate min on columns */
@@ -4096,8 +4095,8 @@ export type DB_Tables_Min_Fields = {
    id?: Maybe<Scalars['uuid']>;
    name?: Maybe<Scalars['String']>;
    no_of_chairs?: Maybe<Scalars['Int']>;
+   order?: Maybe<Scalars['Int']>;
    restaurant_id?: Maybe<Scalars['uuid']>;
-   table_number?: Maybe<Scalars['Int']>;
 };
 
 /** order by min() on columns of table "tables" */
@@ -4105,8 +4104,8 @@ export type DB_Tables_Min_Order_By = {
    id?: InputMaybe<DB_Order_By>;
    name?: InputMaybe<DB_Order_By>;
    no_of_chairs?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
    restaurant_id?: InputMaybe<DB_Order_By>;
-   table_number?: InputMaybe<DB_Order_By>;
 };
 
 /** response of any mutation on the table "tables" */
@@ -4137,10 +4136,10 @@ export type DB_Tables_Order_By = {
    id?: InputMaybe<DB_Order_By>;
    name?: InputMaybe<DB_Order_By>;
    no_of_chairs?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
    qr_codes?: InputMaybe<DB_Order_By>;
    restaurant?: InputMaybe<DB_Restaurants_Order_By>;
    restaurant_id?: InputMaybe<DB_Order_By>;
-   table_number?: InputMaybe<DB_Order_By>;
    table_orders_aggregate?: InputMaybe<DB_Table_Orders_Aggregate_Order_By>;
 };
 
@@ -4163,59 +4162,59 @@ export type DB_Tables_Select_Column =
    /** column name */
    | 'no_of_chairs'
    /** column name */
+   | 'order'
+   /** column name */
    | 'qr_codes'
    /** column name */
-   | 'restaurant_id'
-   /** column name */
-   | 'table_number';
+   | 'restaurant_id';
 
 /** input type for updating data in table "tables" */
 export type DB_Tables_Set_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    name?: InputMaybe<Scalars['String']>;
    no_of_chairs?: InputMaybe<Scalars['Int']>;
+   order?: InputMaybe<Scalars['Int']>;
    qr_codes?: InputMaybe<Scalars['jsonb']>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
-   table_number?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate stddev on columns */
 export type DB_Tables_Stddev_Fields = {
    __typename?: 'tables_stddev_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev() on columns of table "tables" */
 export type DB_Tables_Stddev_Order_By = {
    no_of_chairs?: InputMaybe<DB_Order_By>;
-   table_number?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
 };
 
 /** aggregate stddev_pop on columns */
 export type DB_Tables_Stddev_Pop_Fields = {
    __typename?: 'tables_stddev_pop_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_pop() on columns of table "tables" */
 export type DB_Tables_Stddev_Pop_Order_By = {
    no_of_chairs?: InputMaybe<DB_Order_By>;
-   table_number?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
 };
 
 /** aggregate stddev_samp on columns */
 export type DB_Tables_Stddev_Samp_Fields = {
    __typename?: 'tables_stddev_samp_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by stddev_samp() on columns of table "tables" */
 export type DB_Tables_Stddev_Samp_Order_By = {
    no_of_chairs?: InputMaybe<DB_Order_By>;
-   table_number?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
 };
 
 /** Streaming cursor of the table "tables" */
@@ -4231,22 +4230,22 @@ export type DB_Tables_Stream_Cursor_Value_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    name?: InputMaybe<Scalars['String']>;
    no_of_chairs?: InputMaybe<Scalars['Int']>;
+   order?: InputMaybe<Scalars['Int']>;
    qr_codes?: InputMaybe<Scalars['jsonb']>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
-   table_number?: InputMaybe<Scalars['Int']>;
 };
 
 /** aggregate sum on columns */
 export type DB_Tables_Sum_Fields = {
    __typename?: 'tables_sum_fields';
    no_of_chairs?: Maybe<Scalars['Int']>;
-   table_number?: Maybe<Scalars['Int']>;
+   order?: Maybe<Scalars['Int']>;
 };
 
 /** order by sum() on columns of table "tables" */
 export type DB_Tables_Sum_Order_By = {
    no_of_chairs?: InputMaybe<DB_Order_By>;
-   table_number?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
 };
 
 /** update columns of table "tables" */
@@ -4258,11 +4257,11 @@ export type DB_Tables_Update_Column =
    /** column name */
    | 'no_of_chairs'
    /** column name */
+   | 'order'
+   /** column name */
    | 'qr_codes'
    /** column name */
-   | 'restaurant_id'
-   /** column name */
-   | 'table_number';
+   | 'restaurant_id';
 
 export type DB_Tables_Updates = {
    /** append existing jsonb value of filtered columns with new jsonb value */
@@ -4287,39 +4286,39 @@ export type DB_Tables_Updates = {
 export type DB_Tables_Var_Pop_Fields = {
    __typename?: 'tables_var_pop_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_pop() on columns of table "tables" */
 export type DB_Tables_Var_Pop_Order_By = {
    no_of_chairs?: InputMaybe<DB_Order_By>;
-   table_number?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
 };
 
 /** aggregate var_samp on columns */
 export type DB_Tables_Var_Samp_Fields = {
    __typename?: 'tables_var_samp_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by var_samp() on columns of table "tables" */
 export type DB_Tables_Var_Samp_Order_By = {
    no_of_chairs?: InputMaybe<DB_Order_By>;
-   table_number?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
 };
 
 /** aggregate variance on columns */
 export type DB_Tables_Variance_Fields = {
    __typename?: 'tables_variance_fields';
    no_of_chairs?: Maybe<Scalars['Float']>;
-   table_number?: Maybe<Scalars['Float']>;
+   order?: Maybe<Scalars['Float']>;
 };
 
 /** order by variance() on columns of table "tables" */
 export type DB_Tables_Variance_Order_By = {
    no_of_chairs?: InputMaybe<DB_Order_By>;
-   table_number?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
 };
 
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
@@ -4885,6 +4884,13 @@ export type DB_GetRestaurantBySlugQueryVariables = Exact<{
 
 export type DB_GetRestaurantBySlugQuery = { __typename?: 'query_root', restaurants: Array<{ __typename?: 'restaurants', id: any, description?: string | null, customization: any, name: string, owner_id: any, slug: string }> };
 
+export type DB_GetRestaurantByOwnerIdQueryVariables = Exact<{
+   owner_id: Scalars['uuid'];
+}>;
+
+
+export type DB_GetRestaurantByOwnerIdQuery = { __typename?: 'query_root', restaurants: Array<{ __typename?: 'restaurants', id: any, description?: string | null, customization: any, name: string, owner_id: any, slug: string }> };
+
 export type DB_UpdateRestaurantThemeMutationVariables = Exact<{
    id: Scalars['uuid'];
    customization: Scalars['jsonb'];
@@ -4916,7 +4922,7 @@ export type DB_GetTableOrderQueryVariables = Exact<{
 }>;
 
 
-export type DB_GetTableOrderQuery = { __typename?: 'query_root', table_orders_by_pk?: { __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null, table?: { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string } | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> } | null };
+export type DB_GetTableOrderQuery = { __typename?: 'query_root', table_orders_by_pk?: { __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null, table?: { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, order: number } | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> } | null };
 
 export type DB_CreateTableOrderMutationVariables = Exact<{
    status: Scalars['String'];
@@ -4926,41 +4932,42 @@ export type DB_CreateTableOrderMutationVariables = Exact<{
 
 export type DB_CreateTableOrderMutation = { __typename?: 'mutation_root', insert_table_orders_one?: { __typename?: 'table_orders', id: any, status: string, table_id?: any | null } | null };
 
-export type DB_TableFragmentFragment = { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string };
+export type DB_TableFragmentFragment = { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, order: number };
 
 export type DB_GetTablesQueryVariables = Exact<{
    restaurant_id: Scalars['uuid'];
 }>;
 
 
-export type DB_GetTablesQuery = { __typename?: 'query_root', tables: Array<{ __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string }> };
+export type DB_GetTablesQuery = { __typename?: 'query_root', tables: Array<{ __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, order: number }> };
 
 export type DB_GetTableInfoQueryVariables = Exact<{
    id: Scalars['uuid'];
 }>;
 
 
-export type DB_GetTableInfoQuery = { __typename?: 'query_root', tables_by_pk?: { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string } | null };
+export type DB_GetTableInfoQuery = { __typename?: 'query_root', tables_by_pk?: { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, order: number } | null };
 
 export type DB_GetTableQueryVariables = Exact<{
    id: Scalars['uuid'];
 }>;
 
 
-export type DB_GetTableQuery = { __typename?: 'query_root', tables_by_pk?: { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> }> } | null };
+export type DB_GetTableQuery = { __typename?: 'query_root', tables_by_pk?: { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, order: number, table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> }> } | null };
 
 export type DB_SubscribeTablesSubscriptionVariables = Exact<{
    restaurant_id: Scalars['uuid'];
 }>;
 
 
-export type DB_SubscribeTablesSubscription = { __typename?: 'subscription_root', tables: Array<{ __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string }> };
+export type DB_SubscribeTablesSubscription = { __typename?: 'subscription_root', tables: Array<{ __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, order: number }> };
 
 export type DB_CreateTableMutationVariables = Exact<{
    no_of_chairs: Scalars['Int'];
    qr_codes?: InputMaybe<Scalars['jsonb']>;
    restaurant_id: Scalars['uuid'];
    name: Scalars['String'];
+   order?: InputMaybe<Scalars['Int']>;
 }>;
 
 
@@ -4971,10 +4978,18 @@ export type DB_UpdateTableMutationVariables = Exact<{
    no_of_chairs: Scalars['Int'];
    name: Scalars['String'];
    qr_codes?: InputMaybe<Scalars['jsonb']>;
+   order?: InputMaybe<Scalars['Int']>;
 }>;
 
 
 export type DB_UpdateTableMutation = { __typename?: 'mutation_root', update_tables_by_pk?: { __typename?: 'tables', id: any } | null };
+
+export type DB_UpdateTableOrderMutationVariables = Exact<{
+   order: Array<DB_Tables_Updates> | DB_Tables_Updates;
+}>;
+
+
+export type DB_UpdateTableOrderMutation = { __typename?: 'mutation_root', update_tables_many?: Array<{ __typename?: 'tables_mutation_response', affected_rows: number } | null> | null };
 
 export type DB_DeleteTableMutationVariables = Exact<{
    id: Scalars['uuid'];
@@ -5007,109 +5022,6 @@ export type DB_UpdateUserDetailsMutationVariables = Exact<{
 
 export type DB_UpdateUserDetailsMutation = { __typename?: 'mutation_root', update_users?: { __typename?: 'users_mutation_response', affected_rows: number } | null };
 
-export type DB_CreateAccountMutationVariables = Exact<{
-   data: DB_Accounts_Insert_Input;
-}>;
-
-
-export type DB_CreateAccountMutation = { __typename?: 'mutation_root', insert_accounts_one?: { __typename: 'accounts', id: any, type: string, scope?: string | null, userId: any, id_token?: string | null, provider: string, expires_at?: any | null, token_type?: string | null, oauth_token?: string | null, access_token?: string | null, refresh_token?: string | null, session_state?: string | null, providerAccountId: string, oauth_token_secret?: string | null } | null };
-
-export type DB_DeleteAccountMutationVariables = Exact<{
-   provider: Scalars['String'];
-   providerAccountId: Scalars['String'];
-}>;
-
-
-export type DB_DeleteAccountMutation = { __typename?: 'mutation_root', delete_accounts?: { __typename?: 'accounts_mutation_response', returning: Array<{ __typename: 'accounts', id: any, type: string, scope?: string | null, userId: any, id_token?: string | null, provider: string, expires_at?: any | null, token_type?: string | null, oauth_token?: string | null, access_token?: string | null, refresh_token?: string | null, session_state?: string | null, providerAccountId: string, oauth_token_secret?: string | null }> } | null };
-
-export type DB_UserFragment = { __typename: 'users', id: any, name?: string | null, email?: string | null, image?: string | null, emailVerified?: any | null, role?: string | null, created_at?: any | null };
-
-export type DB_SessionFragment = { __typename: 'sessions', id: any, userId: any, expires?: any | null, sessionToken: string };
-
-export type DB_AccountFragment = { __typename: 'accounts', id: any, type: string, scope?: string | null, userId: any, id_token?: string | null, provider: string, expires_at?: any | null, token_type?: string | null, oauth_token?: string | null, access_token?: string | null, refresh_token?: string | null, session_state?: string | null, providerAccountId: string, oauth_token_secret?: string | null };
-
-export type DB_VerificationTokenFragment = { __typename: 'verification_tokens', token: string, expires?: any | null, identifier: string };
-
-export type DB_GetSessionQueryVariables = Exact<{
-   sessionToken?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type DB_GetSessionQuery = { __typename?: 'query_root', sessions: Array<{ __typename: 'sessions', id: any, userId: any, expires?: any | null, sessionToken: string, user: { __typename: 'users', id: any, name?: string | null, email?: string | null, image?: string | null, emailVerified?: any | null, role?: string | null, created_at?: any | null } }> };
-
-export type DB_CreateSessionMutationVariables = Exact<{
-   data: DB_Sessions_Insert_Input;
-}>;
-
-
-export type DB_CreateSessionMutation = { __typename?: 'mutation_root', insert_sessions_one?: { __typename: 'sessions', id: any, userId: any, expires?: any | null, sessionToken: string } | null };
-
-export type DB_UpdateSessionMutationVariables = Exact<{
-   sessionToken?: InputMaybe<Scalars['String']>;
-   data: DB_Sessions_Set_Input;
-}>;
-
-
-export type DB_UpdateSessionMutation = { __typename?: 'mutation_root', update_sessions?: { __typename?: 'sessions_mutation_response', returning: Array<{ __typename: 'sessions', id: any, userId: any, expires?: any | null, sessionToken: string }> } | null };
-
-export type DB_DeleteSessionMutationVariables = Exact<{
-   sessionToken?: InputMaybe<Scalars['String']>;
-}>;
-
-
-export type DB_DeleteSessionMutation = { __typename?: 'mutation_root', delete_sessions?: { __typename?: 'sessions_mutation_response', returning: Array<{ __typename: 'sessions', id: any, userId: any, expires?: any | null, sessionToken: string }> } | null };
-
-export type DB_GetUserQueryVariables = Exact<{
-   id: Scalars['uuid'];
-}>;
-
-
-export type DB_GetUserQuery = { __typename?: 'query_root', users_by_pk?: { __typename: 'users', id: any, name?: string | null, email?: string | null, image?: string | null, emailVerified?: any | null, role?: string | null, created_at?: any | null } | null };
-
-export type DB_GetUsersQueryVariables = Exact<{
-   where: DB_Users_Bool_Exp;
-}>;
-
-
-export type DB_GetUsersQuery = { __typename?: 'query_root', users: Array<{ __typename: 'users', id: any, name?: string | null, email?: string | null, image?: string | null, emailVerified?: any | null, role?: string | null, created_at?: any | null }> };
-
-export type DB_CreateUserMutationVariables = Exact<{
-   data: DB_Users_Insert_Input;
-}>;
-
-
-export type DB_CreateUserMutation = { __typename?: 'mutation_root', insert_users_one?: { __typename: 'users', id: any, name?: string | null, email?: string | null, image?: string | null, emailVerified?: any | null, role?: string | null, created_at?: any | null } | null };
-
-export type DB_UpdateUserMutationVariables = Exact<{
-   id: Scalars['uuid'];
-   data: DB_Users_Set_Input;
-}>;
-
-
-export type DB_UpdateUserMutation = { __typename?: 'mutation_root', update_users_by_pk?: { __typename: 'users', id: any, name?: string | null, email?: string | null, image?: string | null, emailVerified?: any | null, role?: string | null, created_at?: any | null } | null };
-
-export type DB_DeleteUserMutationVariables = Exact<{
-   id: Scalars['uuid'];
-}>;
-
-
-export type DB_DeleteUserMutation = { __typename?: 'mutation_root', delete_users_by_pk?: { __typename: 'users', id: any, name?: string | null, email?: string | null, image?: string | null, emailVerified?: any | null, role?: string | null, created_at?: any | null } | null };
-
-export type DB_CreateVerificationTokenMutationVariables = Exact<{
-   data: DB_Verification_Tokens_Insert_Input;
-}>;
-
-
-export type DB_CreateVerificationTokenMutation = { __typename?: 'mutation_root', insert_verification_tokens_one?: { __typename: 'verification_tokens', token: string, expires?: any | null, identifier: string } | null };
-
-export type DB_DeleteVerificationTokenMutationVariables = Exact<{
-   identifier: Scalars['String'];
-   token: Scalars['String'];
-}>;
-
-
-export type DB_DeleteVerificationTokenMutation = { __typename?: 'mutation_root', delete_verification_tokens?: { __typename?: 'verification_tokens_mutation_response', returning: Array<{ __typename: 'verification_tokens', token: string, expires?: any | null, identifier: string }> } | null };
-
 export const ItemFragmentFragmentDoc = `
     fragment ItemFragment on items {
   available
@@ -5124,7 +5036,7 @@ export const ItemFragmentFragmentDoc = `
   restaurant_id
   variations
 }
-    `
+    `;
 export const OrderFragmentFragmentDoc = `
     fragment OrderFragment on orders {
   chair_number
@@ -5152,54 +5064,7 @@ export const TableFragmentFragmentDoc = `
   qr_codes
   restaurant_id
   name
-}
-    `
-export const UserFragmentDoc = `
-    fragment User on users {
-  __typename
-  id
-  name
-  email
-  image
-  emailVerified
-  role
-  created_at
-}
-    `
-export const SessionFragmentDoc = `
-    fragment Session on sessions {
-  __typename
-  id
-  userId
-  expires
-  sessionToken
-}
-    `
-export const AccountFragmentDoc = `
-    fragment Account on accounts {
-  __typename
-  id
-  type
-  scope
-  userId
-  id_token
-  provider
-  expires_at
-  token_type
-  oauth_token
-  access_token
-  refresh_token
-  session_state
-  providerAccountId
-  oauth_token_secret
-}
-    `
-export const VerificationTokenFragmentDoc = `
-    fragment VerificationToken on verification_tokens {
-  __typename
-  token
-  expires
-  identifier
+  order
 }
     `
 export const GetCategoriesDocument = `
@@ -5544,6 +5409,32 @@ export const useGetRestaurantBySlugQuery = <
       fetcher<DB_GetRestaurantBySlugQuery, DB_GetRestaurantBySlugQueryVariables>(client, GetRestaurantBySlugDocument, variables, headers),
       options,
    )
+export const GetRestaurantByOwnerIdDocument = `
+    query GetRestaurantByOwnerId($owner_id: uuid!) {
+  restaurants(where: {owner_id: {_eq: $owner_id}}) {
+    id
+    description
+    customization
+    name
+    owner_id
+    slug
+  }
+}
+    `
+export const useGetRestaurantByOwnerIdQuery = <
+   TData = DB_GetRestaurantByOwnerIdQuery,
+   TError = unknown
+>(
+   client: GraphQLClient,
+   variables: DB_GetRestaurantByOwnerIdQueryVariables,
+   options?: UseQueryOptions<DB_GetRestaurantByOwnerIdQuery, TError, TData>,
+   headers?: RequestInit['headers'],
+) =>
+   useQuery<DB_GetRestaurantByOwnerIdQuery, TError, TData>(
+      ['GetRestaurantByOwnerId', variables],
+      fetcher<DB_GetRestaurantByOwnerIdQuery, DB_GetRestaurantByOwnerIdQueryVariables>(client, GetRestaurantByOwnerIdDocument, variables, headers),
+      options,
+   )
 export const UpdateRestaurantThemeDocument = `
     mutation UpdateRestaurantTheme($id: uuid!, $customization: jsonb!) {
   update_restaurants_by_pk(
@@ -5735,15 +5626,15 @@ export const useGetTableQuery = <
    )
 export const SubscribeTablesDocument = `
     subscription SubscribeTables($restaurant_id: uuid!) {
-  tables(order_by: {name: asc}, where: {restaurant_id: {_eq: $restaurant_id}}) {
+  tables(order_by: {order: asc}, where: {restaurant_id: {_eq: $restaurant_id}}) {
     ...TableFragment
   }
 }
     ${TableFragmentFragmentDoc}`
 export const CreateTableDocument = `
-    mutation CreateTable($no_of_chairs: Int!, $qr_codes: jsonb, $restaurant_id: uuid!, $name: String!) {
+    mutation CreateTable($no_of_chairs: Int!, $qr_codes: jsonb, $restaurant_id: uuid!, $name: String!, $order: Int) {
   insert_tables_one(
-    object: {no_of_chairs: $no_of_chairs, qr_codes: $qr_codes, restaurant_id: $restaurant_id, name: $name}
+    object: {no_of_chairs: $no_of_chairs, qr_codes: $qr_codes, restaurant_id: $restaurant_id, name: $name, order: $order}
   ) {
     id
   }
@@ -5763,10 +5654,10 @@ export const useCreateTableMutation = <
       options,
    )
 export const UpdateTableDocument = `
-    mutation UpdateTable($id: uuid!, $no_of_chairs: Int!, $name: String!, $qr_codes: jsonb) {
+    mutation UpdateTable($id: uuid!, $no_of_chairs: Int!, $name: String!, $qr_codes: jsonb, $order: Int) {
   update_tables_by_pk(
     pk_columns: {id: $id}
-    _set: {no_of_chairs: $no_of_chairs, name: $name, qr_codes: $qr_codes}
+    _set: {no_of_chairs: $no_of_chairs, name: $name, qr_codes: $qr_codes, order: $order}
   ) {
     id
   }
@@ -5783,6 +5674,26 @@ export const useUpdateTableMutation = <
    useMutation<DB_UpdateTableMutation, TError, DB_UpdateTableMutationVariables, TContext>(
       ['UpdateTable'],
       (variables?: DB_UpdateTableMutationVariables) => fetcher<DB_UpdateTableMutation, DB_UpdateTableMutationVariables>(client, UpdateTableDocument, variables, headers)(),
+      options,
+   )
+export const UpdateTableOrderDocument = `
+    mutation UpdateTableOrder($order: [tables_updates!]!) {
+  update_tables_many(updates: $order) {
+    affected_rows
+  }
+}
+    `
+export const useUpdateTableOrderMutation = <
+   TError = unknown,
+   TContext = unknown
+>(
+   client: GraphQLClient,
+   options?: UseMutationOptions<DB_UpdateTableOrderMutation, TError, DB_UpdateTableOrderMutationVariables, TContext>,
+   headers?: RequestInit['headers'],
+) =>
+   useMutation<DB_UpdateTableOrderMutation, TError, DB_UpdateTableOrderMutationVariables, TContext>(
+      ['UpdateTableOrder'],
+      (variables?: DB_UpdateTableOrderMutationVariables) => fetcher<DB_UpdateTableOrderMutation, DB_UpdateTableOrderMutationVariables>(client, UpdateTableOrderDocument, variables, headers)(),
       options,
    )
 export const DeleteTableDocument = `
@@ -5873,284 +5784,5 @@ export const useUpdateUserDetailsMutation = <
    useMutation<DB_UpdateUserDetailsMutation, TError, DB_UpdateUserDetailsMutationVariables, TContext>(
       ['UpdateUserDetails'],
       (variables?: DB_UpdateUserDetailsMutationVariables) => fetcher<DB_UpdateUserDetailsMutation, DB_UpdateUserDetailsMutationVariables>(client, UpdateUserDetailsDocument, variables, headers)(),
-      options,
-   )
-export const CreateAccountDocument = `
-    mutation CreateAccount($data: accounts_insert_input!) {
-  insert_accounts_one(object: $data) {
-    ...Account
-  }
-}
-    ${AccountFragmentDoc}`
-export const useCreateAccountMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_CreateAccountMutation, TError, DB_CreateAccountMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_CreateAccountMutation, TError, DB_CreateAccountMutationVariables, TContext>(
-      ['CreateAccount'],
-      (variables?: DB_CreateAccountMutationVariables) => fetcher<DB_CreateAccountMutation, DB_CreateAccountMutationVariables>(client, CreateAccountDocument, variables, headers)(),
-      options,
-   )
-export const DeleteAccountDocument = `
-    mutation DeleteAccount($provider: String!, $providerAccountId: String!) {
-  delete_accounts(
-    where: {provider: {_eq: $provider}, providerAccountId: {_eq: $providerAccountId}}
-  ) {
-    returning {
-      ...Account
-    }
-  }
-}
-    ${AccountFragmentDoc}`
-export const useDeleteAccountMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_DeleteAccountMutation, TError, DB_DeleteAccountMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_DeleteAccountMutation, TError, DB_DeleteAccountMutationVariables, TContext>(
-      ['DeleteAccount'],
-      (variables?: DB_DeleteAccountMutationVariables) => fetcher<DB_DeleteAccountMutation, DB_DeleteAccountMutationVariables>(client, DeleteAccountDocument, variables, headers)(),
-      options,
-   )
-export const GetSessionDocument = `
-    query GetSession($sessionToken: String) {
-  sessions(where: {sessionToken: {_eq: $sessionToken}}) {
-    ...Session
-    user {
-      ...User
-    }
-  }
-}
-    ${SessionFragmentDoc}
-${UserFragmentDoc}`
-export const useGetSessionQuery = <
-   TData = DB_GetSessionQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables?: DB_GetSessionQueryVariables,
-   options?: UseQueryOptions<DB_GetSessionQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetSessionQuery, TError, TData>(
-      variables === undefined ? ['GetSession'] : ['GetSession', variables],
-      fetcher<DB_GetSessionQuery, DB_GetSessionQueryVariables>(client, GetSessionDocument, variables, headers),
-      options,
-   )
-export const CreateSessionDocument = `
-    mutation CreateSession($data: sessions_insert_input!) {
-  insert_sessions_one(object: $data) {
-    ...Session
-  }
-}
-    ${SessionFragmentDoc}`
-export const useCreateSessionMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_CreateSessionMutation, TError, DB_CreateSessionMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_CreateSessionMutation, TError, DB_CreateSessionMutationVariables, TContext>(
-      ['CreateSession'],
-      (variables?: DB_CreateSessionMutationVariables) => fetcher<DB_CreateSessionMutation, DB_CreateSessionMutationVariables>(client, CreateSessionDocument, variables, headers)(),
-      options,
-   )
-export const UpdateSessionDocument = `
-    mutation UpdateSession($sessionToken: String, $data: sessions_set_input!) {
-  update_sessions(where: {sessionToken: {_eq: $sessionToken}}, _set: $data) {
-    returning {
-      ...Session
-    }
-  }
-}
-    ${SessionFragmentDoc}`
-export const useUpdateSessionMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_UpdateSessionMutation, TError, DB_UpdateSessionMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_UpdateSessionMutation, TError, DB_UpdateSessionMutationVariables, TContext>(
-      ['UpdateSession'],
-      (variables?: DB_UpdateSessionMutationVariables) => fetcher<DB_UpdateSessionMutation, DB_UpdateSessionMutationVariables>(client, UpdateSessionDocument, variables, headers)(),
-      options,
-   )
-export const DeleteSessionDocument = `
-    mutation DeleteSession($sessionToken: String) {
-  delete_sessions(where: {sessionToken: {_eq: $sessionToken}}) {
-    returning {
-      ...Session
-    }
-  }
-}
-    ${SessionFragmentDoc}`
-export const useDeleteSessionMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_DeleteSessionMutation, TError, DB_DeleteSessionMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_DeleteSessionMutation, TError, DB_DeleteSessionMutationVariables, TContext>(
-      ['DeleteSession'],
-      (variables?: DB_DeleteSessionMutationVariables) => fetcher<DB_DeleteSessionMutation, DB_DeleteSessionMutationVariables>(client, DeleteSessionDocument, variables, headers)(),
-      options,
-   )
-export const GetUserDocument = `
-    query GetUser($id: uuid!) {
-  users_by_pk(id: $id) {
-    ...User
-  }
-}
-    ${UserFragmentDoc}`
-export const useGetUserQuery = <
-   TData = DB_GetUserQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetUserQueryVariables,
-   options?: UseQueryOptions<DB_GetUserQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetUserQuery, TError, TData>(
-      ['GetUser', variables],
-      fetcher<DB_GetUserQuery, DB_GetUserQueryVariables>(client, GetUserDocument, variables, headers),
-      options,
-   )
-export const GetUsersDocument = `
-    query GetUsers($where: users_bool_exp!) {
-  users(where: $where) {
-    ...User
-  }
-}
-    ${UserFragmentDoc}`
-export const useGetUsersQuery = <
-   TData = DB_GetUsersQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetUsersQueryVariables,
-   options?: UseQueryOptions<DB_GetUsersQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetUsersQuery, TError, TData>(
-      ['GetUsers', variables],
-      fetcher<DB_GetUsersQuery, DB_GetUsersQueryVariables>(client, GetUsersDocument, variables, headers),
-      options,
-   )
-export const CreateUserDocument = `
-    mutation CreateUser($data: users_insert_input!) {
-  insert_users_one(object: $data) {
-    ...User
-  }
-}
-    ${UserFragmentDoc}`
-export const useCreateUserMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_CreateUserMutation, TError, DB_CreateUserMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_CreateUserMutation, TError, DB_CreateUserMutationVariables, TContext>(
-      ['CreateUser'],
-      (variables?: DB_CreateUserMutationVariables) => fetcher<DB_CreateUserMutation, DB_CreateUserMutationVariables>(client, CreateUserDocument, variables, headers)(),
-      options,
-   )
-export const UpdateUserDocument = `
-    mutation UpdateUser($id: uuid!, $data: users_set_input!) {
-  update_users_by_pk(pk_columns: {id: $id}, _set: $data) {
-    ...User
-  }
-}
-    ${UserFragmentDoc}`
-export const useUpdateUserMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_UpdateUserMutation, TError, DB_UpdateUserMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_UpdateUserMutation, TError, DB_UpdateUserMutationVariables, TContext>(
-      ['UpdateUser'],
-      (variables?: DB_UpdateUserMutationVariables) => fetcher<DB_UpdateUserMutation, DB_UpdateUserMutationVariables>(client, UpdateUserDocument, variables, headers)(),
-      options,
-   )
-export const DeleteUserDocument = `
-    mutation DeleteUser($id: uuid!) {
-  delete_users_by_pk(id: $id) {
-    ...User
-  }
-}
-    ${UserFragmentDoc}`
-export const useDeleteUserMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_DeleteUserMutation, TError, DB_DeleteUserMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_DeleteUserMutation, TError, DB_DeleteUserMutationVariables, TContext>(
-      ['DeleteUser'],
-      (variables?: DB_DeleteUserMutationVariables) => fetcher<DB_DeleteUserMutation, DB_DeleteUserMutationVariables>(client, DeleteUserDocument, variables, headers)(),
-      options,
-   )
-export const CreateVerificationTokenDocument = `
-    mutation CreateVerificationToken($data: verification_tokens_insert_input!) {
-  insert_verification_tokens_one(object: $data) {
-    ...VerificationToken
-  }
-}
-    ${VerificationTokenFragmentDoc}`
-export const useCreateVerificationTokenMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_CreateVerificationTokenMutation, TError, DB_CreateVerificationTokenMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_CreateVerificationTokenMutation, TError, DB_CreateVerificationTokenMutationVariables, TContext>(
-      ['CreateVerificationToken'],
-      (variables?: DB_CreateVerificationTokenMutationVariables) => fetcher<DB_CreateVerificationTokenMutation, DB_CreateVerificationTokenMutationVariables>(client, CreateVerificationTokenDocument, variables, headers)(),
-      options,
-   )
-export const DeleteVerificationTokenDocument = `
-    mutation DeleteVerificationToken($identifier: String!, $token: String!) {
-  delete_verification_tokens(
-    where: {token: {_eq: $token}, identifier: {_eq: $identifier}}
-  ) {
-    returning {
-      ...VerificationToken
-    }
-  }
-}
-    ${VerificationTokenFragmentDoc}`
-export const useDeleteVerificationTokenMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_DeleteVerificationTokenMutation, TError, DB_DeleteVerificationTokenMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_DeleteVerificationTokenMutation, TError, DB_DeleteVerificationTokenMutationVariables, TContext>(
-      ['DeleteVerificationToken'],
-      (variables?: DB_DeleteVerificationTokenMutationVariables) => fetcher<DB_DeleteVerificationTokenMutation, DB_DeleteVerificationTokenMutationVariables>(client, DeleteVerificationTokenDocument, variables, headers)(),
       options,
    )

@@ -3,6 +3,7 @@ import { useAppTranslation } from '@/hooks/use-app-translation'
 import { Button, ButtonProps } from '@ui/main/forms/button/Button'
 import LoadingScreen from '@ui/shared/loading-spinner/LoadingScreen'
 import ShowOnly from '@ui/shared/show-only/ShowOnly'
+import _ from 'lodash'
 import React, { useMemo } from 'react'
 import { useFormContext } from 'react-hook-form'
 
@@ -46,7 +47,7 @@ export const SubmitField = React.forwardRef<HTMLButtonElement, SubmitFieldProps>
             ref={ref}
             {...rest}
          >
-            {children ? children : t(`form:${role}`)}
+            {children ? children : _.capitalize(role)}
          </Button>
       </>
    )
