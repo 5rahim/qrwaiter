@@ -584,6 +584,7 @@ export type Categories = {
    /** An aggregate relationship */
    items_aggregate: Items_Aggregate;
    name: Scalars['String'];
+   order: Scalars['Int'];
    /** An object relationship */
    restaurant: Restaurants;
    restaurant_id: Scalars['uuid'];
@@ -630,9 +631,17 @@ export type Categories_Aggregate_Bool_Exp_Count = {
 /** aggregate fields of "categories" */
 export type Categories_Aggregate_Fields = {
    __typename?: 'categories_aggregate_fields';
+   avg?: Maybe<Categories_Avg_Fields>;
    count: Scalars['Int'];
    max?: Maybe<Categories_Max_Fields>;
    min?: Maybe<Categories_Min_Fields>;
+   stddev?: Maybe<Categories_Stddev_Fields>;
+   stddev_pop?: Maybe<Categories_Stddev_Pop_Fields>;
+   stddev_samp?: Maybe<Categories_Stddev_Samp_Fields>;
+   sum?: Maybe<Categories_Sum_Fields>;
+   var_pop?: Maybe<Categories_Var_Pop_Fields>;
+   var_samp?: Maybe<Categories_Var_Samp_Fields>;
+   variance?: Maybe<Categories_Variance_Fields>;
 };
 
 
@@ -644,9 +653,17 @@ export type Categories_Aggregate_FieldsCountArgs = {
 
 /** order by aggregate values of table "categories" */
 export type Categories_Aggregate_Order_By = {
+   avg?: InputMaybe<Categories_Avg_Order_By>;
    count?: InputMaybe<Order_By>;
    max?: InputMaybe<Categories_Max_Order_By>;
    min?: InputMaybe<Categories_Min_Order_By>;
+   stddev?: InputMaybe<Categories_Stddev_Order_By>;
+   stddev_pop?: InputMaybe<Categories_Stddev_Pop_Order_By>;
+   stddev_samp?: InputMaybe<Categories_Stddev_Samp_Order_By>;
+   sum?: InputMaybe<Categories_Sum_Order_By>;
+   var_pop?: InputMaybe<Categories_Var_Pop_Order_By>;
+   var_samp?: InputMaybe<Categories_Var_Samp_Order_By>;
+   variance?: InputMaybe<Categories_Variance_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "categories" */
@@ -654,6 +671,17 @@ export type Categories_Arr_Rel_Insert_Input = {
    data: Array<Categories_Insert_Input>;
    /** upsert condition */
    on_conflict?: InputMaybe<Categories_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type Categories_Avg_Fields = {
+   __typename?: 'categories_avg_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "categories" */
+export type Categories_Avg_Order_By = {
+   order?: InputMaybe<Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "categories". All fields are combined with a logical 'AND'. */
@@ -665,6 +693,7 @@ export type Categories_Bool_Exp = {
    items?: InputMaybe<Items_Bool_Exp>;
    items_aggregate?: InputMaybe<Items_Aggregate_Bool_Exp>;
    name?: InputMaybe<String_Comparison_Exp>;
+   order?: InputMaybe<Int_Comparison_Exp>;
    restaurant?: InputMaybe<Restaurants_Bool_Exp>;
    restaurant_id?: InputMaybe<Uuid_Comparison_Exp>;
 };
@@ -674,11 +703,17 @@ export type Categories_Constraint =
 /** unique or primary key constraint on columns "id" */
    | 'categories_pkey';
 
+/** input type for incrementing numeric columns in table "categories" */
+export type Categories_Inc_Input = {
+   order?: InputMaybe<Scalars['Int']>;
+};
+
 /** input type for inserting data into table "categories" */
 export type Categories_Insert_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    items?: InputMaybe<Items_Arr_Rel_Insert_Input>;
    name?: InputMaybe<Scalars['String']>;
+   order?: InputMaybe<Scalars['Int']>;
    restaurant?: InputMaybe<Restaurants_Obj_Rel_Insert_Input>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
 };
@@ -688,6 +723,7 @@ export type Categories_Max_Fields = {
    __typename?: 'categories_max_fields';
    id?: Maybe<Scalars['uuid']>;
    name?: Maybe<Scalars['String']>;
+   order?: Maybe<Scalars['Int']>;
    restaurant_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -695,6 +731,7 @@ export type Categories_Max_Fields = {
 export type Categories_Max_Order_By = {
    id?: InputMaybe<Order_By>;
    name?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
    restaurant_id?: InputMaybe<Order_By>;
 };
 
@@ -703,6 +740,7 @@ export type Categories_Min_Fields = {
    __typename?: 'categories_min_fields';
    id?: Maybe<Scalars['uuid']>;
    name?: Maybe<Scalars['String']>;
+   order?: Maybe<Scalars['Int']>;
    restaurant_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -710,6 +748,7 @@ export type Categories_Min_Fields = {
 export type Categories_Min_Order_By = {
    id?: InputMaybe<Order_By>;
    name?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
    restaurant_id?: InputMaybe<Order_By>;
 };
 
@@ -741,6 +780,7 @@ export type Categories_Order_By = {
    id?: InputMaybe<Order_By>;
    items_aggregate?: InputMaybe<Items_Aggregate_Order_By>;
    name?: InputMaybe<Order_By>;
+   order?: InputMaybe<Order_By>;
    restaurant?: InputMaybe<Restaurants_Order_By>;
    restaurant_id?: InputMaybe<Order_By>;
 };
@@ -757,13 +797,49 @@ export type Categories_Select_Column =
    /** column name */
    | 'name'
    /** column name */
+   | 'order'
+   /** column name */
    | 'restaurant_id';
 
 /** input type for updating data in table "categories" */
 export type Categories_Set_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    name?: InputMaybe<Scalars['String']>;
+   order?: InputMaybe<Scalars['Int']>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate stddev on columns */
+export type Categories_Stddev_Fields = {
+   __typename?: 'categories_stddev_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "categories" */
+export type Categories_Stddev_Order_By = {
+   order?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Categories_Stddev_Pop_Fields = {
+   __typename?: 'categories_stddev_pop_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "categories" */
+export type Categories_Stddev_Pop_Order_By = {
+   order?: InputMaybe<Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Categories_Stddev_Samp_Fields = {
+   __typename?: 'categories_stddev_samp_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "categories" */
+export type Categories_Stddev_Samp_Order_By = {
+   order?: InputMaybe<Order_By>;
 };
 
 /** Streaming cursor of the table "categories" */
@@ -778,7 +854,19 @@ export type Categories_Stream_Cursor_Input = {
 export type Categories_Stream_Cursor_Value_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    name?: InputMaybe<Scalars['String']>;
+   order?: InputMaybe<Scalars['Int']>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate sum on columns */
+export type Categories_Sum_Fields = {
+   __typename?: 'categories_sum_fields';
+   order?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "categories" */
+export type Categories_Sum_Order_By = {
+   order?: InputMaybe<Order_By>;
 };
 
 /** update columns of table "categories" */
@@ -788,13 +876,50 @@ export type Categories_Update_Column =
    /** column name */
    | 'name'
    /** column name */
+   | 'order'
+   /** column name */
    | 'restaurant_id';
 
 export type Categories_Updates = {
+   /** increments the numeric columns with given value of the filtered values */
+   _inc?: InputMaybe<Categories_Inc_Input>;
    /** sets the columns of the filtered rows to the given values */
    _set?: InputMaybe<Categories_Set_Input>;
    /** filter the rows which have to be updated */
    where: Categories_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Categories_Var_Pop_Fields = {
+   __typename?: 'categories_var_pop_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "categories" */
+export type Categories_Var_Pop_Order_By = {
+   order?: InputMaybe<Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type Categories_Var_Samp_Fields = {
+   __typename?: 'categories_var_samp_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "categories" */
+export type Categories_Var_Samp_Order_By = {
+   order?: InputMaybe<Order_By>;
+};
+
+/** aggregate variance on columns */
+export type Categories_Variance_Fields = {
+   __typename?: 'categories_variance_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "categories" */
+export type Categories_Variance_Order_By = {
+   order?: InputMaybe<Order_By>;
 };
 
 /** ordering argument of a cursor */
@@ -1757,6 +1882,7 @@ export type Mutation_RootUpdate_Accounts_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_CategoriesArgs = {
+   _inc?: InputMaybe<Categories_Inc_Input>;
    _set?: InputMaybe<Categories_Set_Input>;
    where: Categories_Bool_Exp;
 };
@@ -1764,6 +1890,7 @@ export type Mutation_RootUpdate_CategoriesArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Categories_By_PkArgs = {
+   _inc?: InputMaybe<Categories_Inc_Input>;
    _set?: InputMaybe<Categories_Set_Input>;
    pk_columns: Categories_Pk_Columns_Input;
 };
@@ -1891,6 +2018,11 @@ export type Mutation_RootUpdate_Sessions_ManyArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Table_OrdersArgs = {
+   _append?: InputMaybe<Table_Orders_Append_Input>;
+   _delete_at_path?: InputMaybe<Table_Orders_Delete_At_Path_Input>;
+   _delete_elem?: InputMaybe<Table_Orders_Delete_Elem_Input>;
+   _delete_key?: InputMaybe<Table_Orders_Delete_Key_Input>;
+   _prepend?: InputMaybe<Table_Orders_Prepend_Input>;
    _set?: InputMaybe<Table_Orders_Set_Input>;
    where: Table_Orders_Bool_Exp;
 };
@@ -1898,6 +2030,11 @@ export type Mutation_RootUpdate_Table_OrdersArgs = {
 
 /** mutation root */
 export type Mutation_RootUpdate_Table_Orders_By_PkArgs = {
+   _append?: InputMaybe<Table_Orders_Append_Input>;
+   _delete_at_path?: InputMaybe<Table_Orders_Delete_At_Path_Input>;
+   _delete_elem?: InputMaybe<Table_Orders_Delete_Elem_Input>;
+   _delete_key?: InputMaybe<Table_Orders_Delete_Key_Input>;
+   _prepend?: InputMaybe<Table_Orders_Prepend_Input>;
    _set?: InputMaybe<Table_Orders_Set_Input>;
    pk_columns: Table_Orders_Pk_Columns_Input;
 };
@@ -3661,6 +3798,7 @@ export type Table_Orders = {
    /** An object relationship */
    table?: Maybe<Tables>;
    table_id?: Maybe<Scalars['uuid']>;
+   tokens: Scalars['jsonb'];
 };
 
 
@@ -3681,6 +3819,12 @@ export type Table_OrdersOrders_AggregateArgs = {
    offset?: InputMaybe<Scalars['Int']>;
    order_by?: InputMaybe<Array<Orders_Order_By>>;
    where?: InputMaybe<Orders_Bool_Exp>;
+};
+
+
+/** columns and relationships of "table_orders" */
+export type Table_OrdersTokensArgs = {
+   path?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregated selection of "table_orders" */
@@ -3723,6 +3867,11 @@ export type Table_Orders_Aggregate_Order_By = {
    min?: InputMaybe<Table_Orders_Min_Order_By>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type Table_Orders_Append_Input = {
+   tokens?: InputMaybe<Scalars['jsonb']>;
+};
+
 /** input type for inserting array relation for remote table "table_orders" */
 export type Table_Orders_Arr_Rel_Insert_Input = {
    data: Array<Table_Orders_Insert_Input>;
@@ -3742,12 +3891,28 @@ export type Table_Orders_Bool_Exp = {
    status?: InputMaybe<String_Comparison_Exp>;
    table?: InputMaybe<Tables_Bool_Exp>;
    table_id?: InputMaybe<Uuid_Comparison_Exp>;
+   tokens?: InputMaybe<Jsonb_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "table_orders" */
 export type Table_Orders_Constraint =
 /** unique or primary key constraint on columns "id" */
    | 'table_orders_pkey';
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type Table_Orders_Delete_At_Path_Input = {
+   tokens?: InputMaybe<Array<Scalars['String']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type Table_Orders_Delete_Elem_Input = {
+   tokens?: InputMaybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type Table_Orders_Delete_Key_Input = {
+   tokens?: InputMaybe<Scalars['String']>;
+};
 
 /** input type for inserting data into table "table_orders" */
 export type Table_Orders_Insert_Input = {
@@ -3757,6 +3922,7 @@ export type Table_Orders_Insert_Input = {
    status?: InputMaybe<Scalars['String']>;
    table?: InputMaybe<Tables_Obj_Rel_Insert_Input>;
    table_id?: InputMaybe<Scalars['uuid']>;
+   tokens?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** aggregate max on columns */
@@ -3824,11 +3990,17 @@ export type Table_Orders_Order_By = {
    status?: InputMaybe<Order_By>;
    table?: InputMaybe<Tables_Order_By>;
    table_id?: InputMaybe<Order_By>;
+   tokens?: InputMaybe<Order_By>;
 };
 
 /** primary key columns input for table: table_orders */
 export type Table_Orders_Pk_Columns_Input = {
    id: Scalars['uuid'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type Table_Orders_Prepend_Input = {
+   tokens?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** select columns of table "table_orders" */
@@ -3840,7 +4012,9 @@ export type Table_Orders_Select_Column =
    /** column name */
    | 'status'
    /** column name */
-   | 'table_id';
+   | 'table_id'
+   /** column name */
+   | 'tokens';
 
 /** input type for updating data in table "table_orders" */
 export type Table_Orders_Set_Input = {
@@ -3848,6 +4022,7 @@ export type Table_Orders_Set_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    status?: InputMaybe<Scalars['String']>;
    table_id?: InputMaybe<Scalars['uuid']>;
+   tokens?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** Streaming cursor of the table "table_orders" */
@@ -3864,6 +4039,7 @@ export type Table_Orders_Stream_Cursor_Value_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    status?: InputMaybe<Scalars['String']>;
    table_id?: InputMaybe<Scalars['uuid']>;
+   tokens?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** update columns of table "table_orders" */
@@ -3875,9 +4051,21 @@ export type Table_Orders_Update_Column =
    /** column name */
    | 'status'
    /** column name */
-   | 'table_id';
+   | 'table_id'
+   /** column name */
+   | 'tokens';
 
 export type Table_Orders_Updates = {
+   /** append existing jsonb value of filtered columns with new jsonb value */
+   _append?: InputMaybe<Table_Orders_Append_Input>;
+   /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+   _delete_at_path?: InputMaybe<Table_Orders_Delete_At_Path_Input>;
+   /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+   _delete_elem?: InputMaybe<Table_Orders_Delete_Elem_Input>;
+   /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+   _delete_key?: InputMaybe<Table_Orders_Delete_Key_Input>;
+   /** prepend existing jsonb value of filtered columns with new jsonb value */
+   _prepend?: InputMaybe<Table_Orders_Prepend_Input>;
    /** sets the columns of the filtered rows to the given values */
    _set?: InputMaybe<Table_Orders_Set_Input>;
    /** filter the rows which have to be updated */

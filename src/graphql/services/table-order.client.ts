@@ -1,15 +1,19 @@
-import { useCreateTableOrderMutation, useGetTableOrderQuery, useGetTableOrdersQuery } from '@/graphql/generated'
-import { TableOrder, TableOrders } from '@/graphql/table-orders/types'
+import { useCreateTableOrderMutation, useGetTableInfoQuery, useGetTableOrderQuery, useGetTableOrdersQuery } from '@/graphql/generated'
+import { TableOrder, TableOrders } from '@/graphql/types'
 import { useMutationService } from '@/graphql/use-mutation-service'
 import { useQueryClient } from '@/graphql/use-query-client'
 import { InferType, Nullable } from '@/types'
 import { createTypesafeFormSchema } from '@ui/main/forms/typesafe-form/CreateTypesafeFormSchema'
 import { useSession } from 'next-auth/react'
 
+export type TableOrderToken = { chair_number: number, token: string }
+
 export const useCreateTableOrderService = (tableId?: Nullable<string>) => {
    
    const queryClient = useQueryClient()
    const session = useSession()
+   
+   const tableRes = useGetTableInfoQuery(queryClient.get(), { id: tableId })
    
    const createTableOrderMutation = useCreateTableOrderMutation(queryClient.get(), {
       onSuccess: data => {
@@ -23,10 +27,23 @@ export const useCreateTableOrderService = (tableId?: Nullable<string>) => {
    }))
    
    const createTableOrder = (data: InferType<typeof createTableOrderSchema>) => {
-      createTableOrderMutation.mutate({
-         status: 'ordering',
-         table_id: data.table_id,
-      })
+   
+      if (!tableRes.isLoading && tableRes.data) {
+         const noOfChairs = tableRes.data.tables_by_pk?.no_of_chairs ?? 0
+      
+         const tokens: TableOrderToken[] = []
+      
+         for (let i = 0; i < noOfChairs; i++) {
+            tokens.push({ chair_number: i + 1, token: crypto.randomUUID() })
+         }
+      
+         createTableOrderMutation.mutate({
+            status: 'ordering',
+            table_id: data.table_id,
+            tokens,
+         })
+      }
+   
    }
    
    return {

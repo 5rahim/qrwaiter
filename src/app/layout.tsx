@@ -1,14 +1,17 @@
 // import { DB_GetUserByIdQuery, DB_GetUserByIdQueryVariables } from '@/graphql/generated'
+import { siteConfig } from '@/config/site.config'
+import { DB_GetUserByIdQuery, DB_GetUserByIdQueryVariables } from '@/graphql/generated'
+import { useServerQuery } from '@/graphql/use-server-query'
+import { GetUserById } from '@/graphql/users/actions/users'
 import { User } from '@/graphql/users/types'
 import ClientProviders from '@/lib/client-providers'
 import { getCurrentSessionUser } from '@/lib/session'
-import "@/styles/globals.css"
 import { cn } from '@/lib/tailwind/tailwind-utils'
+import "@/styles/globals.css"
 import { Nullable } from '@/types'
 import { Inter as FontSans } from "@next/font/google"
-import React from 'react'
 import { Metadata } from 'next'
-import { siteConfig } from '@/config/site.config'
+import React from 'react'
 
 const fontSans = FontSans({
    subsets: ["latin"],
@@ -33,8 +36,8 @@ export async function getUser(user_id: Nullable<string>): Promise<User> {
    
    try {
       // TODO: Remove after generating
-      // const getUser = await useServerQuery<DB_GetUserByIdQuery, DB_GetUserByIdQueryVariables>(GetUserById, { id: user_id })
-      // return getUser?.users_by_pk
+      const getUser = await useServerQuery<DB_GetUserByIdQuery, DB_GetUserByIdQueryVariables>(GetUserById, { id: user_id })
+      return getUser?.users_by_pk
    }
    catch (e) {
       return null
@@ -49,16 +52,18 @@ export default async function RootLayout({
    
    const sessionUser = await getCurrentSessionUser()
    
+   const user = await getUser(sessionUser?.id)
+   
    return (
       <html
          className={cn(
-            "bg-white font-sans text-gray-900 antialiased",
+            "h-full bg-gray-100 font-sans text-gray-900 antialiased",
             fontSans.variable,
          )}
       >
       <head />
-      <body>
-      <ClientProviders user={sessionUser} locale="en">
+      <body className="h-full">
+      <ClientProviders user={user} sessionUser={sessionUser} locale="en">
          {children}
       </ClientProviders>
       </body>

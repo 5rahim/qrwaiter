@@ -20,6 +20,7 @@ export const useQueryClient = () => {
          return client
       },
       successAlert: (successMessage?: string) => {
+         toast.remove()
          let title: string = 'Success'
          
          if (successMessage) {

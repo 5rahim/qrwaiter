@@ -1,6 +1,6 @@
-import { GetCategory } from '@/graphql/categories/actions'
-import { Category } from '@/graphql/categories/types'
+import { GetCategory } from '@/graphql/actions/categories'
 import { DB_GetCategoryQuery, DB_GetCategoryQueryVariables } from '@/graphql/generated'
+import { Category } from '@/graphql/types'
 import { useServerQuery } from '@/graphql/use-server-query'
 import { Nullable } from '@/types'
 import { cache } from "react"

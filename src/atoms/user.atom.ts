@@ -1,15 +1,16 @@
+import { User } from '@/graphql/users/types'
 import { atom, useAtom } from 'jotai'
 import { withImmer } from 'jotai-immer'
 
-export const currentUserAtom = withImmer(atom<any>(undefined))
+export const currentUserAtom = withImmer(atom<User>(undefined))
 
-export const useCurrentUserAtom = () => {
+export const useCurrentUser = () => {
    
-   const [currentUser, setCurrentUser] = useAtom(currentUserAtom)
+   const [user, setUser] = useAtom(currentUserAtom)
    
    return {
-      currentUser,
-      setCurrentUser,
+      user,
+      setUser,
    }
    
 }

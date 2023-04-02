@@ -592,6 +592,7 @@ export type DB_Categories = {
    /** An aggregate relationship */
    items_aggregate: DB_Items_Aggregate;
    name: Scalars['String'];
+   order: Scalars['Int'];
    /** An object relationship */
    restaurant: DB_Restaurants;
    restaurant_id: Scalars['uuid'];
@@ -638,9 +639,17 @@ export type DB_Categories_Aggregate_Bool_Exp_Count = {
 /** aggregate fields of "categories" */
 export type DB_Categories_Aggregate_Fields = {
    __typename?: 'categories_aggregate_fields';
+   avg?: Maybe<DB_Categories_Avg_Fields>;
    count: Scalars['Int'];
    max?: Maybe<DB_Categories_Max_Fields>;
    min?: Maybe<DB_Categories_Min_Fields>;
+   stddev?: Maybe<DB_Categories_Stddev_Fields>;
+   stddev_pop?: Maybe<DB_Categories_Stddev_Pop_Fields>;
+   stddev_samp?: Maybe<DB_Categories_Stddev_Samp_Fields>;
+   sum?: Maybe<DB_Categories_Sum_Fields>;
+   var_pop?: Maybe<DB_Categories_Var_Pop_Fields>;
+   var_samp?: Maybe<DB_Categories_Var_Samp_Fields>;
+   variance?: Maybe<DB_Categories_Variance_Fields>;
 };
 
 
@@ -652,9 +661,17 @@ export type DB_Categories_Aggregate_FieldsCountArgs = {
 
 /** order by aggregate values of table "categories" */
 export type DB_Categories_Aggregate_Order_By = {
+   avg?: InputMaybe<DB_Categories_Avg_Order_By>;
    count?: InputMaybe<DB_Order_By>;
    max?: InputMaybe<DB_Categories_Max_Order_By>;
    min?: InputMaybe<DB_Categories_Min_Order_By>;
+   stddev?: InputMaybe<DB_Categories_Stddev_Order_By>;
+   stddev_pop?: InputMaybe<DB_Categories_Stddev_Pop_Order_By>;
+   stddev_samp?: InputMaybe<DB_Categories_Stddev_Samp_Order_By>;
+   sum?: InputMaybe<DB_Categories_Sum_Order_By>;
+   var_pop?: InputMaybe<DB_Categories_Var_Pop_Order_By>;
+   var_samp?: InputMaybe<DB_Categories_Var_Samp_Order_By>;
+   variance?: InputMaybe<DB_Categories_Variance_Order_By>;
 };
 
 /** input type for inserting array relation for remote table "categories" */
@@ -662,6 +679,17 @@ export type DB_Categories_Arr_Rel_Insert_Input = {
    data: Array<DB_Categories_Insert_Input>;
    /** upsert condition */
    on_conflict?: InputMaybe<DB_Categories_On_Conflict>;
+};
+
+/** aggregate avg on columns */
+export type DB_Categories_Avg_Fields = {
+   __typename?: 'categories_avg_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by avg() on columns of table "categories" */
+export type DB_Categories_Avg_Order_By = {
+   order?: InputMaybe<DB_Order_By>;
 };
 
 /** Boolean expression to filter rows from the table "categories". All fields are combined with a logical 'AND'. */
@@ -673,6 +701,7 @@ export type DB_Categories_Bool_Exp = {
    items?: InputMaybe<DB_Items_Bool_Exp>;
    items_aggregate?: InputMaybe<DB_Items_Aggregate_Bool_Exp>;
    name?: InputMaybe<DB_String_Comparison_Exp>;
+   order?: InputMaybe<DB_Int_Comparison_Exp>;
    restaurant?: InputMaybe<DB_Restaurants_Bool_Exp>;
    restaurant_id?: InputMaybe<DB_Uuid_Comparison_Exp>;
 };
@@ -682,11 +711,17 @@ export type DB_Categories_Constraint =
 /** unique or primary key constraint on columns "id" */
    | 'categories_pkey';
 
+/** input type for incrementing numeric columns in table "categories" */
+export type DB_Categories_Inc_Input = {
+   order?: InputMaybe<Scalars['Int']>;
+};
+
 /** input type for inserting data into table "categories" */
 export type DB_Categories_Insert_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    items?: InputMaybe<DB_Items_Arr_Rel_Insert_Input>;
    name?: InputMaybe<Scalars['String']>;
+   order?: InputMaybe<Scalars['Int']>;
    restaurant?: InputMaybe<DB_Restaurants_Obj_Rel_Insert_Input>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
 };
@@ -696,6 +731,7 @@ export type DB_Categories_Max_Fields = {
    __typename?: 'categories_max_fields';
    id?: Maybe<Scalars['uuid']>;
    name?: Maybe<Scalars['String']>;
+   order?: Maybe<Scalars['Int']>;
    restaurant_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -703,6 +739,7 @@ export type DB_Categories_Max_Fields = {
 export type DB_Categories_Max_Order_By = {
    id?: InputMaybe<DB_Order_By>;
    name?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
    restaurant_id?: InputMaybe<DB_Order_By>;
 };
 
@@ -711,6 +748,7 @@ export type DB_Categories_Min_Fields = {
    __typename?: 'categories_min_fields';
    id?: Maybe<Scalars['uuid']>;
    name?: Maybe<Scalars['String']>;
+   order?: Maybe<Scalars['Int']>;
    restaurant_id?: Maybe<Scalars['uuid']>;
 };
 
@@ -718,6 +756,7 @@ export type DB_Categories_Min_Fields = {
 export type DB_Categories_Min_Order_By = {
    id?: InputMaybe<DB_Order_By>;
    name?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
    restaurant_id?: InputMaybe<DB_Order_By>;
 };
 
@@ -749,6 +788,7 @@ export type DB_Categories_Order_By = {
    id?: InputMaybe<DB_Order_By>;
    items_aggregate?: InputMaybe<DB_Items_Aggregate_Order_By>;
    name?: InputMaybe<DB_Order_By>;
+   order?: InputMaybe<DB_Order_By>;
    restaurant?: InputMaybe<DB_Restaurants_Order_By>;
    restaurant_id?: InputMaybe<DB_Order_By>;
 };
@@ -765,13 +805,49 @@ export type DB_Categories_Select_Column =
    /** column name */
    | 'name'
    /** column name */
+   | 'order'
+   /** column name */
    | 'restaurant_id';
 
 /** input type for updating data in table "categories" */
 export type DB_Categories_Set_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    name?: InputMaybe<Scalars['String']>;
+   order?: InputMaybe<Scalars['Int']>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate stddev on columns */
+export type DB_Categories_Stddev_Fields = {
+   __typename?: 'categories_stddev_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev() on columns of table "categories" */
+export type DB_Categories_Stddev_Order_By = {
+   order?: InputMaybe<DB_Order_By>;
+};
+
+/** aggregate stddev_pop on columns */
+export type DB_Categories_Stddev_Pop_Fields = {
+   __typename?: 'categories_stddev_pop_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_pop() on columns of table "categories" */
+export type DB_Categories_Stddev_Pop_Order_By = {
+   order?: InputMaybe<DB_Order_By>;
+};
+
+/** aggregate stddev_samp on columns */
+export type DB_Categories_Stddev_Samp_Fields = {
+   __typename?: 'categories_stddev_samp_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by stddev_samp() on columns of table "categories" */
+export type DB_Categories_Stddev_Samp_Order_By = {
+   order?: InputMaybe<DB_Order_By>;
 };
 
 /** Streaming cursor of the table "categories" */
@@ -786,7 +862,19 @@ export type DB_Categories_Stream_Cursor_Input = {
 export type DB_Categories_Stream_Cursor_Value_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    name?: InputMaybe<Scalars['String']>;
+   order?: InputMaybe<Scalars['Int']>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate sum on columns */
+export type DB_Categories_Sum_Fields = {
+   __typename?: 'categories_sum_fields';
+   order?: Maybe<Scalars['Int']>;
+};
+
+/** order by sum() on columns of table "categories" */
+export type DB_Categories_Sum_Order_By = {
+   order?: InputMaybe<DB_Order_By>;
 };
 
 /** update columns of table "categories" */
@@ -796,13 +884,50 @@ export type DB_Categories_Update_Column =
    /** column name */
    | 'name'
    /** column name */
+   | 'order'
+   /** column name */
    | 'restaurant_id';
 
 export type DB_Categories_Updates = {
+   /** increments the numeric columns with given value of the filtered values */
+   _inc?: InputMaybe<DB_Categories_Inc_Input>;
    /** sets the columns of the filtered rows to the given values */
    _set?: InputMaybe<DB_Categories_Set_Input>;
    /** filter the rows which have to be updated */
    where: DB_Categories_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type DB_Categories_Var_Pop_Fields = {
+   __typename?: 'categories_var_pop_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_pop() on columns of table "categories" */
+export type DB_Categories_Var_Pop_Order_By = {
+   order?: InputMaybe<DB_Order_By>;
+};
+
+/** aggregate var_samp on columns */
+export type DB_Categories_Var_Samp_Fields = {
+   __typename?: 'categories_var_samp_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by var_samp() on columns of table "categories" */
+export type DB_Categories_Var_Samp_Order_By = {
+   order?: InputMaybe<DB_Order_By>;
+};
+
+/** aggregate variance on columns */
+export type DB_Categories_Variance_Fields = {
+   __typename?: 'categories_variance_fields';
+   order?: Maybe<Scalars['Float']>;
+};
+
+/** order by variance() on columns of table "categories" */
+export type DB_Categories_Variance_Order_By = {
+   order?: InputMaybe<DB_Order_By>;
 };
 
 /** ordering argument of a cursor */
@@ -1765,6 +1890,7 @@ export type DB_Mutation_RootUpdate_Accounts_ManyArgs = {
 
 /** mutation root */
 export type DB_Mutation_RootUpdate_CategoriesArgs = {
+   _inc?: InputMaybe<DB_Categories_Inc_Input>;
    _set?: InputMaybe<DB_Categories_Set_Input>;
    where: DB_Categories_Bool_Exp;
 };
@@ -1772,6 +1898,7 @@ export type DB_Mutation_RootUpdate_CategoriesArgs = {
 
 /** mutation root */
 export type DB_Mutation_RootUpdate_Categories_By_PkArgs = {
+   _inc?: InputMaybe<DB_Categories_Inc_Input>;
    _set?: InputMaybe<DB_Categories_Set_Input>;
    pk_columns: DB_Categories_Pk_Columns_Input;
 };
@@ -1899,6 +2026,11 @@ export type DB_Mutation_RootUpdate_Sessions_ManyArgs = {
 
 /** mutation root */
 export type DB_Mutation_RootUpdate_Table_OrdersArgs = {
+   _append?: InputMaybe<DB_Table_Orders_Append_Input>;
+   _delete_at_path?: InputMaybe<DB_Table_Orders_Delete_At_Path_Input>;
+   _delete_elem?: InputMaybe<DB_Table_Orders_Delete_Elem_Input>;
+   _delete_key?: InputMaybe<DB_Table_Orders_Delete_Key_Input>;
+   _prepend?: InputMaybe<DB_Table_Orders_Prepend_Input>;
    _set?: InputMaybe<DB_Table_Orders_Set_Input>;
    where: DB_Table_Orders_Bool_Exp;
 };
@@ -1906,6 +2038,11 @@ export type DB_Mutation_RootUpdate_Table_OrdersArgs = {
 
 /** mutation root */
 export type DB_Mutation_RootUpdate_Table_Orders_By_PkArgs = {
+   _append?: InputMaybe<DB_Table_Orders_Append_Input>;
+   _delete_at_path?: InputMaybe<DB_Table_Orders_Delete_At_Path_Input>;
+   _delete_elem?: InputMaybe<DB_Table_Orders_Delete_Elem_Input>;
+   _delete_key?: InputMaybe<DB_Table_Orders_Delete_Key_Input>;
+   _prepend?: InputMaybe<DB_Table_Orders_Prepend_Input>;
    _set?: InputMaybe<DB_Table_Orders_Set_Input>;
    pk_columns: DB_Table_Orders_Pk_Columns_Input;
 };
@@ -3669,6 +3806,7 @@ export type DB_Table_Orders = {
    /** An object relationship */
    table?: Maybe<DB_Tables>;
    table_id?: Maybe<Scalars['uuid']>;
+   tokens: Scalars['jsonb'];
 };
 
 
@@ -3689,6 +3827,12 @@ export type DB_Table_OrdersOrders_AggregateArgs = {
    offset?: InputMaybe<Scalars['Int']>;
    order_by?: InputMaybe<Array<DB_Orders_Order_By>>;
    where?: InputMaybe<DB_Orders_Bool_Exp>;
+};
+
+
+/** columns and relationships of "table_orders" */
+export type DB_Table_OrdersTokensArgs = {
+   path?: InputMaybe<Scalars['String']>;
 };
 
 /** aggregated selection of "table_orders" */
@@ -3731,6 +3875,11 @@ export type DB_Table_Orders_Aggregate_Order_By = {
    min?: InputMaybe<DB_Table_Orders_Min_Order_By>;
 };
 
+/** append existing jsonb value of filtered columns with new jsonb value */
+export type DB_Table_Orders_Append_Input = {
+   tokens?: InputMaybe<Scalars['jsonb']>;
+};
+
 /** input type for inserting array relation for remote table "table_orders" */
 export type DB_Table_Orders_Arr_Rel_Insert_Input = {
    data: Array<DB_Table_Orders_Insert_Input>;
@@ -3750,12 +3899,28 @@ export type DB_Table_Orders_Bool_Exp = {
    status?: InputMaybe<DB_String_Comparison_Exp>;
    table?: InputMaybe<DB_Tables_Bool_Exp>;
    table_id?: InputMaybe<DB_Uuid_Comparison_Exp>;
+   tokens?: InputMaybe<DB_Jsonb_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "table_orders" */
 export type DB_Table_Orders_Constraint =
 /** unique or primary key constraint on columns "id" */
    | 'table_orders_pkey';
+
+/** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+export type DB_Table_Orders_Delete_At_Path_Input = {
+   tokens?: InputMaybe<Array<Scalars['String']>>;
+};
+
+/** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+export type DB_Table_Orders_Delete_Elem_Input = {
+   tokens?: InputMaybe<Scalars['Int']>;
+};
+
+/** delete key/value pair or string element. key/value pairs are matched based on their key value */
+export type DB_Table_Orders_Delete_Key_Input = {
+   tokens?: InputMaybe<Scalars['String']>;
+};
 
 /** input type for inserting data into table "table_orders" */
 export type DB_Table_Orders_Insert_Input = {
@@ -3765,6 +3930,7 @@ export type DB_Table_Orders_Insert_Input = {
    status?: InputMaybe<Scalars['String']>;
    table?: InputMaybe<DB_Tables_Obj_Rel_Insert_Input>;
    table_id?: InputMaybe<Scalars['uuid']>;
+   tokens?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** aggregate max on columns */
@@ -3832,11 +3998,17 @@ export type DB_Table_Orders_Order_By = {
    status?: InputMaybe<DB_Order_By>;
    table?: InputMaybe<DB_Tables_Order_By>;
    table_id?: InputMaybe<DB_Order_By>;
+   tokens?: InputMaybe<DB_Order_By>;
 };
 
 /** primary key columns input for table: table_orders */
 export type DB_Table_Orders_Pk_Columns_Input = {
    id: Scalars['uuid'];
+};
+
+/** prepend existing jsonb value of filtered columns with new jsonb value */
+export type DB_Table_Orders_Prepend_Input = {
+   tokens?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** select columns of table "table_orders" */
@@ -3848,7 +4020,9 @@ export type DB_Table_Orders_Select_Column =
    /** column name */
    | 'status'
    /** column name */
-   | 'table_id';
+   | 'table_id'
+   /** column name */
+   | 'tokens';
 
 /** input type for updating data in table "table_orders" */
 export type DB_Table_Orders_Set_Input = {
@@ -3856,6 +4030,7 @@ export type DB_Table_Orders_Set_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    status?: InputMaybe<Scalars['String']>;
    table_id?: InputMaybe<Scalars['uuid']>;
+   tokens?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** Streaming cursor of the table "table_orders" */
@@ -3872,6 +4047,7 @@ export type DB_Table_Orders_Stream_Cursor_Value_Input = {
    id?: InputMaybe<Scalars['uuid']>;
    status?: InputMaybe<Scalars['String']>;
    table_id?: InputMaybe<Scalars['uuid']>;
+   tokens?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** update columns of table "table_orders" */
@@ -3883,9 +4059,21 @@ export type DB_Table_Orders_Update_Column =
    /** column name */
    | 'status'
    /** column name */
-   | 'table_id';
+   | 'table_id'
+   /** column name */
+   | 'tokens';
 
 export type DB_Table_Orders_Updates = {
+   /** append existing jsonb value of filtered columns with new jsonb value */
+   _append?: InputMaybe<DB_Table_Orders_Append_Input>;
+   /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+   _delete_at_path?: InputMaybe<DB_Table_Orders_Delete_At_Path_Input>;
+   /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+   _delete_elem?: InputMaybe<DB_Table_Orders_Delete_Elem_Input>;
+   /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+   _delete_key?: InputMaybe<DB_Table_Orders_Delete_Key_Input>;
+   /** prepend existing jsonb value of filtered columns with new jsonb value */
+   _prepend?: InputMaybe<DB_Table_Orders_Prepend_Input>;
    /** sets the columns of the filtered rows to the given values */
    _set?: InputMaybe<DB_Table_Orders_Set_Input>;
    /** filter the rows which have to be updated */
@@ -4751,7 +4939,14 @@ export type DB_GetCategoriesQueryVariables = Exact<{
 }>;
 
 
-export type DB_GetCategoriesQuery = { __typename?: 'query_root', categories: Array<{ __typename?: 'categories', id: any, name: string, restaurant_id: any }> };
+export type DB_GetCategoriesQuery = { __typename?: 'query_root', categories: Array<{ __typename?: 'categories', id: any, name: string, restaurant_id: any, order: number }> };
+
+export type DB_SubscribeCategoriesSubscriptionVariables = Exact<{
+   restaurant_id: Scalars['uuid'];
+}>;
+
+
+export type DB_SubscribeCategoriesSubscription = { __typename?: 'subscription_root', categories: Array<{ __typename?: 'categories', id: any, name: string, restaurant_id: any, order: number }> };
 
 export type DB_GetHomePageCategoriesQueryVariables = Exact<{
    restaurant_id: Scalars['uuid'];
@@ -4770,6 +4965,7 @@ export type DB_GetCategoryQuery = { __typename?: 'query_root', categories_by_pk?
 export type DB_CreateCategoryMutationVariables = Exact<{
    name: Scalars['String'];
    restaurant_id: Scalars['uuid'];
+   order: Scalars['Int'];
 }>;
 
 
@@ -4781,7 +4977,14 @@ export type DB_UpdateCategoryMutationVariables = Exact<{
 }>;
 
 
-export type DB_UpdateCategoryMutation = { __typename?: 'mutation_root', update_categories_by_pk?: { __typename?: 'categories', id: any } | null };
+export type DB_UpdateCategoryMutation = { __typename?: 'mutation_root', update_categories_by_pk?: { __typename?: 'categories', id: any, name: string, restaurant_id: any, order: number } | null };
+
+export type DB_UpdateCategoryOrderMutationVariables = Exact<{
+   order: Array<DB_Categories_Updates> | DB_Categories_Updates;
+}>;
+
+
+export type DB_UpdateCategoryOrderMutation = { __typename?: 'mutation_root', update_categories_many?: Array<{ __typename?: 'categories_mutation_response', affected_rows: number } | null> | null };
 
 export type DB_DeleteCategoryMutationVariables = Exact<{
    id: Scalars['uuid'];
@@ -4798,6 +5001,13 @@ export type DB_GetItemsQueryVariables = Exact<{
 
 
 export type DB_GetItemsQuery = { __typename?: 'query_root', items: Array<{ __typename?: 'items', available: boolean, category_id?: any | null, choices: any, description?: string | null, id: any, images: any, name: string, price: number, related_to?: any | null, restaurant_id: any, variations: any }> };
+
+export type DB_SubscribeItemsSubscriptionVariables = Exact<{
+   restaurant_id: Scalars['uuid'];
+}>;
+
+
+export type DB_SubscribeItemsSubscription = { __typename?: 'subscription_root', items: Array<{ __typename?: 'items', available: boolean, category_id?: any | null, choices: any, description?: string | null, id: any, images: any, name: string, price: number, related_to?: any | null, restaurant_id: any, variations: any }> };
 
 export type DB_GetItemQueryVariables = Exact<{
    id: Scalars['uuid'];
@@ -4820,7 +5030,7 @@ export type DB_CreateItemMutationVariables = Exact<{
 }>;
 
 
-export type DB_CreateItemMutation = { __typename?: 'mutation_root', insert_items_one?: { __typename?: 'items', id: any } | null };
+export type DB_CreateItemMutation = { __typename?: 'mutation_root', insert_items_one?: { __typename?: 'items', available: boolean, category_id?: any | null, choices: any, description?: string | null, id: any, images: any, name: string, price: number, related_to?: any | null, restaurant_id: any, variations: any } | null };
 
 export type DB_UpdateItemMutationVariables = Exact<{
    id: Scalars['uuid'];
@@ -4836,7 +5046,7 @@ export type DB_UpdateItemMutationVariables = Exact<{
 }>;
 
 
-export type DB_UpdateItemMutation = { __typename?: 'mutation_root', update_items_by_pk?: { __typename?: 'items', id: any } | null };
+export type DB_UpdateItemMutation = { __typename?: 'mutation_root', update_items_by_pk?: { __typename?: 'items', available: boolean, category_id?: any | null, choices: any, description?: string | null, id: any, images: any, name: string, price: number, related_to?: any | null, restaurant_id: any, variations: any } | null };
 
 export type DB_DeleteItemMutationVariables = Exact<{
    id: Scalars['uuid'];
@@ -4852,7 +5062,7 @@ export type DB_GetOrderQueryVariables = Exact<{
 }>;
 
 
-export type DB_GetOrderQuery = { __typename?: 'query_root', orders_by_pk?: { __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number, table_order: { __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null } } | null };
+export type DB_GetOrderQuery = { __typename?: 'query_root', orders_by_pk?: { __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number, table_order: { __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null } } | null };
 
 export type DB_CreateOrdersMutationVariables = Exact<{
    chair_number: Scalars['Int'];
@@ -4864,7 +5074,7 @@ export type DB_CreateOrdersMutationVariables = Exact<{
 }>;
 
 
-export type DB_CreateOrdersMutation = { __typename?: 'mutation_root', insert_orders?: { __typename?: 'orders_mutation_response', affected_rows: number, returning: Array<{ __typename?: 'orders', id: any, chair_number: number }> } | null };
+export type DB_CreateOrdersMutation = { __typename?: 'mutation_root', insert_orders?: { __typename?: 'orders_mutation_response', affected_rows: number, returning: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> } | null };
 
 export type DB_CreateRestaurantMutationVariables = Exact<{
    slug: Scalars['String'];
@@ -4908,59 +5118,60 @@ export type DB_UpdateRestaurantDetailsMutationVariables = Exact<{
 
 export type DB_UpdateRestaurantDetailsMutation = { __typename?: 'mutation_root', update_restaurants_by_pk?: { __typename?: 'restaurants', customization: any } | null };
 
-export type DB_TableOrderFragmentFragment = { __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null };
+export type DB_TableOrderFragmentFragment = { __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null };
 
 export type DB_GetTableOrdersQueryVariables = Exact<{
    restaurant_id: Scalars['uuid'];
 }>;
 
 
-export type DB_GetTableOrdersQuery = { __typename?: 'query_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null }> };
+export type DB_GetTableOrdersQuery = { __typename?: 'query_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null }> };
 
 export type DB_GetTableOrderQueryVariables = Exact<{
    id: Scalars['uuid'];
 }>;
 
 
-export type DB_GetTableOrderQuery = { __typename?: 'query_root', table_orders_by_pk?: { __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null, table?: { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, order: number } | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> } | null };
+export type DB_GetTableOrderQuery = { __typename?: 'query_root', table_orders_by_pk?: { __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, table?: { __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number } | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> } | null };
 
 export type DB_CreateTableOrderMutationVariables = Exact<{
    status: Scalars['String'];
    table_id: Scalars['uuid'];
+   tokens: Scalars['jsonb'];
 }>;
 
 
-export type DB_CreateTableOrderMutation = { __typename?: 'mutation_root', insert_table_orders_one?: { __typename?: 'table_orders', id: any, status: string, table_id?: any | null } | null };
+export type DB_CreateTableOrderMutation = { __typename?: 'mutation_root', insert_table_orders_one?: { __typename?: 'table_orders', id: any, status: string, tokens: any, table_id?: any | null } | null };
 
-export type DB_TableFragmentFragment = { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, order: number };
+export type DB_TableFragmentFragment = { __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number };
 
 export type DB_GetTablesQueryVariables = Exact<{
    restaurant_id: Scalars['uuid'];
 }>;
 
 
-export type DB_GetTablesQuery = { __typename?: 'query_root', tables: Array<{ __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, order: number }> };
+export type DB_GetTablesQuery = { __typename?: 'query_root', tables: Array<{ __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number }> };
 
 export type DB_GetTableInfoQueryVariables = Exact<{
    id: Scalars['uuid'];
 }>;
 
 
-export type DB_GetTableInfoQuery = { __typename?: 'query_root', tables_by_pk?: { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, order: number } | null };
+export type DB_GetTableInfoQuery = { __typename?: 'query_root', tables_by_pk?: { __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number } | null };
 
 export type DB_GetTableQueryVariables = Exact<{
    id: Scalars['uuid'];
 }>;
 
 
-export type DB_GetTableQuery = { __typename?: 'query_root', tables_by_pk?: { __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, order: number, table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, table_id?: any | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> }> } | null };
+export type DB_GetTableQuery = { __typename?: 'query_root', tables_by_pk?: { __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number, table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> }> } | null };
 
 export type DB_SubscribeTablesSubscriptionVariables = Exact<{
    restaurant_id: Scalars['uuid'];
 }>;
 
 
-export type DB_SubscribeTablesSubscription = { __typename?: 'subscription_root', tables: Array<{ __typename?: 'tables', id: any, no_of_chairs: number, qr_codes?: any | null, restaurant_id: any, name: string, order: number }> };
+export type DB_SubscribeTablesSubscription = { __typename?: 'subscription_root', tables: Array<{ __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number }> };
 
 export type DB_CreateTableMutationVariables = Exact<{
    no_of_chairs: Scalars['Int'];
@@ -5048,12 +5259,13 @@ export const OrderFragmentFragmentDoc = `
   total
   total_tax
 }
-    `
+    `;
 export const TableOrderFragmentFragmentDoc = `
     fragment TableOrderFragment on table_orders {
   id
   created_at
   status
+  tokens
   table_id
 }
     `
@@ -5061,7 +5273,6 @@ export const TableFragmentFragmentDoc = `
     fragment TableFragment on tables {
   id
   no_of_chairs
-  qr_codes
   restaurant_id
   name
   order
@@ -5073,6 +5284,7 @@ export const GetCategoriesDocument = `
     id
     name
     restaurant_id
+    order
   }
 }
     `
@@ -5090,6 +5302,16 @@ export const useGetCategoriesQuery = <
       fetcher<DB_GetCategoriesQuery, DB_GetCategoriesQueryVariables>(client, GetCategoriesDocument, variables, headers),
       options,
    )
+export const SubscribeCategoriesDocument = `
+    subscription SubscribeCategories($restaurant_id: uuid!) {
+  categories(where: {restaurant_id: {_eq: $restaurant_id}}) {
+    id
+    name
+    restaurant_id
+    order
+  }
+}
+    `
 export const GetHomePageCategoriesDocument = `
     query GetHomePageCategories($restaurant_id: uuid!) {
   categories(where: {restaurant_id: {_eq: $restaurant_id}}) {
@@ -5140,8 +5362,10 @@ export const useGetCategoryQuery = <
       options,
    )
 export const CreateCategoryDocument = `
-    mutation CreateCategory($name: String!, $restaurant_id: uuid!) {
-  insert_categories_one(object: {name: $name, restaurant_id: $restaurant_id}) {
+    mutation CreateCategory($name: String!, $restaurant_id: uuid!, $order: Int!) {
+  insert_categories_one(
+    object: {name: $name, restaurant_id: $restaurant_id, order: $order}
+  ) {
     id
   }
 }
@@ -5163,6 +5387,9 @@ export const UpdateCategoryDocument = `
     mutation UpdateCategory($id: uuid!, $name: String!) {
   update_categories_by_pk(pk_columns: {id: $id}, _set: {name: $name}) {
     id
+    name
+    restaurant_id
+    order
   }
 }
     `
@@ -5177,6 +5404,26 @@ export const useUpdateCategoryMutation = <
    useMutation<DB_UpdateCategoryMutation, TError, DB_UpdateCategoryMutationVariables, TContext>(
       ['UpdateCategory'],
       (variables?: DB_UpdateCategoryMutationVariables) => fetcher<DB_UpdateCategoryMutation, DB_UpdateCategoryMutationVariables>(client, UpdateCategoryDocument, variables, headers)(),
+      options,
+   )
+export const UpdateCategoryOrderDocument = `
+    mutation UpdateCategoryOrder($order: [categories_updates!]!) {
+  update_categories_many(updates: $order) {
+    affected_rows
+  }
+}
+    `
+export const useUpdateCategoryOrderMutation = <
+   TError = unknown,
+   TContext = unknown
+>(
+   client: GraphQLClient,
+   options?: UseMutationOptions<DB_UpdateCategoryOrderMutation, TError, DB_UpdateCategoryOrderMutationVariables, TContext>,
+   headers?: RequestInit['headers'],
+) =>
+   useMutation<DB_UpdateCategoryOrderMutation, TError, DB_UpdateCategoryOrderMutationVariables, TContext>(
+      ['UpdateCategoryOrder'],
+      (variables?: DB_UpdateCategoryOrderMutationVariables) => fetcher<DB_UpdateCategoryOrderMutation, DB_UpdateCategoryOrderMutationVariables>(client, UpdateCategoryOrderDocument, variables, headers)(),
       options,
    )
 export const DeleteCategoryDocument = `
@@ -5223,6 +5470,13 @@ export const useGetItemsQuery = <
       fetcher<DB_GetItemsQuery, DB_GetItemsQueryVariables>(client, GetItemsDocument, variables, headers),
       options,
    )
+export const SubscribeItemsDocument = `
+    subscription SubscribeItems($restaurant_id: uuid!) {
+  items(where: {restaurant_id: {_eq: $restaurant_id}}) {
+    ...ItemFragment
+  }
+}
+    ${ItemFragmentFragmentDoc}`
 export const GetItemDocument = `
     query GetItem($id: uuid!) {
   items_by_pk(id: $id) {
@@ -5249,10 +5503,10 @@ export const CreateItemDocument = `
   insert_items_one(
     object: {available: $available, category_id: $category_id, choices: $choices, description: $description, images: $images, name: $name, price: $price, related_to: $related_to, restaurant_id: $restaurant_id, variations: $variations}
   ) {
-    id
+    ...ItemFragment
   }
 }
-    `
+    ${ItemFragmentFragmentDoc}`
 export const useCreateItemMutation = <
    TError = unknown,
    TContext = unknown
@@ -5272,10 +5526,10 @@ export const UpdateItemDocument = `
     pk_columns: {id: $id}
     _set: {available: $available, category_id: $category_id, choices: $choices, description: $description, images: $images, name: $name, price: $price, related_to: $related_to, variations: $variations}
   ) {
-    id
+    ...ItemFragment
   }
 }
-    `
+    ${ItemFragmentFragmentDoc}`
 export const useUpdateItemMutation = <
    TError = unknown,
    TContext = unknown
@@ -5341,12 +5595,11 @@ export const CreateOrdersDocument = `
   ) {
     affected_rows
     returning {
-      id
-      chair_number
+      ...OrderFragment
     }
   }
 }
-    `
+    ${OrderFragmentFragmentDoc}`
 export const useCreateOrdersMutation = <
    TError = unknown,
    TContext = unknown
@@ -5532,10 +5785,13 @@ export const useGetTableOrderQuery = <
       options,
    )
 export const CreateTableOrderDocument = `
-    mutation CreateTableOrder($status: String!, $table_id: uuid!) {
-  insert_table_orders_one(object: {status: $status, table_id: $table_id}) {
+    mutation CreateTableOrder($status: String!, $table_id: uuid!, $tokens: jsonb!) {
+  insert_table_orders_one(
+    object: {status: $status, table_id: $table_id, tokens: $tokens}
+  ) {
     id
     status
+    tokens
     table_id
   }
 }

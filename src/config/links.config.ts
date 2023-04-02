@@ -20,23 +20,20 @@ export const siteLinks = {
       home: {
          href: '/admin',
       },
-      menu: {
-         href: '/admin/menu',
+      items: {
+         href: '/admin/menu/items',
       },
       createItem: {
-         href: '/admin/menu/create',
+         href: '/admin/menu/items/create',
       },
       editItem: {
-         href: '/admin/menu/[iid]/edit',
+         href: '/admin/menu/items/[iid]',
+      },
+      categories: {
+         href: '/admin/menu/categories',
       },
       tables: {
          href: '/admin/tables',
-      },
-      createTable: {
-         href: '/admin/tables/create',
-      },
-      editTable: {
-         href: '/admin/tables/[tid]/edit',
       },
       customization: {
          href: '/admin/customization',

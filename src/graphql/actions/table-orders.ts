@@ -1,5 +1,5 @@
-import { OrderFragment } from '@/graphql/orders/actions'
-import { TableFragment } from '@/graphql/tables/actions'
+import { OrderFragment } from '@/graphql/actions/orders'
+import { TableFragment } from '@/graphql/actions/tables'
 import { gql } from 'graphql-request'
 
 export const TableOrderFragment = gql`
@@ -7,6 +7,7 @@ export const TableOrderFragment = gql`
     id
     created_at
     status
+    tokens
     table_id
   }
 `
@@ -39,10 +40,11 @@ export const GetTableOrder = gql`
   }
 `
 export const CreateTableOrder = gql`
-  mutation CreateTableOrder($status: String!, $table_id: uuid!) {
-    insert_table_orders_one(object: {status: $status, table_id: $table_id}) {
+  mutation CreateTableOrder($status: String!, $table_id: uuid!, $tokens: jsonb!) {
+    insert_table_orders_one(object: {status: $status, table_id: $table_id, tokens: $tokens}) {
       id
       status
+      tokens
       table_id
     }
   }

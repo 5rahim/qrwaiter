@@ -28,7 +28,7 @@ export interface ImageGridInputProps extends BasicFieldOptions {
    handler: any
 }
 
-const imageContainerStyles = cva("relative bg-white border border-brand-200 aspect-square h-full bg-center bg-no-repeat bg-contain rounded-md overflow-hidden")
+const imageContainerStyles = cva("relative bg-white border border-gray-200 aspect-square h-full bg-center bg-no-repeat bg-contain rounded-md overflow-hidden")
 
 /**
  * The name of the field is automatically set to "images"
@@ -176,23 +176,23 @@ const ImageGridInput: React.FC<ImageGridInputProps> = (props) => {
                         }}
                         // {...mainDropzone.getRootProps()}
                      >
-                        <Badge intent="primary-solid" className="mt-2 ml-2 text-xs">{t('main_image')}</Badge>
+                        <Badge intent="primary-solid" className="mt-2 ml-2 text-xs">Thumbnail</Badge>
                         {!mainImageFile && (
                            <div className="absolute inset-0 flex flex-col items-center justify-center truncate">
                               <p className="text-gray-300 text-5xl sm:text-6xl"><BiImageAdd /></p>
-                              <p className="text-sm sm:text-base text-gray-400 px-2 truncate">{t('form:click_to_add')}</p>
+                              <p className="text-sm sm:text-base text-gray-400 px-2 truncate">Click to add</p>
                            </div>
                         )}
                         {mainImageFile &&
                             <div
                                 className="cursor-pointer absolute flex inset-0 bg-black transition ease-in bg-opacity-0 text-transparent
                         hover:bg-opacity-50 hover:text-white items-center justify-center font-semibold" onClick={mainDropzone.open}
-                            >{t('form:edit')}</div>}
+                            >Edit</div>}
                         {!mainImageFile &&
                             <div
                                 className="cursor-pointer absolute flex inset-0 bg-black transition ease-in bg-opacity-0 text-transparent
                         hover:bg-opacity-50 hover:text-white items-center justify-center font-semibold" onClick={mainDropzone.open}
-                            >{t('form:add')}</div>}
+                            >Add</div>}
                         {mainImageFile && <IconButton
                             icon={<BiX />}
                             intent="alert"
@@ -218,12 +218,12 @@ const ImageGridInput: React.FC<ImageGridInputProps> = (props) => {
                      })}
                      
                      <div
-                        className="bg-white flex flex-col border border-dashed border-brand-500 rounded-md col-span-1 aspect-square row-span-1 h-full
+                        className="bg-white flex flex-col border border-dashed border-gray-200 rounded-md col-span-1 aspect-square row-span-1 h-full
                    items-center justify-center font-semibold text-brand-500 transition ease-in hover:bg-gray-50 cursor-pointer"
                         {...imageDropzone.getRootProps()}
                      >
                         <IconDisplay icon={<BiImageAdd />} intent="primary-basic" size="md" />
-                        <p className="-mt-2">{t('form:add')}</p>
+                        <p className="-mt-2">Add</p>
                         <input {...imageDropzone.getInputProps()} />
                      </div>
                   </div>

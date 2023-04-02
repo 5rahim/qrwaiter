@@ -94,3 +94,11 @@ Google API Key (Address Input...)
 ### Features
  
 - Everything you edit or modify is saved in real time in the online menu.
+
+### Group ordering
+
+Scanning the QR code sends you to a page that populates a cookie giving unique access to current user
+
+- Create table order > Create n(no_of_chairs) tokens
+- QR code value: /access/[token] > Scan > Create cookie containing token > Redirect to /table/12345/chair/1
+- /table/12345/chair/1: Check token cookie against database to verify

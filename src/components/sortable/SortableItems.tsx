@@ -41,11 +41,13 @@ export function SortableItems<TData extends Array<Record<string, any> & { id: st
    }, [data])
    
    const handleDragEnd = useCallback((event: DragEndEvent) => {
+      console.log('drag end')
       if (!event) return
       const { active, over } = event
       
       if (active && over && active.id !== over?.id) {
          setItems((items) => {
+            console.log('order change')
             const oldIndex = items?.findIndex(item => item?.id === active.id) ?? 0
             const newIndex = items?.findIndex(item => item?.id === over?.id) ?? 0
             const n = arrayMove(items, oldIndex as number, newIndex as number)
@@ -70,7 +72,7 @@ export function SortableItems<TData extends Array<Record<string, any> & { id: st
                   strategy={verticalListSortingStrategy}
                   items={items.map(t => t?.id)}
                >
-                  <div className="space-y-2">
+                  <div className="divide-y">
                      {runIfFn(children, items)}
                   </div>
                </SortableContext>

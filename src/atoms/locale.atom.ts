@@ -11,7 +11,7 @@ export const useCurrentLocale = () => {
    return {
       locale,
       setLocale,
-      countryLocale: 'fr-FR',
+      countryLocale: 'en-US',
    }
    
 }

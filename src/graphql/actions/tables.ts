@@ -1,12 +1,11 @@
-import { OrderFragment } from '@/graphql/orders/actions'
-import { TableOrderFragment } from '@/graphql/table-orders/actions'
+import { OrderFragment } from '@/graphql/actions/orders'
+import { TableOrderFragment } from '@/graphql/actions/table-orders'
 import { gql } from 'graphql-request'
 
 export const TableFragment = gql`
   fragment TableFragment on tables {
     id
     no_of_chairs
-    qr_codes
     restaurant_id
     name
     order

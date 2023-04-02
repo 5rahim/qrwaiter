@@ -1,10 +1,10 @@
 'use client'
 
-import TableForm from '@/app/(admin)/admin/tables/TableForm'
+import CategoryForm from '@/app/(admin)/admin/menu/categories/CategoryForm'
 import { SortableItem } from '@/components/sortable/SortableItem'
 import { SortableItems } from '@/components/sortable/SortableItems'
-import { useTableOrderService, useTables } from '@/graphql/services/table.client'
-import { TableInfo, Tables } from '@/graphql/types'
+import { useCategories, useCategoryOrderService } from '@/graphql/services/category.client'
+import { Categories, Category } from '@/graphql/types'
 import { useAppTranslation } from '@/hooks/use-app-translation'
 import { useDisclosure } from '@/hooks/use-disclosure'
 import { useLinks } from '@/hooks/use-links'
@@ -13,12 +13,12 @@ import { PageHeader } from '@ui/main/layout/page-header/PageHeader'
 import { Modal } from '@ui/main/overlay/modal/Modal'
 import React, { useCallback } from 'react'
 
-interface TableListProps {
+interface CategoryListProps {
    children?: React.ReactNode
    rid: string
 }
 
-const TableList: React.FC<TableListProps> = (props) => {
+const CategoryList: React.FC<CategoryListProps> = (props) => {
    
    const { children, rid, ...rest } = props
    const links = useLinks()
@@ -27,34 +27,34 @@ const TableList: React.FC<TableListProps> = (props) => {
    
    const createModal = useDisclosure(false)
    
-   const { tables, tablesLoading, refetchTables } = useTables(rid)
-   const { updateTableOrder } = useTableOrderService()
+   const { categories, categoriesLoading, refetchCategories } = useCategories(rid)
+   const { updateCategoryOrder } = useCategoryOrderService()
    
    const onMutation = useCallback(() => {
       createModal.close()
-      refetchTables()
+      refetchCategories()
    }, [createModal])
    
    return (
       <>
-         <PageHeader title="" action={<><Button onClick={createModal.open}>Add a table</Button></>} />
+         <PageHeader title="Categories" action={<><Button onClick={createModal.open}>Add a category</Button></>} />
          
-         <SortableItems<Tables>
-            data={tables}
-            isLoading={tablesLoading}
-            onOrderChange={order => updateTableOrder({ order })}
+         <SortableItems<Categories>
+            data={categories}
+            isLoading={categoriesLoading}
+            onOrderChange={order => updateCategoryOrder({ order })}
          >
-            {(items) => items.map(table => (
-               <TableItem key={table?.id} table={table} onMutation={onMutation} />
+            {(items) => items.map(category => (
+               <CategoryItem key={category?.id} category={category} onMutation={onMutation} />
             ))}
          </SortableItems>
          
          <Modal isOpen={createModal.isOpen} onClose={createModal.close} size="xl">
-            <TableForm
+            <CategoryForm
                role="create"
                rid={rid}
                onSuccess={onMutation}
-               tableCount={tables.length}
+               categoryCount={categories.length}
             />
          </Modal>
       </>
@@ -62,26 +62,27 @@ const TableList: React.FC<TableListProps> = (props) => {
    
 }
 
-export default TableList
+export default CategoryList
 
-export function TableItem({ table, onMutation }: { table: TableInfo, onMutation: () => void }) {
+export function CategoryItem({ category, onMutation }: { category: Category, onMutation: () => void }) {
    
    const editModal = useDisclosure(false)
    
-   if (!table) return null
+   if (!category) return null
+   
    
    return (
       <>
-         <SortableItem key={table?.id} id={table?.id}>
-            <span className="font-semibold cursor-pointer" onClick={editModal.open}>{table?.name}</span>
+         <SortableItem key={category?.id} id={category?.id}>
+            <span className="font-semibold cursor-pointer" onClick={editModal.open}>{category?.name}</span>
          </SortableItem>
          
          <Modal isOpen={editModal.isOpen} onClose={editModal.close} size="xl">
-            <TableForm
+            <CategoryForm
                role="update"
-               rid={table.restaurant_id}
+               rid={category.restaurant_id}
                onSuccess={onMutation}
-               table={table}
+               category={category}
             />
          </Modal>
       </>

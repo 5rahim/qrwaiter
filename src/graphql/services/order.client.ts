@@ -1,5 +1,5 @@
 import { useCreateOrdersMutation, useGetOrderQuery } from '@/graphql/generated'
-import { Order } from '@/graphql/orders/types'
+import { Order } from '@/graphql/types'
 import { useMutationService } from '@/graphql/use-mutation-service'
 import { useQueryClient } from '@/graphql/use-query-client'
 import { Nullable } from '@/types'

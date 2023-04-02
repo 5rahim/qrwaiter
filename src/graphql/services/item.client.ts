@@ -1,19 +1,24 @@
 import { useCreateItemMutation, useDeleteItemMutation, useGetItemQuery, useGetItemsQuery, useUpdateItemMutation } from '@/graphql/generated'
-import { Item, Items } from '@/graphql/items/types'
+import { Item, Items } from '@/graphql/types'
 import { useMutationService } from '@/graphql/use-mutation-service'
 import { useQueryClient } from '@/graphql/use-query-client'
+import { useLinks } from '@/hooks/use-links'
 import { InferType, Nullable } from '@/types'
 import { createTypesafeFormSchema } from '@ui/main/forms/typesafe-form/CreateTypesafeFormSchema'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 'update' | 'delete', item?: Item) => {
    
    const queryClient = useQueryClient()
    const session = useSession()
+   const links = useLinks()
+   const router = useRouter()
    
    const createItemMutation = useCreateItemMutation(queryClient.get(), {
       onSuccess: data => {
          queryClient.successAlert('Item created')
+         router.push(links.to(s => s.admin.items))
       },
    })
    useMutationService(createItemMutation)
@@ -28,6 +33,7 @@ export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 
    const deleteItemMutation = useDeleteItemMutation(queryClient.get(), {
       onSuccess: data => {
          queryClient.successAlert('Item deleted')
+         router.push(links.to(s => s.admin.items))
       },
    })
    useMutationService(deleteItemMutation)
@@ -40,7 +46,7 @@ export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 
       images: presets.imageGrid,
       name: presets.name,
       price: presets.price,
-      related_to: z.array(z.string()),
+      related_to: z.array(z.string()).min(0),
       variations: z.array(z.any()),
    }))
    
@@ -60,7 +66,7 @@ export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 
    
    const deleteItem = () => deleteItemMutation.mutate({ id: item?.id })
    
-   const itemDefaultValues: InferType<typeof itemSchema> | undefined = item ? {
+   const itemDefaultValues = item ? {
       available: item.available,
       category_id: item.category_id,
       choices: item.choices,
@@ -70,7 +76,9 @@ export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 
       price: item.price,
       related_to: item.related_to,
       variations: item.variations,
-   } : undefined
+   } : {
+      available: true,
+   }
    
    return {
       itemDefaultValues,

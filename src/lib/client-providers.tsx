@@ -1,37 +1,39 @@
 'use client'
 
-import { useCurrentLocale } from '@/atoms/locale.atom'
-import { useQueryClient } from '@/graphql/use-query-client'
+import { clientSessionAtom } from '@/atoms/client-session.atom'
+import { localeAtom } from '@/atoms/locale.atom'
+import { currentUserAtom } from '@/atoms/user.atom'
+import { User } from '@/graphql/users/types'
 import { clientSession } from '@/lib/session'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ToastProvider } from '@ui/main/feedback/toast/Toast'
+import { useHydrateAtoms } from 'jotai/react/utils'
 import { SessionProvider } from 'next-auth/react'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { SSRProvider } from 'react-aria'
 
 interface ClientProvidersProps {
    children?: React.ReactNode
-   user: clientSession
+   sessionUser: clientSession
+   user: User
    locale: string
 }
 
 const ClientProviders: React.FC<ClientProvidersProps> = (props) => {
    
-   const { children, user, locale } = props
+   const { children, sessionUser, user, locale } = props
    
-   const { setLocale } = useCurrentLocale()
-   
-   setLocale(locale)
+   useHydrateAtoms([[localeAtom, locale], [clientSessionAtom, sessionUser], [currentUserAtom, user]])
    
    return (
       <>
          <SSRProvider>
-            <AuthProvider user={user}>
+            <SessionProvider>
                <QueryProvider>
                   {children}
                   <ToastProvider />
                </QueryProvider>
-            </AuthProvider>
+            </SessionProvider>
          </SSRProvider>
       </>
    )
@@ -46,19 +48,3 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
 }
 
-
-export function AuthProvider({ children, user }: { children: React.ReactNode, user: clientSession | null }) {
-   
-   const queryClient = useQueryClient()
-   
-   /**
-    * Set the client session from the server before next-auth loads it in the client for use in queries
-    * Will throw these errors in development: "Warning: Cannot update a component"
-    * Can cause hydration issues if used to display information in UI.
-    */
-   useEffect(() => {
-      queryClient.setClientSession(user)
-   }, [user])
-   
-   return <SessionProvider>{children}</SessionProvider>
-}

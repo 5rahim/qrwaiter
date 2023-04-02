@@ -1,4 +1,4 @@
-import { TableOrderFragment } from '@/graphql/table-orders/actions'
+import { TableOrderFragment } from '@/graphql/actions/table-orders'
 import gql from 'graphql-tag'
 
 export const OrderFragment = gql`
@@ -33,8 +33,7 @@ export const CreateOrders = gql`
     insert_orders(objects: {chair_number: $chair_number, items: $items, subtotal: $subtotal, total: $total, total_tax: $total_tax, table_order_id: $table_order_id}) {
       affected_rows
       returning {
-        id
-        chair_number
+        ...OrderFragment
       }
     }
   }

@@ -1,13 +1,13 @@
 import { cn } from '@/lib/tailwind/tailwind-utils'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import { BiDotsVertical } from '@react-icons/all-files/bi/BiDotsVertical'
+import { BiMoveVertical } from '@react-icons/all-files/bi/BiMoveVertical'
 import { cva, VariantProps } from 'class-variance-authority'
 import React from 'react'
 
 
 const elementStyles = cva([
-   "flex border p-4 rounded-md bg-white justify-between items-center",
+   "flex bg-gray-50 p-4 justify-between items-center",
 ], {
    variants: {},
    defaultVariants: {},
@@ -53,10 +53,10 @@ export const SortableItem = React.forwardRef<HTMLDivElement, SortableItemProps>(
       >
          {children}
          <div
-            className="flex cursor-pointer justify-center items-center w-5 h-8 bg-gray-100 rounded-md"
+            className="flex cursor-pointer justify-center items-center w-5 h-8 rounded-md"
             ref={setActivatorNodeRef}
             {...listeners}
-         ><BiDotsVertical /></div>
+         ><BiMoveVertical /></div>
       </div>
    )
    
