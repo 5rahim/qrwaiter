@@ -85,7 +85,7 @@ export const FilterDropdown = React.forwardRef<HTMLDivElement, FilterDropdownPro
                         {type === 'radio' && <>
                             <RadioGroup
                                 defaultValue={value === undefined ? '-' : value}
-                                options={[{ value: '-', label: t('form:all') }, ...options as any]}
+                                options={[{ value: '-', label: 'All' }, ...options as any]}
                                 onChange={e => {
                                    onChange(e === '-' ? '' : e)
                                    setSelectedValues([_.find(options as any, ['value', e])?.label])
@@ -97,11 +97,11 @@ export const FilterDropdown = React.forwardRef<HTMLDivElement, FilterDropdownPro
                         {type === 'boolean' && <>
                             <RadioGroup
                                 value={value === undefined ? '-' : (value === true ? 'true' : 'false')}
-                                options={[{ value: '-', label: t('form:all') }, { value: 'true', label: t('form:yes') },
-                                   { value: 'false', label: t('form:no') }]}
+                                options={[{ value: '-', label: 'All' }, { value: 'true', label: 'Yes' },
+                                   { value: 'false', label: 'No' }]}
                                 onChange={e => {
                                    onChange(e === '-' ? '' : e === 'true')
-                                   const text = e === '-' ? '' : (e === 'true' ? t('form:yes') : t('form:no'))
+                                   const text = e === '-' ? '' : (e === 'true' ? 'Yes' : 'No')
                                    e && setSelectedValues([text])
                                 }}
                                 stackClassName="gap-0"

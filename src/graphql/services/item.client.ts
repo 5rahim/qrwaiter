@@ -4,6 +4,7 @@ import { useMutationService } from '@/graphql/use-mutation-service'
 import { useQueryClient } from '@/graphql/use-query-client'
 import { useLinks } from '@/hooks/use-links'
 import { InferType, Nullable } from '@/types'
+import { useImageGridHandler } from '@ui/main/forms/image-grid-input/ImageGridInput'
 import { createTypesafeFormSchema } from '@ui/main/forms/typesafe-form/CreateTypesafeFormSchema'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
@@ -14,6 +15,8 @@ export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 
    const session = useSession()
    const links = useLinks()
    const router = useRouter()
+   
+   const imagesHandler = useImageGridHandler()
    
    const createItemMutation = useCreateItemMutation(queryClient.get(), {
       onSuccess: data => {
@@ -46,21 +49,26 @@ export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 
       images: presets.imageGrid,
       name: presets.name,
       price: presets.price,
-      related_to: z.array(z.string()).min(0),
+      allergens: z.array(z.string()).min(0),
       variations: z.array(z.any()),
    }))
    
-   const createItem = (data: InferType<typeof itemSchema>) => {
+   const createItem = async (data: InferType<typeof itemSchema>) => {
+      const images = await imagesHandler.uploadFiles()
+      console.log(images)
       createItemMutation.mutate({
          restaurant_id: restaurantId,
          ...data,
+         images,
       })
    }
    
    const updateItem = (data: InferType<typeof itemSchema>) => {
+      const images = imagesHandler.uploadFiles()
       updateItemMutation.mutate({
          id: item?.id,
          ...data,
+         images,
       })
    }
    
@@ -74,13 +82,14 @@ export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 
       images: item.images,
       name: item.name,
       price: item.price,
-      related_to: item.related_to,
+      allergens: item.allergens,
       variations: item.variations,
    } : {
       available: true,
    }
    
    return {
+      imagesHandler,
       itemDefaultValues,
       mutateItem: role === 'create' ? createItem : updateItem,
       itemSchema,

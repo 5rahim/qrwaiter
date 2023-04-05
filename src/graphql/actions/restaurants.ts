@@ -33,6 +33,23 @@ export const GetRestaurantByOwnerId = gql`
     }
   }
 `
+export const GetRestaurantByAdministratorId = gql`
+  query GetRestaurantByAdministratorId($user_id: uuid!) {
+    restaurant_administrators(where: { user_id: {_eq: $user_id}}) {
+      id
+      user_id
+      restaurant_id
+      restaurant {
+        id
+        description
+        customization
+        name
+        owner_id
+        slug
+      }
+    }
+  }
+`
 
 export const UpdateRestaurantTheme = gql`
   mutation UpdateRestaurantTheme($id: uuid!, $customization: jsonb!) {

@@ -53,13 +53,13 @@ export function SortableItems<TData extends Array<Record<string, any> & { id: st
             const n = arrayMove(items, oldIndex as number, newIndex as number)
             const newArray = n.map((a, i) => ({ ...a, order: i }))
             const order = newArray.map(v => ({ where: { id: { _eq: v?.id } }, _set: { order: v?.order } }))
-            
+   
             onOrderChange(order)
-            
+   
             return newArray as TData
          })
       }
-   }, [data])
+   }, [])
    
    return (
       <>

@@ -5,7 +5,6 @@ export async function useServerQuery<TData, TVariables = undefined>(query: strin
    
    try {
       const sessionUser = await getCurrentSessionUser()
-      console.log('fetching data', variables)
       return await getClient(sessionUser?.token).request(query, variables) as TData
    }
    catch (e) {

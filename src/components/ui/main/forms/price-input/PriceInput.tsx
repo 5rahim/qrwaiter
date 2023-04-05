@@ -4,7 +4,7 @@ import useCountryHelpers from '@/hooks/use-country-helpers'
 import { cn } from '@/lib/tailwind/tailwind-utils'
 import { BasicField, extractBasicFieldProps } from '@ui/main/forms/basic-field/BasicField'
 import { TextInput, TextInputProps } from '@ui/main/forms/input/TextInput'
-import Dinero, { Currency } from 'dinero.js'
+import Dinero from 'dinero.js'
 import React, { ChangeEvent, useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
 
 
@@ -24,7 +24,7 @@ export const PriceInput = React.forwardRef<HTMLInputElement, PriceInputProps>((p
       size = "md",
       value,
       defaultValue = 0,
-      locale = 'fr',
+      locale = 'en',
       country = 'ci',
       intent,
       onChange,
@@ -34,13 +34,12 @@ export const PriceInput = React.forwardRef<HTMLInputElement, PriceInputProps>((p
    }, basicFieldProps] = extractBasicFieldProps<PriceInputProps>(props, useId())
    
    const countryHelper = useCountryHelpers()
-   const currency = countryHelper.getCountryCurrency(country).currencyCode as Currency
    const [amount, setAmount] = useState<number>(value ?? defaultValue)
    const [isEditing, setIsEditing] = useState(false)
    const editInputRef = useRef<HTMLInputElement>(null)
    
    const dineroObject = useMemo(() => {
-      return Dinero({ amount: amount, currency }).setLocale(locale)
+      return Dinero({ amount: amount, currency: 'USD' }).setLocale(locale)
    }, [amount])
    
    const formattedValue = useMemo(() => {

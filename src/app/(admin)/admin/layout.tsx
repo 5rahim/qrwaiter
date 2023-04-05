@@ -1,5 +1,5 @@
 import AtomPreloader from '@/atoms/preloaders/AtomPreloader'
-import { getRestaurantByOwnerId } from '@/graphql/services/restaurant.server'
+import { getRestaurantByAdministratorId, getRestaurantByOwnerId } from '@/graphql/services/restaurant.server'
 import { getCurrentSessionUser } from '@/lib/session'
 import { siteLinkTo } from '@/utils/links'
 import { redirect } from 'next/navigation'
@@ -9,11 +9,16 @@ export default async function Layout({ children }: { children: React.ReactNode }
    
    const sessionUser = await getCurrentSessionUser()
    
-   const restaurant = await getRestaurantByOwnerId(sessionUser?.id)
+   const [restaurantByOwner, restaurantByAdministrator] = await Promise.all([
+      getRestaurantByOwnerId(sessionUser?.id),
+      getRestaurantByAdministratorId(sessionUser?.id),
+   ])
    
-   if (!restaurant) {
+   if (!restaurantByOwner && !restaurantByAdministrator) {
       redirect(siteLinkTo(s => s.main.new))
    }
+   
+   const restaurant = (restaurantByOwner ?? restaurantByAdministrator)!
    
    
    return (

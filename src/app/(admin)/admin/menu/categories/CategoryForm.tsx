@@ -36,15 +36,15 @@ const CategoryForm: React.FC<CategoryFormProps> = (props) => {
             onSubmit={mutateCategory}
          >
             <Field.Text name="name" label="Category name" placeholder="e.g: Appetizers, Drinks..." />
+            <Field.Submit role={role} />
             <ShowOnly when={role === 'update'}>
                <DangerZone
                   action="Delete this category" onDelete={() => {
                   deleteCategory()
                   onSuccess()
-               }} className=""
+               }} className="mt-4"
                />
             </ShowOnly>
-            <Field.Submit role={role} />
          </TypesafeForm>
       </>
    )

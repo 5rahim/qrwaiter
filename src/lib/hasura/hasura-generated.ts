@@ -932,21 +932,28 @@ export type Cursor_Ordering =
 /** columns and relationships of "items" */
 export type Items = {
    __typename?: 'items';
+   allergens?: Maybe<Scalars['jsonb']>;
    available: Scalars['Boolean'];
    /** An object relationship */
    category?: Maybe<Categories>;
    category_id?: Maybe<Scalars['uuid']>;
    choices: Scalars['jsonb'];
+   created_at: Scalars['timestamptz'];
    description?: Maybe<Scalars['String']>;
    id: Scalars['uuid'];
    images: Scalars['jsonb'];
    name: Scalars['String'];
    price: Scalars['Int'];
-   related_to?: Maybe<Scalars['jsonb']>;
    /** An object relationship */
    restaurant: Restaurants;
    restaurant_id: Scalars['uuid'];
    variations: Scalars['jsonb'];
+};
+
+
+/** columns and relationships of "items" */
+export type ItemsAllergensArgs = {
+   path?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -958,12 +965,6 @@ export type ItemsChoicesArgs = {
 
 /** columns and relationships of "items" */
 export type ItemsImagesArgs = {
-   path?: InputMaybe<Scalars['String']>;
-};
-
-
-/** columns and relationships of "items" */
-export type ItemsRelated_ToArgs = {
    path?: InputMaybe<Scalars['String']>;
 };
 
@@ -1047,9 +1048,9 @@ export type Items_Aggregate_Order_By = {
 
 /** append existing jsonb value of filtered columns with new jsonb value */
 export type Items_Append_Input = {
+   allergens?: InputMaybe<Scalars['jsonb']>;
    choices?: InputMaybe<Scalars['jsonb']>;
    images?: InputMaybe<Scalars['jsonb']>;
-   related_to?: InputMaybe<Scalars['jsonb']>;
    variations?: InputMaybe<Scalars['jsonb']>;
 };
 
@@ -1076,16 +1077,17 @@ export type Items_Bool_Exp = {
    _and?: InputMaybe<Array<Items_Bool_Exp>>;
    _not?: InputMaybe<Items_Bool_Exp>;
    _or?: InputMaybe<Array<Items_Bool_Exp>>;
+   allergens?: InputMaybe<Jsonb_Comparison_Exp>;
    available?: InputMaybe<Boolean_Comparison_Exp>;
    category?: InputMaybe<Categories_Bool_Exp>;
    category_id?: InputMaybe<Uuid_Comparison_Exp>;
    choices?: InputMaybe<Jsonb_Comparison_Exp>;
+   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
    description?: InputMaybe<String_Comparison_Exp>;
    id?: InputMaybe<Uuid_Comparison_Exp>;
    images?: InputMaybe<Jsonb_Comparison_Exp>;
    name?: InputMaybe<String_Comparison_Exp>;
    price?: InputMaybe<Int_Comparison_Exp>;
-   related_to?: InputMaybe<Jsonb_Comparison_Exp>;
    restaurant?: InputMaybe<Restaurants_Bool_Exp>;
    restaurant_id?: InputMaybe<Uuid_Comparison_Exp>;
    variations?: InputMaybe<Jsonb_Comparison_Exp>;
@@ -1098,25 +1100,25 @@ export type Items_Constraint =
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type Items_Delete_At_Path_Input = {
+   allergens?: InputMaybe<Array<Scalars['String']>>;
    choices?: InputMaybe<Array<Scalars['String']>>;
    images?: InputMaybe<Array<Scalars['String']>>;
-   related_to?: InputMaybe<Array<Scalars['String']>>;
    variations?: InputMaybe<Array<Scalars['String']>>;
 };
 
 /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
 export type Items_Delete_Elem_Input = {
+   allergens?: InputMaybe<Scalars['Int']>;
    choices?: InputMaybe<Scalars['Int']>;
    images?: InputMaybe<Scalars['Int']>;
-   related_to?: InputMaybe<Scalars['Int']>;
    variations?: InputMaybe<Scalars['Int']>;
 };
 
 /** delete key/value pair or string element. key/value pairs are matched based on their key value */
 export type Items_Delete_Key_Input = {
+   allergens?: InputMaybe<Scalars['String']>;
    choices?: InputMaybe<Scalars['String']>;
    images?: InputMaybe<Scalars['String']>;
-   related_to?: InputMaybe<Scalars['String']>;
    variations?: InputMaybe<Scalars['String']>;
 };
 
@@ -1127,16 +1129,17 @@ export type Items_Inc_Input = {
 
 /** input type for inserting data into table "items" */
 export type Items_Insert_Input = {
+   allergens?: InputMaybe<Scalars['jsonb']>;
    available?: InputMaybe<Scalars['Boolean']>;
    category?: InputMaybe<Categories_Obj_Rel_Insert_Input>;
    category_id?: InputMaybe<Scalars['uuid']>;
    choices?: InputMaybe<Scalars['jsonb']>;
+   created_at?: InputMaybe<Scalars['timestamptz']>;
    description?: InputMaybe<Scalars['String']>;
    id?: InputMaybe<Scalars['uuid']>;
    images?: InputMaybe<Scalars['jsonb']>;
    name?: InputMaybe<Scalars['String']>;
    price?: InputMaybe<Scalars['Int']>;
-   related_to?: InputMaybe<Scalars['jsonb']>;
    restaurant?: InputMaybe<Restaurants_Obj_Rel_Insert_Input>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
    variations?: InputMaybe<Scalars['jsonb']>;
@@ -1146,6 +1149,7 @@ export type Items_Insert_Input = {
 export type Items_Max_Fields = {
    __typename?: 'items_max_fields';
    category_id?: Maybe<Scalars['uuid']>;
+   created_at?: Maybe<Scalars['timestamptz']>;
    description?: Maybe<Scalars['String']>;
    id?: Maybe<Scalars['uuid']>;
    name?: Maybe<Scalars['String']>;
@@ -1156,6 +1160,7 @@ export type Items_Max_Fields = {
 /** order by max() on columns of table "items" */
 export type Items_Max_Order_By = {
    category_id?: InputMaybe<Order_By>;
+   created_at?: InputMaybe<Order_By>;
    description?: InputMaybe<Order_By>;
    id?: InputMaybe<Order_By>;
    name?: InputMaybe<Order_By>;
@@ -1167,6 +1172,7 @@ export type Items_Max_Order_By = {
 export type Items_Min_Fields = {
    __typename?: 'items_min_fields';
    category_id?: Maybe<Scalars['uuid']>;
+   created_at?: Maybe<Scalars['timestamptz']>;
    description?: Maybe<Scalars['String']>;
    id?: Maybe<Scalars['uuid']>;
    name?: Maybe<Scalars['String']>;
@@ -1177,6 +1183,7 @@ export type Items_Min_Fields = {
 /** order by min() on columns of table "items" */
 export type Items_Min_Order_By = {
    category_id?: InputMaybe<Order_By>;
+   created_at?: InputMaybe<Order_By>;
    description?: InputMaybe<Order_By>;
    id?: InputMaybe<Order_By>;
    name?: InputMaybe<Order_By>;
@@ -1202,16 +1209,17 @@ export type Items_On_Conflict = {
 
 /** Ordering options when selecting data from "items". */
 export type Items_Order_By = {
+   allergens?: InputMaybe<Order_By>;
    available?: InputMaybe<Order_By>;
    category?: InputMaybe<Categories_Order_By>;
    category_id?: InputMaybe<Order_By>;
    choices?: InputMaybe<Order_By>;
+   created_at?: InputMaybe<Order_By>;
    description?: InputMaybe<Order_By>;
    id?: InputMaybe<Order_By>;
    images?: InputMaybe<Order_By>;
    name?: InputMaybe<Order_By>;
    price?: InputMaybe<Order_By>;
-   related_to?: InputMaybe<Order_By>;
    restaurant?: InputMaybe<Restaurants_Order_By>;
    restaurant_id?: InputMaybe<Order_By>;
    variations?: InputMaybe<Order_By>;
@@ -1224,20 +1232,24 @@ export type Items_Pk_Columns_Input = {
 
 /** prepend existing jsonb value of filtered columns with new jsonb value */
 export type Items_Prepend_Input = {
+   allergens?: InputMaybe<Scalars['jsonb']>;
    choices?: InputMaybe<Scalars['jsonb']>;
    images?: InputMaybe<Scalars['jsonb']>;
-   related_to?: InputMaybe<Scalars['jsonb']>;
    variations?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** select columns of table "items" */
 export type Items_Select_Column =
 /** column name */
+   | 'allergens'
+   /** column name */
    | 'available'
    /** column name */
    | 'category_id'
    /** column name */
    | 'choices'
+   /** column name */
+   | 'created_at'
    /** column name */
    | 'description'
    /** column name */
@@ -1248,8 +1260,6 @@ export type Items_Select_Column =
    | 'name'
    /** column name */
    | 'price'
-   /** column name */
-   | 'related_to'
    /** column name */
    | 'restaurant_id'
    /** column name */
@@ -1267,15 +1277,16 @@ export type Items_Select_Column_Items_Aggregate_Bool_Exp_Bool_Or_Arguments_Colum
 
 /** input type for updating data in table "items" */
 export type Items_Set_Input = {
+   allergens?: InputMaybe<Scalars['jsonb']>;
    available?: InputMaybe<Scalars['Boolean']>;
    category_id?: InputMaybe<Scalars['uuid']>;
    choices?: InputMaybe<Scalars['jsonb']>;
+   created_at?: InputMaybe<Scalars['timestamptz']>;
    description?: InputMaybe<Scalars['String']>;
    id?: InputMaybe<Scalars['uuid']>;
    images?: InputMaybe<Scalars['jsonb']>;
    name?: InputMaybe<Scalars['String']>;
    price?: InputMaybe<Scalars['Int']>;
-   related_to?: InputMaybe<Scalars['jsonb']>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
    variations?: InputMaybe<Scalars['jsonb']>;
 };
@@ -1323,15 +1334,16 @@ export type Items_Stream_Cursor_Input = {
 
 /** Initial value of the column from where the streaming should start */
 export type Items_Stream_Cursor_Value_Input = {
+   allergens?: InputMaybe<Scalars['jsonb']>;
    available?: InputMaybe<Scalars['Boolean']>;
    category_id?: InputMaybe<Scalars['uuid']>;
    choices?: InputMaybe<Scalars['jsonb']>;
+   created_at?: InputMaybe<Scalars['timestamptz']>;
    description?: InputMaybe<Scalars['String']>;
    id?: InputMaybe<Scalars['uuid']>;
    images?: InputMaybe<Scalars['jsonb']>;
    name?: InputMaybe<Scalars['String']>;
    price?: InputMaybe<Scalars['Int']>;
-   related_to?: InputMaybe<Scalars['jsonb']>;
    restaurant_id?: InputMaybe<Scalars['uuid']>;
    variations?: InputMaybe<Scalars['jsonb']>;
 };
@@ -1350,11 +1362,15 @@ export type Items_Sum_Order_By = {
 /** update columns of table "items" */
 export type Items_Update_Column =
 /** column name */
+   | 'allergens'
+   /** column name */
    | 'available'
    /** column name */
    | 'category_id'
    /** column name */
    | 'choices'
+   /** column name */
+   | 'created_at'
    /** column name */
    | 'description'
    /** column name */
@@ -1365,8 +1381,6 @@ export type Items_Update_Column =
    | 'name'
    /** column name */
    | 'price'
-   /** column name */
-   | 'related_to'
    /** column name */
    | 'restaurant_id'
    /** column name */
@@ -1471,6 +1485,10 @@ export type Mutation_Root = {
    delete_orders?: Maybe<Orders_Mutation_Response>;
    /** delete single row from the table: "orders" */
    delete_orders_by_pk?: Maybe<Orders>;
+   /** delete data from the table: "restaurant_administrators" */
+   delete_restaurant_administrators?: Maybe<Restaurant_Administrators_Mutation_Response>;
+   /** delete single row from the table: "restaurant_administrators" */
+   delete_restaurant_administrators_by_pk?: Maybe<Restaurant_Administrators>;
    /** delete data from the table: "restaurants" */
    delete_restaurants?: Maybe<Restaurants_Mutation_Response>;
    /** delete single row from the table: "restaurants" */
@@ -1511,6 +1529,10 @@ export type Mutation_Root = {
    insert_orders?: Maybe<Orders_Mutation_Response>;
    /** insert a single row into the table: "orders" */
    insert_orders_one?: Maybe<Orders>;
+   /** insert data into the table: "restaurant_administrators" */
+   insert_restaurant_administrators?: Maybe<Restaurant_Administrators_Mutation_Response>;
+   /** insert a single row into the table: "restaurant_administrators" */
+   insert_restaurant_administrators_one?: Maybe<Restaurant_Administrators>;
    /** insert data into the table: "restaurants" */
    insert_restaurants?: Maybe<Restaurants_Mutation_Response>;
    /** insert a single row into the table: "restaurants" */
@@ -1559,6 +1581,12 @@ export type Mutation_Root = {
    update_orders_by_pk?: Maybe<Orders>;
    /** update multiples rows of table: "orders" */
    update_orders_many?: Maybe<Array<Maybe<Orders_Mutation_Response>>>;
+   /** update data of the table: "restaurant_administrators" */
+   update_restaurant_administrators?: Maybe<Restaurant_Administrators_Mutation_Response>;
+   /** update single row of the table: "restaurant_administrators" */
+   update_restaurant_administrators_by_pk?: Maybe<Restaurant_Administrators>;
+   /** update multiples rows of table: "restaurant_administrators" */
+   update_restaurant_administrators_many?: Maybe<Array<Maybe<Restaurant_Administrators_Mutation_Response>>>;
    /** update data of the table: "restaurants" */
    update_restaurants?: Maybe<Restaurants_Mutation_Response>;
    /** update single row of the table: "restaurants" */
@@ -1642,6 +1670,18 @@ export type Mutation_RootDelete_OrdersArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Orders_By_PkArgs = {
+   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Restaurant_AdministratorsArgs = {
+   where: Restaurant_Administrators_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Restaurant_Administrators_By_PkArgs = {
    id: Scalars['uuid'];
 };
 
@@ -1771,6 +1811,20 @@ export type Mutation_RootInsert_OrdersArgs = {
 export type Mutation_RootInsert_Orders_OneArgs = {
    object: Orders_Insert_Input;
    on_conflict?: InputMaybe<Orders_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Restaurant_AdministratorsArgs = {
+   objects: Array<Restaurant_Administrators_Insert_Input>;
+   on_conflict?: InputMaybe<Restaurant_Administrators_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Restaurant_Administrators_OneArgs = {
+   object: Restaurant_Administrators_Insert_Input;
+   on_conflict?: InputMaybe<Restaurant_Administrators_On_Conflict>;
 };
 
 
@@ -1963,6 +2017,26 @@ export type Mutation_RootUpdate_Orders_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Orders_ManyArgs = {
    updates: Array<Orders_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Restaurant_AdministratorsArgs = {
+   _set?: InputMaybe<Restaurant_Administrators_Set_Input>;
+   where: Restaurant_Administrators_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Restaurant_Administrators_By_PkArgs = {
+   _set?: InputMaybe<Restaurant_Administrators_Set_Input>;
+   pk_columns: Restaurant_Administrators_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Restaurant_Administrators_ManyArgs = {
+   updates: Array<Restaurant_Administrators_Updates>;
 };
 
 
@@ -2614,6 +2688,12 @@ export type Query_Root = {
    orders_aggregate: Orders_Aggregate;
    /** fetch data from the table: "orders" using primary key columns */
    orders_by_pk?: Maybe<Orders>;
+   /** fetch data from the table: "restaurant_administrators" */
+   restaurant_administrators: Array<Restaurant_Administrators>;
+   /** fetch aggregated fields from the table: "restaurant_administrators" */
+   restaurant_administrators_aggregate: Restaurant_Administrators_Aggregate;
+   /** fetch data from the table: "restaurant_administrators" using primary key columns */
+   restaurant_administrators_by_pk?: Maybe<Restaurant_Administrators>;
    /** fetch data from the table: "restaurants" */
    restaurants: Array<Restaurants>;
    /** fetch aggregated fields from the table: "restaurants" */
@@ -2741,6 +2821,29 @@ export type Query_RootOrders_AggregateArgs = {
 
 
 export type Query_RootOrders_By_PkArgs = {
+   id: Scalars['uuid'];
+};
+
+
+export type Query_RootRestaurant_AdministratorsArgs = {
+   distinct_on?: InputMaybe<Array<Restaurant_Administrators_Select_Column>>;
+   limit?: InputMaybe<Scalars['Int']>;
+   offset?: InputMaybe<Scalars['Int']>;
+   order_by?: InputMaybe<Array<Restaurant_Administrators_Order_By>>;
+   where?: InputMaybe<Restaurant_Administrators_Bool_Exp>;
+};
+
+
+export type Query_RootRestaurant_Administrators_AggregateArgs = {
+   distinct_on?: InputMaybe<Array<Restaurant_Administrators_Select_Column>>;
+   limit?: InputMaybe<Scalars['Int']>;
+   offset?: InputMaybe<Scalars['Int']>;
+   order_by?: InputMaybe<Array<Restaurant_Administrators_Order_By>>;
+   where?: InputMaybe<Restaurant_Administrators_Bool_Exp>;
+};
+
+
+export type Query_RootRestaurant_Administrators_By_PkArgs = {
    id: Scalars['uuid'];
 };
 
@@ -2882,9 +2985,202 @@ export type Query_RootVerification_Tokens_By_PkArgs = {
    token: Scalars['String'];
 };
 
+/** columns and relationships of "restaurant_administrators" */
+export type Restaurant_Administrators = {
+   __typename?: 'restaurant_administrators';
+   id: Scalars['uuid'];
+   /** An object relationship */
+   restaurant: Restaurants;
+   restaurant_id: Scalars['uuid'];
+   user_id: Scalars['uuid'];
+};
+
+/** aggregated selection of "restaurant_administrators" */
+export type Restaurant_Administrators_Aggregate = {
+   __typename?: 'restaurant_administrators_aggregate';
+   aggregate?: Maybe<Restaurant_Administrators_Aggregate_Fields>;
+   nodes: Array<Restaurant_Administrators>;
+};
+
+export type Restaurant_Administrators_Aggregate_Bool_Exp = {
+   count?: InputMaybe<Restaurant_Administrators_Aggregate_Bool_Exp_Count>;
+};
+
+export type Restaurant_Administrators_Aggregate_Bool_Exp_Count = {
+   arguments?: InputMaybe<Array<Restaurant_Administrators_Select_Column>>;
+   distinct?: InputMaybe<Scalars['Boolean']>;
+   filter?: InputMaybe<Restaurant_Administrators_Bool_Exp>;
+   predicate: Int_Comparison_Exp;
+};
+
+/** aggregate fields of "restaurant_administrators" */
+export type Restaurant_Administrators_Aggregate_Fields = {
+   __typename?: 'restaurant_administrators_aggregate_fields';
+   count: Scalars['Int'];
+   max?: Maybe<Restaurant_Administrators_Max_Fields>;
+   min?: Maybe<Restaurant_Administrators_Min_Fields>;
+};
+
+
+/** aggregate fields of "restaurant_administrators" */
+export type Restaurant_Administrators_Aggregate_FieldsCountArgs = {
+   columns?: InputMaybe<Array<Restaurant_Administrators_Select_Column>>;
+   distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "restaurant_administrators" */
+export type Restaurant_Administrators_Aggregate_Order_By = {
+   count?: InputMaybe<Order_By>;
+   max?: InputMaybe<Restaurant_Administrators_Max_Order_By>;
+   min?: InputMaybe<Restaurant_Administrators_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "restaurant_administrators" */
+export type Restaurant_Administrators_Arr_Rel_Insert_Input = {
+   data: Array<Restaurant_Administrators_Insert_Input>;
+   /** upsert condition */
+   on_conflict?: InputMaybe<Restaurant_Administrators_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "restaurant_administrators". All fields are combined with a logical 'AND'. */
+export type Restaurant_Administrators_Bool_Exp = {
+   _and?: InputMaybe<Array<Restaurant_Administrators_Bool_Exp>>;
+   _not?: InputMaybe<Restaurant_Administrators_Bool_Exp>;
+   _or?: InputMaybe<Array<Restaurant_Administrators_Bool_Exp>>;
+   id?: InputMaybe<Uuid_Comparison_Exp>;
+   restaurant?: InputMaybe<Restaurants_Bool_Exp>;
+   restaurant_id?: InputMaybe<Uuid_Comparison_Exp>;
+   user_id?: InputMaybe<Uuid_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "restaurant_administrators" */
+export type Restaurant_Administrators_Constraint =
+/** unique or primary key constraint on columns "id" */
+   | 'restaurant_administrators_pkey'
+   /** unique or primary key constraint on columns "user_id" */
+   | 'restaurant_administrators_user_id_key';
+
+/** input type for inserting data into table "restaurant_administrators" */
+export type Restaurant_Administrators_Insert_Input = {
+   id?: InputMaybe<Scalars['uuid']>;
+   restaurant?: InputMaybe<Restaurants_Obj_Rel_Insert_Input>;
+   restaurant_id?: InputMaybe<Scalars['uuid']>;
+   user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** aggregate max on columns */
+export type Restaurant_Administrators_Max_Fields = {
+   __typename?: 'restaurant_administrators_max_fields';
+   id?: Maybe<Scalars['uuid']>;
+   restaurant_id?: Maybe<Scalars['uuid']>;
+   user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by max() on columns of table "restaurant_administrators" */
+export type Restaurant_Administrators_Max_Order_By = {
+   id?: InputMaybe<Order_By>;
+   restaurant_id?: InputMaybe<Order_By>;
+   user_id?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type Restaurant_Administrators_Min_Fields = {
+   __typename?: 'restaurant_administrators_min_fields';
+   id?: Maybe<Scalars['uuid']>;
+   restaurant_id?: Maybe<Scalars['uuid']>;
+   user_id?: Maybe<Scalars['uuid']>;
+};
+
+/** order by min() on columns of table "restaurant_administrators" */
+export type Restaurant_Administrators_Min_Order_By = {
+   id?: InputMaybe<Order_By>;
+   restaurant_id?: InputMaybe<Order_By>;
+   user_id?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "restaurant_administrators" */
+export type Restaurant_Administrators_Mutation_Response = {
+   __typename?: 'restaurant_administrators_mutation_response';
+   /** number of rows affected by the mutation */
+   affected_rows: Scalars['Int'];
+   /** data from the rows affected by the mutation */
+   returning: Array<Restaurant_Administrators>;
+};
+
+/** on_conflict condition type for table "restaurant_administrators" */
+export type Restaurant_Administrators_On_Conflict = {
+   constraint: Restaurant_Administrators_Constraint;
+   update_columns?: Array<Restaurant_Administrators_Update_Column>;
+   where?: InputMaybe<Restaurant_Administrators_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "restaurant_administrators". */
+export type Restaurant_Administrators_Order_By = {
+   id?: InputMaybe<Order_By>;
+   restaurant?: InputMaybe<Restaurants_Order_By>;
+   restaurant_id?: InputMaybe<Order_By>;
+   user_id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: restaurant_administrators */
+export type Restaurant_Administrators_Pk_Columns_Input = {
+   id: Scalars['uuid'];
+};
+
+/** select columns of table "restaurant_administrators" */
+export type Restaurant_Administrators_Select_Column =
+/** column name */
+   | 'id'
+   /** column name */
+   | 'restaurant_id'
+   /** column name */
+   | 'user_id';
+
+/** input type for updating data in table "restaurant_administrators" */
+export type Restaurant_Administrators_Set_Input = {
+   id?: InputMaybe<Scalars['uuid']>;
+   restaurant_id?: InputMaybe<Scalars['uuid']>;
+   user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** Streaming cursor of the table "restaurant_administrators" */
+export type Restaurant_Administrators_Stream_Cursor_Input = {
+   /** Stream column input with initial value */
+   initial_value: Restaurant_Administrators_Stream_Cursor_Value_Input;
+   /** cursor ordering */
+   ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Restaurant_Administrators_Stream_Cursor_Value_Input = {
+   id?: InputMaybe<Scalars['uuid']>;
+   restaurant_id?: InputMaybe<Scalars['uuid']>;
+   user_id?: InputMaybe<Scalars['uuid']>;
+};
+
+/** update columns of table "restaurant_administrators" */
+export type Restaurant_Administrators_Update_Column =
+/** column name */
+   | 'id'
+   /** column name */
+   | 'restaurant_id'
+   /** column name */
+   | 'user_id';
+
+export type Restaurant_Administrators_Updates = {
+   /** sets the columns of the filtered rows to the given values */
+   _set?: InputMaybe<Restaurant_Administrators_Set_Input>;
+   /** filter the rows which have to be updated */
+   where: Restaurant_Administrators_Bool_Exp;
+};
+
 /** columns and relationships of "restaurants" */
 export type Restaurants = {
    __typename?: 'restaurants';
+   /** An array relationship */
+   administrators: Array<Restaurant_Administrators>;
+   /** An aggregate relationship */
+   administrators_aggregate: Restaurant_Administrators_Aggregate;
    /** An array relationship */
    categories: Array<Categories>;
    /** An aggregate relationship */
@@ -2905,6 +3201,26 @@ export type Restaurants = {
    tables: Array<Tables>;
    /** An aggregate relationship */
    tables_aggregate: Tables_Aggregate;
+};
+
+
+/** columns and relationships of "restaurants" */
+export type RestaurantsAdministratorsArgs = {
+   distinct_on?: InputMaybe<Array<Restaurant_Administrators_Select_Column>>;
+   limit?: InputMaybe<Scalars['Int']>;
+   offset?: InputMaybe<Scalars['Int']>;
+   order_by?: InputMaybe<Array<Restaurant_Administrators_Order_By>>;
+   where?: InputMaybe<Restaurant_Administrators_Bool_Exp>;
+};
+
+
+/** columns and relationships of "restaurants" */
+export type RestaurantsAdministrators_AggregateArgs = {
+   distinct_on?: InputMaybe<Array<Restaurant_Administrators_Select_Column>>;
+   limit?: InputMaybe<Scalars['Int']>;
+   offset?: InputMaybe<Scalars['Int']>;
+   order_by?: InputMaybe<Array<Restaurant_Administrators_Order_By>>;
+   where?: InputMaybe<Restaurant_Administrators_Bool_Exp>;
 };
 
 
@@ -3005,6 +3321,8 @@ export type Restaurants_Bool_Exp = {
    _and?: InputMaybe<Array<Restaurants_Bool_Exp>>;
    _not?: InputMaybe<Restaurants_Bool_Exp>;
    _or?: InputMaybe<Array<Restaurants_Bool_Exp>>;
+   administrators?: InputMaybe<Restaurant_Administrators_Bool_Exp>;
+   administrators_aggregate?: InputMaybe<Restaurant_Administrators_Aggregate_Bool_Exp>;
    categories?: InputMaybe<Categories_Bool_Exp>;
    categories_aggregate?: InputMaybe<Categories_Aggregate_Bool_Exp>;
    customization?: InputMaybe<Jsonb_Comparison_Exp>;
@@ -3046,6 +3364,7 @@ export type Restaurants_Delete_Key_Input = {
 
 /** input type for inserting data into table "restaurants" */
 export type Restaurants_Insert_Input = {
+   administrators?: InputMaybe<Restaurant_Administrators_Arr_Rel_Insert_Input>;
    categories?: InputMaybe<Categories_Arr_Rel_Insert_Input>;
    customization?: InputMaybe<Scalars['jsonb']>;
    description?: InputMaybe<Scalars['String']>;
@@ -3103,6 +3422,7 @@ export type Restaurants_On_Conflict = {
 
 /** Ordering options when selecting data from "restaurants". */
 export type Restaurants_Order_By = {
+   administrators_aggregate?: InputMaybe<Restaurant_Administrators_Aggregate_Order_By>;
    categories_aggregate?: InputMaybe<Categories_Aggregate_Order_By>;
    customization?: InputMaybe<Order_By>;
    description?: InputMaybe<Order_By>;
@@ -3435,6 +3755,14 @@ export type Subscription_Root = {
    orders_by_pk?: Maybe<Orders>;
    /** fetch data from the table in a streaming manner: "orders" */
    orders_stream: Array<Orders>;
+   /** fetch data from the table: "restaurant_administrators" */
+   restaurant_administrators: Array<Restaurant_Administrators>;
+   /** fetch aggregated fields from the table: "restaurant_administrators" */
+   restaurant_administrators_aggregate: Restaurant_Administrators_Aggregate;
+   /** fetch data from the table: "restaurant_administrators" using primary key columns */
+   restaurant_administrators_by_pk?: Maybe<Restaurant_Administrators>;
+   /** fetch data from the table in a streaming manner: "restaurant_administrators" */
+   restaurant_administrators_stream: Array<Restaurant_Administrators>;
    /** fetch data from the table: "restaurants" */
    restaurants: Array<Restaurants>;
    /** fetch aggregated fields from the table: "restaurants" */
@@ -3603,6 +3931,36 @@ export type Subscription_RootOrders_StreamArgs = {
    batch_size: Scalars['Int'];
    cursor: Array<InputMaybe<Orders_Stream_Cursor_Input>>;
    where?: InputMaybe<Orders_Bool_Exp>;
+};
+
+
+export type Subscription_RootRestaurant_AdministratorsArgs = {
+   distinct_on?: InputMaybe<Array<Restaurant_Administrators_Select_Column>>;
+   limit?: InputMaybe<Scalars['Int']>;
+   offset?: InputMaybe<Scalars['Int']>;
+   order_by?: InputMaybe<Array<Restaurant_Administrators_Order_By>>;
+   where?: InputMaybe<Restaurant_Administrators_Bool_Exp>;
+};
+
+
+export type Subscription_RootRestaurant_Administrators_AggregateArgs = {
+   distinct_on?: InputMaybe<Array<Restaurant_Administrators_Select_Column>>;
+   limit?: InputMaybe<Scalars['Int']>;
+   offset?: InputMaybe<Scalars['Int']>;
+   order_by?: InputMaybe<Array<Restaurant_Administrators_Order_By>>;
+   where?: InputMaybe<Restaurant_Administrators_Bool_Exp>;
+};
+
+
+export type Subscription_RootRestaurant_Administrators_By_PkArgs = {
+   id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootRestaurant_Administrators_StreamArgs = {
+   batch_size: Scalars['Int'];
+   cursor: Array<InputMaybe<Restaurant_Administrators_Stream_Cursor_Input>>;
+   where?: InputMaybe<Restaurant_Administrators_Bool_Exp>;
 };
 
 

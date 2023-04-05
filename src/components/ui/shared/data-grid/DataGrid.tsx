@@ -334,14 +334,14 @@ export function DataGrid<T extends Array<any>>(props: DataGridProps<T>) {
                   <div className="flex flex-none items-center gap-1 ml-2">
                      <div>Page</div>
                      <strong>
-                        {table.getState().pagination.pageIndex + 1} {t('form:pagination_of')} {table.getPageCount()}
+                        {table.getState().pagination.pageIndex + 1} of {table.getPageCount()}
                      </strong>
                   </div>
                </div>
                
                <div className="flex flex-none items-center gap-2">
                   <span className="flex flex-none items-center gap-1">
-                     {t('form:go_to_page')}:
+                     Go to page:
                      <div className="w-[3rem]">
                         <NumberInput
                            discrete

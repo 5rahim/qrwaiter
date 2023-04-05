@@ -10,9 +10,10 @@ export const ItemFragment = gql`
     images
     name
     price
-    related_to
+    allergens
     restaurant_id
     variations
+    created_at
   }
 `
 export const GetItems = gql`
@@ -46,16 +47,16 @@ export const GetItem = gql`
 `
 
 export const CreateItem = gql`
-  mutation CreateItem($available: Boolean!, $category_id: uuid!, $choices: jsonb!, $description: String, $images: jsonb!, $name: String!, $price: Int!, $related_to: jsonb!, $restaurant_id: uuid!, $variations: jsonb!) {
-    insert_items_one(object: {available: $available, category_id: $category_id, choices: $choices, description: $description, images: $images, name: $name, price: $price, related_to: $related_to, restaurant_id: $restaurant_id, variations: $variations}) {
+  mutation CreateItem($available: Boolean!, $category_id: uuid!, $choices: jsonb!, $description: String, $images: jsonb!, $name: String!, $price: Int!, $allergens: jsonb!, $restaurant_id: uuid!, $variations: jsonb!) {
+    insert_items_one(object: {available: $available, category_id: $category_id, choices: $choices, description: $description, images: $images, name: $name, price: $price, allergens: $allergens, restaurant_id: $restaurant_id, variations: $variations}) {
       ...ItemFragment
     }
   }
 `
 
 export const UpdateItem = gql`
-  mutation UpdateItem($id: uuid!, $available: Boolean!, $category_id: uuid!, $choices: jsonb!, $description: String, $images: jsonb!, $name: String!, $price: Int!, $related_to: jsonb!, $variations: jsonb!) {
-    update_items_by_pk(pk_columns: {id: $id}, _set: {available: $available, category_id: $category_id, choices: $choices, description: $description, images: $images, name: $name, price: $price, related_to: $related_to, variations: $variations}) {
+  mutation UpdateItem($id: uuid!, $available: Boolean!, $category_id: uuid!, $choices: jsonb!, $description: String, $images: jsonb!, $name: String!, $price: Int!, $allergens: jsonb!, $variations: jsonb!) {
+    update_items_by_pk(pk_columns: {id: $id}, _set: {available: $available, category_id: $category_id, choices: $choices, description: $description, images: $images, name: $name, price: $price, allergens: $allergens, variations: $variations}) {
       ...ItemFragment
     }
   }

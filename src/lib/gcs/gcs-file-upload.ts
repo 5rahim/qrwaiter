@@ -63,8 +63,8 @@ export const gcs_uploadFiles = async (files: File[]): Promise<GcsFileUploadRetur
             }
             catch (e: any) {
                error = e.toString()
+               console.log(e)
             }
-            
             
          }
          

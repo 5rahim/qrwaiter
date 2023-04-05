@@ -1,5 +1,4 @@
 import { useMutationLoading } from '@/atoms/app.atom'
-import { useAppTranslation } from '@/hooks/use-app-translation'
 import { useEffect } from 'react'
 import { toast } from 'react-hot-toast'
 
@@ -22,13 +21,12 @@ export const handleErrors = (error: any, message: string = "An error has occurre
 
 export function useMutationService(result: any) {
    
-   const t = useAppTranslation(['alerts'])
    const ml = useMutationLoading()
    
    useEffect(() => {
       
       if (result.failureCount === 1 || result.isError) {
-         handleErrors(result.failureReason, t(`alerts:error`) as string, false)
+         handleErrors(result.failureReason, 'An error has occured' as string, false)
       }
       
       if (result.isLoading) {

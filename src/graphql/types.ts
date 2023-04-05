@@ -14,7 +14,7 @@ export type ItemSelection = {
 export type ItemChoice = {
    id: string
    name: string
-   choiceOptions: ItemChoiceOption[]
+   options: ItemChoiceOption[]
    type: 'single' | 'multiple'
    available: boolean
 }
@@ -29,13 +29,13 @@ export type ItemVariation = {
    id: string
    name: string
    type: 'single' | 'multiple'
-   variationOptions: ItemVariationOption[]
+   options: ItemVariationOption[]
    available: boolean
 }
 
 export type ItemVariationOption = {
    id: string
-   name: string
+   value: string
    price: number
    available: boolean
 }

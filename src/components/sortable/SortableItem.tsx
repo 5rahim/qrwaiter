@@ -1,6 +1,7 @@
 import { cn } from '@/lib/tailwind/tailwind-utils'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
+import { BiEditAlt } from '@react-icons/all-files/bi/BiEditAlt'
 import { BiMoveVertical } from '@react-icons/all-files/bi/BiMoveVertical'
 import { cva, VariantProps } from 'class-variance-authority'
 import React from 'react'
@@ -51,7 +52,10 @@ export const SortableItem = React.forwardRef<HTMLDivElement, SortableItemProps>(
          )}
          {...rest}
       >
-         {children}
+         <div className="flex gap-2 items-center">
+            {children}
+            <BiEditAlt />
+         </div>
          <div
             className="flex cursor-pointer justify-center items-center w-5 h-8 rounded-md"
             ref={setActivatorNodeRef}

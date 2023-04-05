@@ -120,7 +120,9 @@ export const useCategories = (restaurantId: Nullable<string>) => {
       categories,
       categoriesLoading: res.isLoading,
       categorySelectProps: {
-         options: !res.isLoading ? categories.map(c => ({ value: c.id, label: c.name })) : [{ value: '', label: 'Loading...' }],
+         options: !res.isLoading
+            ? [{ value: '', label: 'Select a category' }, ...categories.map(c => ({ value: c.id, label: c.name }))]
+            : [{ value: '', label: 'Loading...' }],
          isDisabled: res.isLoading,
       },
       refetchCategories: () => res.refetch(),

@@ -96,14 +96,26 @@ export const Switch = React.forwardRef<HTMLDivElement, SwitchProps>((props, ref)
          >
             <label className={cn("relative inline-flex gap-2 items-center flex-none", rootLabelClassName)} {...api.rootProps}>
                <input type="checkbox" {...api.inputProps} />
-               
+   
+               {(!!label || !!value) && <span
+                   className={cn(
+                      "relative font-semibold cursor-pointer",
+                      "data-disabled:text-gray-300",
+                      labelStyles({ size }),
+                      labelClassName,
+                   )}
+                   {...api.labelProps}
+               >
+                  {label ?? value}
+               </span>}
+   
                <div
                   className={cn(
                      "relative h-8 w-14 relative overflow-hidden cursor-pointer flex-none",
                      controlWrapperStyles({ size }),
                   )}
                >
-                  
+      
                   <span
                      className={cn(
                         "absolute inset-0 rounded-full bg-gray-300 transition",
@@ -124,19 +136,8 @@ export const Switch = React.forwardRef<HTMLDivElement, SwitchProps>((props, ref)
                      {...api.controlProps}
                   />
                </div>
-               
-               
-               {(!!label || !!value) && <span
-                   className={cn(
-                      "relative font-normal",
-                      "data-disabled:text-gray-300",
-                      labelStyles({ size }),
-                      labelClassName,
-                   )}
-                   {...api.labelProps}
-               >
-                  {label ?? value}
-               </span>}
+
+
             </label>
          </BasicField>
       </>

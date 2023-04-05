@@ -1,5 +1,5 @@
 import CreateRestaurantForm from '@/app/(create)/new/CreateRestaurantForm'
-import { getRestaurantByOwnerId } from '@/graphql/services/restaurant.server'
+import { getRestaurantByAdministratorId, getRestaurantByOwnerId } from '@/graphql/services/restaurant.server'
 import { getCurrentSessionUser } from '@/lib/session'
 import { siteLinkTo } from '@/utils/links'
 import { redirect } from 'next/navigation'
@@ -8,9 +8,12 @@ export default async function Page() {
    
    const sessionUser = await getCurrentSessionUser()
    
-   const restaurant = await getRestaurantByOwnerId(sessionUser?.id)
+   const [restaurantByOwner, restaurantByAdministrator] = await Promise.all([
+      getRestaurantByOwnerId(sessionUser?.id),
+      getRestaurantByAdministratorId(sessionUser?.id),
+   ])
    
-   if (restaurant) {
+   if (!!restaurantByOwner || !!restaurantByAdministrator) {
       redirect(siteLinkTo(s => s.admin.home))
    }
    
@@ -34,11 +37,11 @@ export default async function Page() {
                   className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:py-12 lg:px-16 xl:col-span-6"
                >
                   <div className="max-w-xl lg:max-w-3xl">
-                     
+   
                      <h1
                         className="mt-6 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl"
                      >
-                        Create your menu
+                        Create your restaurant
                      </h1>
                      
                      <p className="mt-4 leading-relaxed text-gray-500 mb-4">
