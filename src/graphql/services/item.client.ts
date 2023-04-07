@@ -9,7 +9,7 @@ import { createTypesafeFormSchema } from '@ui/main/forms/typesafe-form/CreateTyp
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
-export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 'update' | 'delete', item?: Item) => {
+export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 'update' | 'delete', item?: Item, refetchItem?: () => void) => {
    
    const queryClient = useQueryClient()
    const session = useSession()
@@ -29,6 +29,9 @@ export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 
    const updateItemMutation = useUpdateItemMutation(queryClient.get(), {
       onSuccess: data => {
          queryClient.successAlert('Item updated')
+         if (refetchItem) {
+            refetchItem()
+         }
       },
    })
    useMutationService(updateItemMutation)
@@ -55,7 +58,6 @@ export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 
    
    const createItem = async (data: InferType<typeof itemSchema>) => {
       const images = await imagesHandler.uploadFiles()
-      console.log(images)
       createItemMutation.mutate({
          restaurant_id: restaurantId,
          ...data,
@@ -63,8 +65,8 @@ export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 
       })
    }
    
-   const updateItem = (data: InferType<typeof itemSchema>) => {
-      const images = imagesHandler.uploadFiles()
+   const updateItem = async (data: InferType<typeof itemSchema>) => {
+      const images = await imagesHandler.uploadFiles()
       updateItemMutation.mutate({
          id: item?.id,
          ...data,
@@ -109,6 +111,7 @@ export const useItem = (id: Nullable<string>) => {
    return {
       item,
       itemLoading: res.isLoading,
+      refetchItem: res.refetch,
    }
    
 }

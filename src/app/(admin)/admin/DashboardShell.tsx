@@ -28,13 +28,14 @@ async function DashboardShell(props: DashboardShellProps) {
          </div>
          
          <main className="-mt-32">
-            <div className="mx-auto max-w-7xl px-4 pb-12 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                {top}
                <div className="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
                   {children}
                </div>
             </div>
          </main>
+         <div className="text-center font-bold text-sm text-gray-600 py-5">Virtual Solutions - QR Waiter</div>
       </>
    )
    

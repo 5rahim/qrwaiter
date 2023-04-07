@@ -1497,6 +1497,10 @@ export type Mutation_Root = {
    delete_sessions?: Maybe<Sessions_Mutation_Response>;
    /** delete single row from the table: "sessions" */
    delete_sessions_by_pk?: Maybe<Sessions>;
+   /** delete data from the table: "supermarket_items" */
+   delete_supermarket_items?: Maybe<Supermarket_Items_Mutation_Response>;
+   /** delete single row from the table: "supermarket_items" */
+   delete_supermarket_items_by_pk?: Maybe<Supermarket_Items>;
    /** delete data from the table: "table_orders" */
    delete_table_orders?: Maybe<Table_Orders_Mutation_Response>;
    /** delete single row from the table: "table_orders" */
@@ -1541,6 +1545,10 @@ export type Mutation_Root = {
    insert_sessions?: Maybe<Sessions_Mutation_Response>;
    /** insert a single row into the table: "sessions" */
    insert_sessions_one?: Maybe<Sessions>;
+   /** insert data into the table: "supermarket_items" */
+   insert_supermarket_items?: Maybe<Supermarket_Items_Mutation_Response>;
+   /** insert a single row into the table: "supermarket_items" */
+   insert_supermarket_items_one?: Maybe<Supermarket_Items>;
    /** insert data into the table: "table_orders" */
    insert_table_orders?: Maybe<Table_Orders_Mutation_Response>;
    /** insert a single row into the table: "table_orders" */
@@ -1599,6 +1607,12 @@ export type Mutation_Root = {
    update_sessions_by_pk?: Maybe<Sessions>;
    /** update multiples rows of table: "sessions" */
    update_sessions_many?: Maybe<Array<Maybe<Sessions_Mutation_Response>>>;
+   /** update data of the table: "supermarket_items" */
+   update_supermarket_items?: Maybe<Supermarket_Items_Mutation_Response>;
+   /** update single row of the table: "supermarket_items" */
+   update_supermarket_items_by_pk?: Maybe<Supermarket_Items>;
+   /** update multiples rows of table: "supermarket_items" */
+   update_supermarket_items_many?: Maybe<Array<Maybe<Supermarket_Items_Mutation_Response>>>;
    /** update data of the table: "table_orders" */
    update_table_orders?: Maybe<Table_Orders_Mutation_Response>;
    /** update single row of the table: "table_orders" */
@@ -1706,6 +1720,18 @@ export type Mutation_RootDelete_SessionsArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Sessions_By_PkArgs = {
+   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Supermarket_ItemsArgs = {
+   where: Supermarket_Items_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Supermarket_Items_By_PkArgs = {
    id: Scalars['uuid'];
 };
 
@@ -1853,6 +1879,20 @@ export type Mutation_RootInsert_SessionsArgs = {
 export type Mutation_RootInsert_Sessions_OneArgs = {
    object: Sessions_Insert_Input;
    on_conflict?: InputMaybe<Sessions_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Supermarket_ItemsArgs = {
+   objects: Array<Supermarket_Items_Insert_Input>;
+   on_conflict?: InputMaybe<Supermarket_Items_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Supermarket_Items_OneArgs = {
+   object: Supermarket_Items_Insert_Input;
+   on_conflict?: InputMaybe<Supermarket_Items_On_Conflict>;
 };
 
 
@@ -2087,6 +2127,28 @@ export type Mutation_RootUpdate_Sessions_By_PkArgs = {
 /** mutation root */
 export type Mutation_RootUpdate_Sessions_ManyArgs = {
    updates: Array<Sessions_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Supermarket_ItemsArgs = {
+   _inc?: InputMaybe<Supermarket_Items_Inc_Input>;
+   _set?: InputMaybe<Supermarket_Items_Set_Input>;
+   where: Supermarket_Items_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Supermarket_Items_By_PkArgs = {
+   _inc?: InputMaybe<Supermarket_Items_Inc_Input>;
+   _set?: InputMaybe<Supermarket_Items_Set_Input>;
+   pk_columns: Supermarket_Items_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Supermarket_Items_ManyArgs = {
+   updates: Array<Supermarket_Items_Updates>;
 };
 
 
@@ -2706,6 +2768,12 @@ export type Query_Root = {
    sessions_aggregate: Sessions_Aggregate;
    /** fetch data from the table: "sessions" using primary key columns */
    sessions_by_pk?: Maybe<Sessions>;
+   /** fetch data from the table: "supermarket_items" */
+   supermarket_items: Array<Supermarket_Items>;
+   /** fetch aggregated fields from the table: "supermarket_items" */
+   supermarket_items_aggregate: Supermarket_Items_Aggregate;
+   /** fetch data from the table: "supermarket_items" using primary key columns */
+   supermarket_items_by_pk?: Maybe<Supermarket_Items>;
    /** An array relationship */
    table_orders: Array<Table_Orders>;
    /** An aggregate relationship */
@@ -2890,6 +2958,29 @@ export type Query_RootSessions_AggregateArgs = {
 
 
 export type Query_RootSessions_By_PkArgs = {
+   id: Scalars['uuid'];
+};
+
+
+export type Query_RootSupermarket_ItemsArgs = {
+   distinct_on?: InputMaybe<Array<Supermarket_Items_Select_Column>>;
+   limit?: InputMaybe<Scalars['Int']>;
+   offset?: InputMaybe<Scalars['Int']>;
+   order_by?: InputMaybe<Array<Supermarket_Items_Order_By>>;
+   where?: InputMaybe<Supermarket_Items_Bool_Exp>;
+};
+
+
+export type Query_RootSupermarket_Items_AggregateArgs = {
+   distinct_on?: InputMaybe<Array<Supermarket_Items_Select_Column>>;
+   limit?: InputMaybe<Scalars['Int']>;
+   offset?: InputMaybe<Scalars['Int']>;
+   order_by?: InputMaybe<Array<Supermarket_Items_Order_By>>;
+   where?: InputMaybe<Supermarket_Items_Bool_Exp>;
+};
+
+
+export type Query_RootSupermarket_Items_By_PkArgs = {
    id: Scalars['uuid'];
 };
 
@@ -3779,6 +3870,14 @@ export type Subscription_Root = {
    sessions_by_pk?: Maybe<Sessions>;
    /** fetch data from the table in a streaming manner: "sessions" */
    sessions_stream: Array<Sessions>;
+   /** fetch data from the table: "supermarket_items" */
+   supermarket_items: Array<Supermarket_Items>;
+   /** fetch aggregated fields from the table: "supermarket_items" */
+   supermarket_items_aggregate: Supermarket_Items_Aggregate;
+   /** fetch data from the table: "supermarket_items" using primary key columns */
+   supermarket_items_by_pk?: Maybe<Supermarket_Items>;
+   /** fetch data from the table in a streaming manner: "supermarket_items" */
+   supermarket_items_stream: Array<Supermarket_Items>;
    /** An array relationship */
    table_orders: Array<Table_Orders>;
    /** An aggregate relationship */
@@ -4024,6 +4123,36 @@ export type Subscription_RootSessions_StreamArgs = {
 };
 
 
+export type Subscription_RootSupermarket_ItemsArgs = {
+   distinct_on?: InputMaybe<Array<Supermarket_Items_Select_Column>>;
+   limit?: InputMaybe<Scalars['Int']>;
+   offset?: InputMaybe<Scalars['Int']>;
+   order_by?: InputMaybe<Array<Supermarket_Items_Order_By>>;
+   where?: InputMaybe<Supermarket_Items_Bool_Exp>;
+};
+
+
+export type Subscription_RootSupermarket_Items_AggregateArgs = {
+   distinct_on?: InputMaybe<Array<Supermarket_Items_Select_Column>>;
+   limit?: InputMaybe<Scalars['Int']>;
+   offset?: InputMaybe<Scalars['Int']>;
+   order_by?: InputMaybe<Array<Supermarket_Items_Order_By>>;
+   where?: InputMaybe<Supermarket_Items_Bool_Exp>;
+};
+
+
+export type Subscription_RootSupermarket_Items_By_PkArgs = {
+   id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootSupermarket_Items_StreamArgs = {
+   batch_size: Scalars['Int'];
+   cursor: Array<InputMaybe<Supermarket_Items_Stream_Cursor_Input>>;
+   where?: InputMaybe<Supermarket_Items_Bool_Exp>;
+};
+
+
 export type Subscription_RootTable_OrdersArgs = {
    distinct_on?: InputMaybe<Array<Table_Orders_Select_Column>>;
    limit?: InputMaybe<Scalars['Int']>;
@@ -4141,6 +4270,302 @@ export type Subscription_RootVerification_Tokens_StreamArgs = {
    batch_size: Scalars['Int'];
    cursor: Array<InputMaybe<Verification_Tokens_Stream_Cursor_Input>>;
    where?: InputMaybe<Verification_Tokens_Bool_Exp>;
+};
+
+/** columns and relationships of "supermarket_items" */
+export type Supermarket_Items = {
+   __typename?: 'supermarket_items';
+   code: Scalars['String'];
+   created_at: Scalars['timestamptz'];
+   description?: Maybe<Scalars['String']>;
+   id: Scalars['uuid'];
+   name: Scalars['String'];
+   price: Scalars['Int'];
+   quantity: Scalars['Int'];
+   quantity_sold: Scalars['Int'];
+   supplier: Scalars['String'];
+};
+
+/** aggregated selection of "supermarket_items" */
+export type Supermarket_Items_Aggregate = {
+   __typename?: 'supermarket_items_aggregate';
+   aggregate?: Maybe<Supermarket_Items_Aggregate_Fields>;
+   nodes: Array<Supermarket_Items>;
+};
+
+/** aggregate fields of "supermarket_items" */
+export type Supermarket_Items_Aggregate_Fields = {
+   __typename?: 'supermarket_items_aggregate_fields';
+   avg?: Maybe<Supermarket_Items_Avg_Fields>;
+   count: Scalars['Int'];
+   max?: Maybe<Supermarket_Items_Max_Fields>;
+   min?: Maybe<Supermarket_Items_Min_Fields>;
+   stddev?: Maybe<Supermarket_Items_Stddev_Fields>;
+   stddev_pop?: Maybe<Supermarket_Items_Stddev_Pop_Fields>;
+   stddev_samp?: Maybe<Supermarket_Items_Stddev_Samp_Fields>;
+   sum?: Maybe<Supermarket_Items_Sum_Fields>;
+   var_pop?: Maybe<Supermarket_Items_Var_Pop_Fields>;
+   var_samp?: Maybe<Supermarket_Items_Var_Samp_Fields>;
+   variance?: Maybe<Supermarket_Items_Variance_Fields>;
+};
+
+
+/** aggregate fields of "supermarket_items" */
+export type Supermarket_Items_Aggregate_FieldsCountArgs = {
+   columns?: InputMaybe<Array<Supermarket_Items_Select_Column>>;
+   distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Supermarket_Items_Avg_Fields = {
+   __typename?: 'supermarket_items_avg_fields';
+   price?: Maybe<Scalars['Float']>;
+   quantity?: Maybe<Scalars['Float']>;
+   quantity_sold?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "supermarket_items". All fields are combined with a logical 'AND'. */
+export type Supermarket_Items_Bool_Exp = {
+   _and?: InputMaybe<Array<Supermarket_Items_Bool_Exp>>;
+   _not?: InputMaybe<Supermarket_Items_Bool_Exp>;
+   _or?: InputMaybe<Array<Supermarket_Items_Bool_Exp>>;
+   code?: InputMaybe<String_Comparison_Exp>;
+   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
+   description?: InputMaybe<String_Comparison_Exp>;
+   id?: InputMaybe<Uuid_Comparison_Exp>;
+   name?: InputMaybe<String_Comparison_Exp>;
+   price?: InputMaybe<Int_Comparison_Exp>;
+   quantity?: InputMaybe<Int_Comparison_Exp>;
+   quantity_sold?: InputMaybe<Int_Comparison_Exp>;
+   supplier?: InputMaybe<String_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "supermarket_items" */
+export type Supermarket_Items_Constraint =
+/** unique or primary key constraint on columns "id" */
+   | 'supermarket_items_pkey';
+
+/** input type for incrementing numeric columns in table "supermarket_items" */
+export type Supermarket_Items_Inc_Input = {
+   price?: InputMaybe<Scalars['Int']>;
+   quantity?: InputMaybe<Scalars['Int']>;
+   quantity_sold?: InputMaybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "supermarket_items" */
+export type Supermarket_Items_Insert_Input = {
+   code?: InputMaybe<Scalars['String']>;
+   created_at?: InputMaybe<Scalars['timestamptz']>;
+   description?: InputMaybe<Scalars['String']>;
+   id?: InputMaybe<Scalars['uuid']>;
+   name?: InputMaybe<Scalars['String']>;
+   price?: InputMaybe<Scalars['Int']>;
+   quantity?: InputMaybe<Scalars['Int']>;
+   quantity_sold?: InputMaybe<Scalars['Int']>;
+   supplier?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate max on columns */
+export type Supermarket_Items_Max_Fields = {
+   __typename?: 'supermarket_items_max_fields';
+   code?: Maybe<Scalars['String']>;
+   created_at?: Maybe<Scalars['timestamptz']>;
+   description?: Maybe<Scalars['String']>;
+   id?: Maybe<Scalars['uuid']>;
+   name?: Maybe<Scalars['String']>;
+   price?: Maybe<Scalars['Int']>;
+   quantity?: Maybe<Scalars['Int']>;
+   quantity_sold?: Maybe<Scalars['Int']>;
+   supplier?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type Supermarket_Items_Min_Fields = {
+   __typename?: 'supermarket_items_min_fields';
+   code?: Maybe<Scalars['String']>;
+   created_at?: Maybe<Scalars['timestamptz']>;
+   description?: Maybe<Scalars['String']>;
+   id?: Maybe<Scalars['uuid']>;
+   name?: Maybe<Scalars['String']>;
+   price?: Maybe<Scalars['Int']>;
+   quantity?: Maybe<Scalars['Int']>;
+   quantity_sold?: Maybe<Scalars['Int']>;
+   supplier?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "supermarket_items" */
+export type Supermarket_Items_Mutation_Response = {
+   __typename?: 'supermarket_items_mutation_response';
+   /** number of rows affected by the mutation */
+   affected_rows: Scalars['Int'];
+   /** data from the rows affected by the mutation */
+   returning: Array<Supermarket_Items>;
+};
+
+/** on_conflict condition type for table "supermarket_items" */
+export type Supermarket_Items_On_Conflict = {
+   constraint: Supermarket_Items_Constraint;
+   update_columns?: Array<Supermarket_Items_Update_Column>;
+   where?: InputMaybe<Supermarket_Items_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "supermarket_items". */
+export type Supermarket_Items_Order_By = {
+   code?: InputMaybe<Order_By>;
+   created_at?: InputMaybe<Order_By>;
+   description?: InputMaybe<Order_By>;
+   id?: InputMaybe<Order_By>;
+   name?: InputMaybe<Order_By>;
+   price?: InputMaybe<Order_By>;
+   quantity?: InputMaybe<Order_By>;
+   quantity_sold?: InputMaybe<Order_By>;
+   supplier?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: supermarket_items */
+export type Supermarket_Items_Pk_Columns_Input = {
+   id: Scalars['uuid'];
+};
+
+/** select columns of table "supermarket_items" */
+export type Supermarket_Items_Select_Column =
+/** column name */
+   | 'code'
+   /** column name */
+   | 'created_at'
+   /** column name */
+   | 'description'
+   /** column name */
+   | 'id'
+   /** column name */
+   | 'name'
+   /** column name */
+   | 'price'
+   /** column name */
+   | 'quantity'
+   /** column name */
+   | 'quantity_sold'
+   /** column name */
+   | 'supplier';
+
+/** input type for updating data in table "supermarket_items" */
+export type Supermarket_Items_Set_Input = {
+   code?: InputMaybe<Scalars['String']>;
+   created_at?: InputMaybe<Scalars['timestamptz']>;
+   description?: InputMaybe<Scalars['String']>;
+   id?: InputMaybe<Scalars['uuid']>;
+   name?: InputMaybe<Scalars['String']>;
+   price?: InputMaybe<Scalars['Int']>;
+   quantity?: InputMaybe<Scalars['Int']>;
+   quantity_sold?: InputMaybe<Scalars['Int']>;
+   supplier?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate stddev on columns */
+export type Supermarket_Items_Stddev_Fields = {
+   __typename?: 'supermarket_items_stddev_fields';
+   price?: Maybe<Scalars['Float']>;
+   quantity?: Maybe<Scalars['Float']>;
+   quantity_sold?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Supermarket_Items_Stddev_Pop_Fields = {
+   __typename?: 'supermarket_items_stddev_pop_fields';
+   price?: Maybe<Scalars['Float']>;
+   quantity?: Maybe<Scalars['Float']>;
+   quantity_sold?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Supermarket_Items_Stddev_Samp_Fields = {
+   __typename?: 'supermarket_items_stddev_samp_fields';
+   price?: Maybe<Scalars['Float']>;
+   quantity?: Maybe<Scalars['Float']>;
+   quantity_sold?: Maybe<Scalars['Float']>;
+};
+
+/** Streaming cursor of the table "supermarket_items" */
+export type Supermarket_Items_Stream_Cursor_Input = {
+   /** Stream column input with initial value */
+   initial_value: Supermarket_Items_Stream_Cursor_Value_Input;
+   /** cursor ordering */
+   ordering?: InputMaybe<Cursor_Ordering>;
+};
+
+/** Initial value of the column from where the streaming should start */
+export type Supermarket_Items_Stream_Cursor_Value_Input = {
+   code?: InputMaybe<Scalars['String']>;
+   created_at?: InputMaybe<Scalars['timestamptz']>;
+   description?: InputMaybe<Scalars['String']>;
+   id?: InputMaybe<Scalars['uuid']>;
+   name?: InputMaybe<Scalars['String']>;
+   price?: InputMaybe<Scalars['Int']>;
+   quantity?: InputMaybe<Scalars['Int']>;
+   quantity_sold?: InputMaybe<Scalars['Int']>;
+   supplier?: InputMaybe<Scalars['String']>;
+};
+
+/** aggregate sum on columns */
+export type Supermarket_Items_Sum_Fields = {
+   __typename?: 'supermarket_items_sum_fields';
+   price?: Maybe<Scalars['Int']>;
+   quantity?: Maybe<Scalars['Int']>;
+   quantity_sold?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "supermarket_items" */
+export type Supermarket_Items_Update_Column =
+/** column name */
+   | 'code'
+   /** column name */
+   | 'created_at'
+   /** column name */
+   | 'description'
+   /** column name */
+   | 'id'
+   /** column name */
+   | 'name'
+   /** column name */
+   | 'price'
+   /** column name */
+   | 'quantity'
+   /** column name */
+   | 'quantity_sold'
+   /** column name */
+   | 'supplier';
+
+export type Supermarket_Items_Updates = {
+   /** increments the numeric columns with given value of the filtered values */
+   _inc?: InputMaybe<Supermarket_Items_Inc_Input>;
+   /** sets the columns of the filtered rows to the given values */
+   _set?: InputMaybe<Supermarket_Items_Set_Input>;
+   /** filter the rows which have to be updated */
+   where: Supermarket_Items_Bool_Exp;
+};
+
+/** aggregate var_pop on columns */
+export type Supermarket_Items_Var_Pop_Fields = {
+   __typename?: 'supermarket_items_var_pop_fields';
+   price?: Maybe<Scalars['Float']>;
+   quantity?: Maybe<Scalars['Float']>;
+   quantity_sold?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Supermarket_Items_Var_Samp_Fields = {
+   __typename?: 'supermarket_items_var_samp_fields';
+   price?: Maybe<Scalars['Float']>;
+   quantity?: Maybe<Scalars['Float']>;
+   quantity_sold?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Supermarket_Items_Variance_Fields = {
+   __typename?: 'supermarket_items_variance_fields';
+   price?: Maybe<Scalars['Float']>;
+   quantity?: Maybe<Scalars['Float']>;
+   quantity_sold?: Maybe<Scalars['Float']>;
 };
 
 /** columns and relationships of "table_orders" */

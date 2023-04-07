@@ -11,7 +11,7 @@ import { useLinks } from '@/hooks/use-links'
 import { Button } from '@ui/main/forms/button/Button'
 import { PageHeader } from '@ui/main/layout/page-header/PageHeader'
 import { Modal } from '@ui/main/overlay/modal/Modal'
-import React, { useCallback } from 'react'
+import React from 'react'
 
 interface CategoryListProps {
    children?: React.ReactNode
@@ -30,10 +30,10 @@ const CategoryList: React.FC<CategoryListProps> = (props) => {
    const { categories, categoriesLoading, refetchCategories } = useCategories(rid)
    const { updateCategoryOrder } = useCategoryOrderService()
    
-   const onMutation = useCallback(() => {
+   const onMutation = () => {
       createModal.close()
       refetchCategories()
-   }, [createModal])
+   }
    
    return (
       <>

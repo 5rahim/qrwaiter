@@ -24,7 +24,7 @@ export const VariationField = React.forwardRef<HTMLDivElement, VariationFieldPro
    const {
       children,
       className,
-      defaultValues,
+      defaultValues = [],
       ...rest
    } = props
    
@@ -32,7 +32,7 @@ export const VariationField = React.forwardRef<HTMLDivElement, VariationFieldPro
    
    const variationsController = useController({ name: 'variations' })
    
-   const [variations, setVariations] = useState<ItemVariation[]>([])
+   const [variations, setVariations] = useState<ItemVariation[]>(defaultValues)
    
    useEffect(() => {
       variationsController.field.onChange(variations)

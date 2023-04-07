@@ -1,14 +1,13 @@
+import { EditItemPage } from '@/app/(admin)/admin/menu/items/[iid]/EditItemPage'
 import { getCurrentSessionUser } from '@/lib/session'
-import { BiArrowToLeft } from '@react-icons/all-files/bi/BiArrowToLeft'
-import { Button } from '@ui/main/forms/button/Button'
 
-export default async function Page() {
+export default async function Page({ params: { iid } }: { params: { iid: string } }) {
    
    const sessionUser = await getCurrentSessionUser()
    
    return (
       <>
-         <Button leftIcon={<BiArrowToLeft />}>Back</Button>
+         <EditItemPage iid={iid} />
       </>
    )
 }

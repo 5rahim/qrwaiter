@@ -62,14 +62,14 @@ const ImageGridInput: React.FC<ImageGridInputProps> = (props) => {
    // Set default images
    useEffect(() => {
       async function formatMain() {
-         if (defaultImages && defaultImages.main) { // If there is a default main image
+         if (defaultImages && 'main' in defaultImages) { // If there is a default main image
             const default_mainImageFile = dataURLtoFile(await toDataURL(defaultImages.main), defaultImages.main.split('-storage/')[1]!)
             setMainImageFile({ file: default_mainImageFile, preview: defaultImages.main }) // Set the main image file
          }
       }
       
       function formatAdditional() {
-         if (defaultImages && defaultImages.additional.length > 0) { // If there are default additional images
+         if (defaultImages && 'additional' in defaultImages && defaultImages.additional.length > 0) { // If there are default additional images
             defaultImages.additional.map(async o => {
                if (o) {
                   const filename = o.split('-storage/')[1]! // DEVNOTE: the filename extraction method needs to change depending on the url of the

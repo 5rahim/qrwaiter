@@ -4,6 +4,7 @@ import { ChoiceField } from '@/components/options-field/ChoiceField'
 import { VariationField } from '@/components/options-field/VariationField'
 import { useCategories } from '@/graphql/services/category.client'
 import { useItemService } from '@/graphql/services/item.client'
+import { Item } from '@/graphql/types'
 import { useLinks } from '@/hooks/use-links'
 import { InferType } from '@/types'
 import { siteLinkTo } from '@/utils/links'
@@ -20,14 +21,16 @@ interface ItemFormProps {
    children?: React.ReactNode
    role: 'create' | 'update'
    rid: string
+   item?: Item
+   refetchItem?: () => void
 }
 
 const ItemForm: React.FC<ItemFormProps> = (props) => {
    
-   const { children, rid, role, ...rest } = props
+   const { children, rid, role, item, refetchItem, ...rest } = props
    const links = useLinks()
    
-   const { itemSchema, mutateItem, deleteItem, itemDefaultValues, imagesHandler } = useItemService(rid, "create")
+   const { itemSchema, mutateItem, deleteItem, itemDefaultValues, imagesHandler } = useItemService(rid, role, item, refetchItem)
    const { categories, categoriesLoading, categorySelectProps } = useCategories(rid)
    
    const nbCategories = categories.length
@@ -50,9 +53,9 @@ const ItemForm: React.FC<ItemFormProps> = (props) => {
                         <Field.Textarea name="description" label="Item description" placeholder="" />
                         <Field.ImageGrid name="images" label="Images" handler={imagesHandler} />
                         <DividerWithLabel>Choices</DividerWithLabel>
-                        <ChoiceField />
+                        <ChoiceField defaultValues={item?.choices} />
                         <DividerWithLabel>Variations</DividerWithLabel>
-                        <VariationField />
+                        <VariationField defaultValues={item?.variations} />
                      </div>
          
                      <div className="w-full space-y-4">
@@ -84,9 +87,9 @@ const ItemForm: React.FC<ItemFormProps> = (props) => {
                   
                   <ShowOnly when={role === 'update'}>
                      <DangerZone
-                        action="Delete this category" onDelete={() => {
+                        action="Delete this item" onDelete={() => {
                         deleteItem()
-                     }} className=""
+                     }} className="mt-5"
                      />
                   </ShowOnly>
                </ShowOnly>

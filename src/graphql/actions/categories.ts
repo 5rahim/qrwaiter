@@ -3,7 +3,7 @@ import { gql } from 'graphql-request'
 
 export const GetCategories = gql`
   query GetCategories($restaurant_id: uuid!) {
-    categories(where: {restaurant_id: {_eq: $restaurant_id}}) {
+    categories(order_by: {order: asc}, where: {restaurant_id: {_eq: $restaurant_id}}) {
       id
       name
       restaurant_id
@@ -37,13 +37,13 @@ export const GetHomePageCategories = gql`
     }
   }
 `
-
 export const GetCategory = gql`
   query GetCategory($id: uuid!) {
     categories_by_pk(id: $id) {
       id
       name
       restaurant_id
+      order
     }
   }
 `

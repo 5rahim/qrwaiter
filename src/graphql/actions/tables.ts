@@ -14,9 +14,9 @@ export const TableFragment = gql`
 
 export const GetTables = gql`
   ${TableFragment}
-  
+
   query GetTables($restaurant_id: uuid!) {
-    tables(order_by: {name: asc}, where: {restaurant_id: {_eq: $restaurant_id}}) {
+    tables(order_by: {order: asc}, where: {restaurant_id: {_eq: $restaurant_id}}) {
       ...TableFragment
     }
   }

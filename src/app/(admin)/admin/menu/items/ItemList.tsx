@@ -46,7 +46,7 @@ const ItemList: React.FC<ItemListProps> = (props) => {
             accessorKey: 'name',
             header: 'Item',
             cell: info => <Link
-               href={links.aware(links.to(s => s.admin.items, { key: 'pid', value: info.row.original?.id as string }))}
+               href={links.aware(links.to(s => s.admin.editItem, { key: 'iid', value: info.row.original?.id as string }))}
                className="flex items-center gap-4"
             >
                <div className="w-14 h-14 flex-none rounded-md overflow-hidden bg-gray-200 relative"><Image

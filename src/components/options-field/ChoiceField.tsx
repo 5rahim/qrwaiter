@@ -22,13 +22,13 @@ export const ChoiceField = React.forwardRef<HTMLDivElement, ChoiceFieldProps>((p
    const {
       children,
       className,
-      defaultValues,
+      defaultValues = [],
       ...rest
    } = props
    
    const choicesController = useController({ name: 'choices' })
    
-   const [choices, setChoices] = useState<ItemChoice[]>([])
+   const [choices, setChoices] = useState<ItemChoice[]>(defaultValues)
    
    useEffect(() => {
       choicesController.field.onChange(choices)
