@@ -97,11 +97,12 @@ const AdminNav: React.FC<AdminNavProps> = (props) => {
                            </div>
                         </Transition.Child>
                         <div className="flex flex-shrink-0 items-center px-4">
-                           <img
-                              className="h-8 w-auto"
-                              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                              alt="Your Company"
-                           />
+                           <p className="font-bold text-lg">QR Waiter</p>
+                           {/*<img*/}
+                           {/*   className="h-8 w-auto"*/}
+                           {/*   src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"*/}
+                           {/*   alt="Your Company"*/}
+                           {/*/>*/}
                         </div>
                         <div className="mt-5 h-0 flex-1 overflow-y-auto">
                            <nav className="space-y-1 px-2">
@@ -150,13 +151,13 @@ const AdminNav: React.FC<AdminNavProps> = (props) => {
                            key={item.name}
                            href={item.href}
                            className={cn(
-                              item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                               'group flex items-center px-2 py-2 text-sm font-medium rounded-md',
+                              item.current ? 'bg-gray-100 text-brand-500 font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
                            )}
                         >
                            <item.icon
                               className={cn(
-                                 item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                                 item.current ? 'text-brand-500' : 'text-gray-400 group-hover:text-gray-500',
                                  'mr-3 flex-shrink-0 h-6 w-6',
                               )}
                               aria-hidden="true"
