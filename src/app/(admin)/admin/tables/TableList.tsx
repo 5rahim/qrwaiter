@@ -37,7 +37,7 @@ const TableList: React.FC<TableListProps> = (props) => {
    
    return (
       <>
-         <PageHeader title="" action={<><Button onClick={createModal.open}>Add a table</Button></>} />
+         <PageHeader title="Tables" action={<><Button onClick={createModal.open}>Add a table</Button></>} />
          
          <SortableItems<Tables>
             data={tables}

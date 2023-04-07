@@ -11,7 +11,7 @@ export default async function Page() {
    
    return (
       // @ts-ignore
-      <DashboardShell title="Tables">
+      <DashboardShell title="">
          <TableList rid={restaurant?.id} />
       </DashboardShell>
    )

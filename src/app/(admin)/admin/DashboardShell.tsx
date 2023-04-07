@@ -1,4 +1,3 @@
-import AdminNav from '@/app/(admin)/admin/AdminNav'
 import { BiLeftArrowAlt } from '@react-icons/all-files/bi/BiLeftArrowAlt'
 import LinkButton from '@ui/main/forms/button/LinkButton'
 import React from 'react'
@@ -17,21 +16,19 @@ async function DashboardShell(props: DashboardShellProps) {
    
    return (
       <>
-         <div className="bg-brand-700 pb-32">
-            <AdminNav />
-            <header className="py-10">
-               <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex items-center">
-                  {backTo && <LinkButton to={backTo} size="xl" intent="white-basic"><BiLeftArrowAlt /></LinkButton>}
-                  <h1 className="text-3xl font-bold tracking-tight text-white">{title}</h1>
-               </div>
-            </header>
-         </div>
-         
-         <main className="-mt-32">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+         {title.length > 0 && <div className="flex w-full items-center mx-auto px-4 sm:px-6 md:px-8 pt-8 pb-2">
+            {backTo && <LinkButton to={backTo} size="xl" intent="primary-basic" className="pl-0"><BiLeftArrowAlt /></LinkButton>}
+             <h1 className="text-3xl w-full font-bold tracking-tight">{title}</h1>
+         </div>}
+   
+         <main className="flex-1">
+      
+            <div className="mx-auto px-4 sm:px-6 md:px-8">
                {top}
-               <div className="rounded-lg bg-white px-5 py-6 shadow sm:px-6">
-                  {children}
+               <div className="py-4">
+                  <div className="">
+                     {children}
+                  </div>
                </div>
             </div>
          </main>

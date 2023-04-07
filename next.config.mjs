@@ -13,7 +13,7 @@ const config = {
         appDir: true,
     },
     images: {
-        domains: ['media.discordapp.net', 'images.unsplash.com', 'storage.googleapis.com'],
+        domains: ['media.discordapp.net', 'images.unsplash.com', 'storage.googleapis.com', 'lh3.googleusercontent.com'],
     }
 };
 export default config;

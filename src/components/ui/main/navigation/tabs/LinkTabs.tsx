@@ -35,18 +35,19 @@ export const LinkTabs = React.forwardRef<HTMLDivElement, LinkTabsProps>((props, 
             {...rest}
             ref={ref}
          >
-            <div className="border-b border-gray-200 w-full">
-               <nav className="-mb-px flex w-full" aria-label="Tabs">
-                  {tabs.map((tab) => (
+            <div className="border-b w-full">
+               <nav className="-mb-px flex gap-8 w-full" aria-label="Tabs">
+                  {tabs.map((tab, index) => (
                      <RawLink
                         key={tab.name}
                         href={tab.href}
                         className={cn(
-                           'px-10 flex flex-none',
+                           'px-1 flex flex-none',
                            tab.isSelected
                               ? 'border-brand-500 text-brand-600'
                               : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
                            'group inline-flex items-center py-4 border-b-2 font-medium text-md',
+                           // index === 0 && '!pl-0',
                         )}
                         aria-current={tab.isSelected ? 'page' : undefined}
                      >

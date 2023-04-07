@@ -40,7 +40,7 @@ export const PageHeader = React.forwardRef<HTMLDivElement, PageHeaderProps>((pro
          <header aria-label={title}>
             <div
                className={cn(
-                  "py-2 sm:py-4",
+                  "py-2 sm:py-6",
                   className,
                )}
             >

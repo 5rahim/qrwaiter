@@ -57,7 +57,7 @@ export default async function RootLayout({
    return (
       <html
          className={cn(
-            "h-full bg-gray-100 font-sans text-gray-900 antialiased",
+            "h-full font-sans text-gray-900 antialiased",
             fontSans.variable,
          )}
       >

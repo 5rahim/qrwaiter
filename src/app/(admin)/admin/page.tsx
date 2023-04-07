@@ -9,7 +9,7 @@ export default async function Page() {
    return (
       <>
          {/*// @ts-ignore*/}
-         <DashboardShell title="Dashboard">
+         <DashboardShell title="">
             Create table order
             See current orders
          </DashboardShell>
