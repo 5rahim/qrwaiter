@@ -82,6 +82,7 @@ export const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
    
    useEffect(() => {
       api.setValue(defaultValue)
+      onChange && onChange(defaultValue)
    }, [defaultValue])
    
    // useEffect(() => {

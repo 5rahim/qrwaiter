@@ -1,3 +1,4 @@
+import { AllTableOrders } from '@/app/(admin)/admin/(orders)/all-orders/AllTableOrders'
 import OrderNavbar from '@/app/(admin)/admin/(orders)/OrderNavbar'
 import DashboardShell from '@/app/(admin)/admin/DashboardShell'
 import { getRestaurantInAdmin } from '@/graphql/services/restaurant.server'
@@ -22,6 +23,8 @@ export default async function Page() {
                </div>
             }
          >
+            
+            <AllTableOrders />
          
          </DashboardShell>
       </>

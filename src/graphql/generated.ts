@@ -9,11 +9,11 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 
 function fetcher<TData, TVariables extends { [key: string]: any }>(client: GraphQLClient, query: string, variables?: TVariables, requestHeaders?: RequestInit['headers']) {
-   return async (): Promise<TData> => client.request({
-      document: query,
-      variables,
-      requestHeaders,
-   })
+  return async (): Promise<TData> => client.request({
+    document: query,
+    variables,
+    requestHeaders,
+  })
 }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -4578,19 +4578,19 @@ export type DB_Supermarket_Items_Variance_Fields = {
 
 /** columns and relationships of "table_orders" */
 export type DB_Table_Orders = {
-   __typename?: 'table_orders';
-   created_at: Scalars['timestamptz'];
-   id: Scalars['uuid'];
-   order_number?: Maybe<Scalars['String']>;
-   /** An array relationship */
-   orders: Array<DB_Orders>;
-   /** An aggregate relationship */
-   orders_aggregate: DB_Orders_Aggregate;
-   status: Scalars['String'];
-   /** An object relationship */
-   table?: Maybe<DB_Tables>;
-   table_id?: Maybe<Scalars['uuid']>;
-   tokens: Scalars['jsonb'];
+  __typename?: 'table_orders';
+  created_at: Scalars['timestamptz'];
+  id: Scalars['uuid'];
+  order_number?: Maybe<Scalars['String']>;
+  /** An array relationship */
+  orders: Array<DB_Orders>;
+  /** An aggregate relationship */
+  orders_aggregate: DB_Orders_Aggregate;
+  status: Scalars['String'];
+  /** An object relationship */
+  table?: Maybe<DB_Tables>;
+  table_id?: Maybe<Scalars['uuid']>;
+  tokens: Scalars['jsonb'];
 };
 
 
@@ -4673,18 +4673,18 @@ export type DB_Table_Orders_Arr_Rel_Insert_Input = {
 
 /** Boolean expression to filter rows from the table "table_orders". All fields are combined with a logical 'AND'. */
 export type DB_Table_Orders_Bool_Exp = {
-   _and?: InputMaybe<Array<DB_Table_Orders_Bool_Exp>>;
-   _not?: InputMaybe<DB_Table_Orders_Bool_Exp>;
-   _or?: InputMaybe<Array<DB_Table_Orders_Bool_Exp>>;
-   created_at?: InputMaybe<DB_Timestamptz_Comparison_Exp>;
-   id?: InputMaybe<DB_Uuid_Comparison_Exp>;
-   order_number?: InputMaybe<DB_String_Comparison_Exp>;
-   orders?: InputMaybe<DB_Orders_Bool_Exp>;
-   orders_aggregate?: InputMaybe<DB_Orders_Aggregate_Bool_Exp>;
-   status?: InputMaybe<DB_String_Comparison_Exp>;
-   table?: InputMaybe<DB_Tables_Bool_Exp>;
-   table_id?: InputMaybe<DB_Uuid_Comparison_Exp>;
-   tokens?: InputMaybe<DB_Jsonb_Comparison_Exp>;
+  _and?: InputMaybe<Array<DB_Table_Orders_Bool_Exp>>;
+  _not?: InputMaybe<DB_Table_Orders_Bool_Exp>;
+  _or?: InputMaybe<Array<DB_Table_Orders_Bool_Exp>>;
+  created_at?: InputMaybe<DB_Timestamptz_Comparison_Exp>;
+  id?: InputMaybe<DB_Uuid_Comparison_Exp>;
+  order_number?: InputMaybe<DB_String_Comparison_Exp>;
+  orders?: InputMaybe<DB_Orders_Bool_Exp>;
+  orders_aggregate?: InputMaybe<DB_Orders_Aggregate_Bool_Exp>;
+  status?: InputMaybe<DB_String_Comparison_Exp>;
+  table?: InputMaybe<DB_Tables_Bool_Exp>;
+  table_id?: InputMaybe<DB_Uuid_Comparison_Exp>;
+  tokens?: InputMaybe<DB_Jsonb_Comparison_Exp>;
 };
 
 /** unique or primary key constraints on table "table_orders" */
@@ -4709,52 +4709,52 @@ export type DB_Table_Orders_Delete_Key_Input = {
 
 /** input type for inserting data into table "table_orders" */
 export type DB_Table_Orders_Insert_Input = {
-   created_at?: InputMaybe<Scalars['timestamptz']>;
-   id?: InputMaybe<Scalars['uuid']>;
-   order_number?: InputMaybe<Scalars['String']>;
-   orders?: InputMaybe<DB_Orders_Arr_Rel_Insert_Input>;
-   status?: InputMaybe<Scalars['String']>;
-   table?: InputMaybe<DB_Tables_Obj_Rel_Insert_Input>;
-   table_id?: InputMaybe<Scalars['uuid']>;
-   tokens?: InputMaybe<Scalars['jsonb']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  order_number?: InputMaybe<Scalars['String']>;
+  orders?: InputMaybe<DB_Orders_Arr_Rel_Insert_Input>;
+  status?: InputMaybe<Scalars['String']>;
+  table?: InputMaybe<DB_Tables_Obj_Rel_Insert_Input>;
+  table_id?: InputMaybe<Scalars['uuid']>;
+  tokens?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** aggregate max on columns */
 export type DB_Table_Orders_Max_Fields = {
-   __typename?: 'table_orders_max_fields';
-   created_at?: Maybe<Scalars['timestamptz']>;
-   id?: Maybe<Scalars['uuid']>;
-   order_number?: Maybe<Scalars['String']>;
-   status?: Maybe<Scalars['String']>;
-   table_id?: Maybe<Scalars['uuid']>;
+  __typename?: 'table_orders_max_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  order_number?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  table_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by max() on columns of table "table_orders" */
 export type DB_Table_Orders_Max_Order_By = {
-   created_at?: InputMaybe<DB_Order_By>;
-   id?: InputMaybe<DB_Order_By>;
-   order_number?: InputMaybe<DB_Order_By>;
-   status?: InputMaybe<DB_Order_By>;
-   table_id?: InputMaybe<DB_Order_By>;
+  created_at?: InputMaybe<DB_Order_By>;
+  id?: InputMaybe<DB_Order_By>;
+  order_number?: InputMaybe<DB_Order_By>;
+  status?: InputMaybe<DB_Order_By>;
+  table_id?: InputMaybe<DB_Order_By>;
 };
 
 /** aggregate min on columns */
 export type DB_Table_Orders_Min_Fields = {
-   __typename?: 'table_orders_min_fields';
-   created_at?: Maybe<Scalars['timestamptz']>;
-   id?: Maybe<Scalars['uuid']>;
-   order_number?: Maybe<Scalars['String']>;
-   status?: Maybe<Scalars['String']>;
-   table_id?: Maybe<Scalars['uuid']>;
+  __typename?: 'table_orders_min_fields';
+  created_at?: Maybe<Scalars['timestamptz']>;
+  id?: Maybe<Scalars['uuid']>;
+  order_number?: Maybe<Scalars['String']>;
+  status?: Maybe<Scalars['String']>;
+  table_id?: Maybe<Scalars['uuid']>;
 };
 
 /** order by min() on columns of table "table_orders" */
 export type DB_Table_Orders_Min_Order_By = {
-   created_at?: InputMaybe<DB_Order_By>;
-   id?: InputMaybe<DB_Order_By>;
-   order_number?: InputMaybe<DB_Order_By>;
-   status?: InputMaybe<DB_Order_By>;
-   table_id?: InputMaybe<DB_Order_By>;
+  created_at?: InputMaybe<DB_Order_By>;
+  id?: InputMaybe<DB_Order_By>;
+  order_number?: InputMaybe<DB_Order_By>;
+  status?: InputMaybe<DB_Order_By>;
+  table_id?: InputMaybe<DB_Order_By>;
 };
 
 /** response of any mutation on the table "table_orders" */
@@ -4782,14 +4782,14 @@ export type DB_Table_Orders_On_Conflict = {
 
 /** Ordering options when selecting data from "table_orders". */
 export type DB_Table_Orders_Order_By = {
-   created_at?: InputMaybe<DB_Order_By>;
-   id?: InputMaybe<DB_Order_By>;
-   order_number?: InputMaybe<DB_Order_By>;
-   orders_aggregate?: InputMaybe<DB_Orders_Aggregate_Order_By>;
-   status?: InputMaybe<DB_Order_By>;
-   table?: InputMaybe<DB_Tables_Order_By>;
-   table_id?: InputMaybe<DB_Order_By>;
-   tokens?: InputMaybe<DB_Order_By>;
+  created_at?: InputMaybe<DB_Order_By>;
+  id?: InputMaybe<DB_Order_By>;
+  order_number?: InputMaybe<DB_Order_By>;
+  orders_aggregate?: InputMaybe<DB_Orders_Aggregate_Order_By>;
+  status?: InputMaybe<DB_Order_By>;
+  table?: InputMaybe<DB_Tables_Order_By>;
+  table_id?: InputMaybe<DB_Order_By>;
+  tokens?: InputMaybe<DB_Order_By>;
 };
 
 /** primary key columns input for table: table_orders */
@@ -4819,12 +4819,12 @@ export type DB_Table_Orders_Select_Column =
 
 /** input type for updating data in table "table_orders" */
 export type DB_Table_Orders_Set_Input = {
-   created_at?: InputMaybe<Scalars['timestamptz']>;
-   id?: InputMaybe<Scalars['uuid']>;
-   order_number?: InputMaybe<Scalars['String']>;
-   status?: InputMaybe<Scalars['String']>;
-   table_id?: InputMaybe<Scalars['uuid']>;
-   tokens?: InputMaybe<Scalars['jsonb']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  order_number?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['String']>;
+  table_id?: InputMaybe<Scalars['uuid']>;
+  tokens?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** Streaming cursor of the table "table_orders" */
@@ -4837,12 +4837,12 @@ export type DB_Table_Orders_Stream_Cursor_Input = {
 
 /** Initial value of the column from where the streaming should start */
 export type DB_Table_Orders_Stream_Cursor_Value_Input = {
-   created_at?: InputMaybe<Scalars['timestamptz']>;
-   id?: InputMaybe<Scalars['uuid']>;
-   order_number?: InputMaybe<Scalars['String']>;
-   status?: InputMaybe<Scalars['String']>;
-   table_id?: InputMaybe<Scalars['uuid']>;
-   tokens?: InputMaybe<Scalars['jsonb']>;
+  created_at?: InputMaybe<Scalars['timestamptz']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  order_number?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Scalars['String']>;
+  table_id?: InputMaybe<Scalars['uuid']>;
+  tokens?: InputMaybe<Scalars['jsonb']>;
 };
 
 /** update columns of table "table_orders" */
@@ -5946,10 +5946,10 @@ export type DB_SubscribeTableOrderSubscriptionVariables = Exact<{
 export type DB_SubscribeTableOrderSubscription = { __typename?: 'subscription_root', table_orders_by_pk?: { __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, order_number?: string | null, table_id?: any | null, table?: { __typename?: 'tables', name: string, id: any, no_of_chairs: number, restaurant_id: any, order: number } | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> } | null };
 
 export type DB_CreateTableOrderMutationVariables = Exact<{
-   status: Scalars['String'];
-   table_id: Scalars['uuid'];
-   tokens: Scalars['jsonb'];
-   order_number: Scalars['String'];
+  status: Scalars['String'];
+  table_id: Scalars['uuid'];
+  tokens: Scalars['jsonb'];
+  order_number: Scalars['String'];
 }>;
 
 
@@ -6022,35 +6022,42 @@ export type DB_UpdateTableOrderMutationVariables = Exact<{
 export type DB_UpdateTableOrderMutation = { __typename?: 'mutation_root', update_tables_many?: Array<{ __typename?: 'tables_mutation_response', affected_rows: number } | null> | null };
 
 export type DB_DeleteTableMutationVariables = Exact<{
-   id: Scalars['uuid'];
+  id: Scalars['uuid'];
 }>;
 
 
 export type DB_DeleteTableMutation = { __typename?: 'mutation_root', delete_tables_by_pk?: { __typename?: 'tables', id: any } | null, update_table_orders?: { __typename?: 'table_orders_mutation_response', affected_rows: number } | null };
 
-export type DB_SubscribeTableOrdersQueryVariables = Exact<{
-   restaurant_id: Scalars['uuid'];
+export type DB_SubscribeTableOrdersSubscriptionVariables = Exact<{
+  restaurant_id: Scalars['uuid'];
 }>;
 
 
-export type DB_SubscribeTableOrdersQuery = { __typename?: 'query_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, order_number?: string | null, table?: { __typename?: 'tables', name: string } | null }> };
+export type DB_SubscribeTableOrdersSubscription = { __typename?: 'subscription_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, order_number?: string | null, table?: { __typename?: 'tables', name: string } | null }> };
 
 export type DB_GetLatestTableOrderQueryVariables = Exact<{
-   table_id: Scalars['uuid'];
+  table_id: Scalars['uuid'];
 }>;
 
 
 export type DB_GetLatestTableOrderQuery = { __typename?: 'query_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, table?: { __typename?: 'tables', no_of_chairs: number, name: string } | null }> };
 
+export type DB_GetTableOrderInfoQueryVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DB_GetTableOrderInfoQuery = { __typename?: 'query_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, table?: { __typename?: 'tables', no_of_chairs: number, name: string } | null }> };
+
 export type DB_GetUserByIdQueryVariables = Exact<{
-   id: Scalars['uuid'];
+  id: Scalars['uuid'];
 }>;
 
 
 export type DB_GetUserByIdQuery = { __typename?: 'query_root', users_by_pk?: { __typename?: 'users', created_at?: any | null, email?: string | null, emailVerified?: any | null, id: any, image?: string | null, name?: string | null, role?: string | null } | null };
 
 export type DB_UpdateUserProfilePictureMutationVariables = Exact<{
-   id: Scalars['uuid'];
+  id: Scalars['uuid'];
   image: Scalars['String'];
 }>;
 
@@ -6106,7 +6113,7 @@ export const TableOrderFragmentFragmentDoc = `
     name
   }
 }
-    `
+    `;
 export const TableFragmentFragmentDoc = `
     fragment TableFragment on tables {
   id
@@ -6906,7 +6913,7 @@ export const useDeleteTableMutation = <
       options,
    )
 export const SubscribeTableOrdersDocument = `
-    query SubscribeTableOrders($restaurant_id: uuid!) {
+    subscription SubscribeTableOrders($restaurant_id: uuid!) {
   table_orders(
     order_by: {created_at: desc}
     where: {table: {restaurant_id: {_eq: $restaurant_id}}}
@@ -6923,20 +6930,6 @@ export const SubscribeTableOrdersDocument = `
   }
 }
     `
-export const useSubscribeTableOrdersQuery = <
-   TData = DB_SubscribeTableOrdersQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_SubscribeTableOrdersQueryVariables,
-   options?: UseQueryOptions<DB_SubscribeTableOrdersQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_SubscribeTableOrdersQuery, TError, TData>(
-      ['SubscribeTableOrders', variables],
-      fetcher<DB_SubscribeTableOrdersQuery, DB_SubscribeTableOrdersQueryVariables>(client, SubscribeTableOrdersDocument, variables, headers),
-      options,
-   )
 export const GetLatestTableOrderDocument = `
     query GetLatestTableOrder($table_id: uuid!) {
   table_orders(
@@ -6968,6 +6961,35 @@ export const useGetLatestTableOrderQuery = <
    useQuery<DB_GetLatestTableOrderQuery, TError, TData>(
       ['GetLatestTableOrder', variables],
       fetcher<DB_GetLatestTableOrderQuery, DB_GetLatestTableOrderQueryVariables>(client, GetLatestTableOrderDocument, variables, headers),
+      options,
+   )
+export const GetTableOrderInfoDocument = `
+    query GetTableOrderInfo($id: uuid!) {
+  table_orders(limit: 1, order_by: {created_at: desc}, where: {id: {_eq: $id}}) {
+    id
+    created_at
+    status
+    tokens
+    table_id
+    table {
+      no_of_chairs
+      name
+    }
+  }
+}
+    `
+export const useGetTableOrderInfoQuery = <
+   TData = DB_GetTableOrderInfoQuery,
+   TError = unknown
+>(
+   client: GraphQLClient,
+   variables: DB_GetTableOrderInfoQueryVariables,
+   options?: UseQueryOptions<DB_GetTableOrderInfoQuery, TError, TData>,
+   headers?: RequestInit['headers'],
+) =>
+   useQuery<DB_GetTableOrderInfoQuery, TError, TData>(
+      ['GetTableOrderInfo', variables],
+      fetcher<DB_GetTableOrderInfoQuery, DB_GetTableOrderInfoQueryVariables>(client, GetTableOrderInfoDocument, variables, headers),
       options,
    )
 export const GetUserByIdDocument = `

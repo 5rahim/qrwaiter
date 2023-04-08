@@ -1,6 +1,6 @@
 import {
-   DB_SubscribeTableOrdersQuery, DB_SubscribeTableOrdersQueryVariables, useCreateTableOrderMutation, useGetLatestTableOrderByTableIdQuery,
-   useGetTableOrderQuery, useGetTableOrdersQuery,
+   DB_SubscribeTableOrdersSubscription, DB_SubscribeTableOrdersSubscriptionVariables, useCreateTableOrderMutation,
+   useGetLatestTableOrderByTableIdQuery, useGetTableOrderQuery, useGetTableOrdersQuery,
 } from '@/graphql/generated'
 import { TableOrder, TableOrders } from '@/graphql/types'
 import { useMutationService } from '@/graphql/use-mutation-service'
@@ -132,9 +132,9 @@ export const useTableOrders = (restaurantId: Nullable<string>) => {
 
 export const useTableOrdersSubscription = (restaurantId: Nullable<string>) => {
 
-    const res = useSubscriptionQuery<DB_SubscribeTableOrdersQuery, DB_SubscribeTableOrdersQueryVariables>(gql`
+    const res = useSubscriptionQuery<DB_SubscribeTableOrdersSubscription, DB_SubscribeTableOrdersSubscriptionVariables>(gql`
 
-      query SubscribeTableOrders($restaurant_id: uuid!) {
+      subscription SubscribeTableOrders($restaurant_id: uuid!) {
         table_orders(order_by: {created_at: desc}, where: {table: {restaurant_id: {_eq: $restaurant_id}}}) {
           id
           created_at

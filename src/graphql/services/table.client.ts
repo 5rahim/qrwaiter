@@ -117,7 +117,7 @@ export const useTables = (restaurantId: Nullable<string>) => {
    
    const queryClient = useQueryClient()
    
-   const res = useGetTablesQuery(queryClient.get(), { restaurant_id: restaurantId }, { refetchOnMount: 'always' })
+   const res = useGetTablesQuery(queryClient.get(), { restaurant_id: restaurantId }, { refetchOnMount: false, refetchOnWindowFocus: false })
    // const res = useSubscriptionQuery<DB_SubscribeTablesSubscription, DB_SubscribeTablesSubscriptionVariables>(SubscribeTablesDocument, {
    // restaurant_id: restaurantId })
    

@@ -5,13 +5,13 @@ import { useCurrentRestaurant } from '@/atoms/restaurant.atom'
 import { useTableOrdersSubscription } from '@/graphql/services/table-order.client'
 import { useAppTranslation } from '@/hooks/use-app-translation'
 import { useLinks } from '@/hooks/use-links'
-import React, { useEffect } from 'react'
+import React from 'react'
 
-interface CurrentTableOrdersProps {
+interface AllTableOrdersProps {
    children?: React.ReactNode
 }
 
-export const CurrentTableOrders: React.FC<CurrentTableOrdersProps> = (props) => {
+export const AllTableOrders: React.FC<AllTableOrdersProps> = (props) => {
    
    const { children, ...rest } = props
    const links = useLinks()
@@ -20,15 +20,9 @@ export const CurrentTableOrders: React.FC<CurrentTableOrdersProps> = (props) => 
    
    const { tableOrders, tableOrdersLoading } = useTableOrdersSubscription(restaurant?.id)
    
-   const currentTableOrders = tableOrders.filter(n => n.status !== 'completed')
-   
-   useEffect(() => {
-      console.log(tableOrders)
-   }, [tableOrders])
-   
    return (
       <>
-         <TableOrderList data={currentTableOrders} isLoading={tableOrdersLoading} />
+         <TableOrderList data={tableOrders} isLoading={tableOrdersLoading} />
       </>
    )
    
