@@ -35,7 +35,10 @@ const AdminNav: React.FC<AdminNavProps> = (props) => {
    const [sidebarOpen, setSidebarOpen] = useAtom(adminSidebarOpen)
    
    const navigation = useMemo(() => [
-      { name: 'Orders', href: siteLinkTo(s => s.admin.home), icon: BiDish, current: links.awarePathIsSelected(links.to(s => s.admin.home)) },
+      {
+         name: 'Orders', href: siteLinkTo(s => s.admin.home), icon: BiDish,
+         current: links.awarePathIsSelected(links.to(s => s.admin.home)) || pathname?.includes('all-orders'),
+      },
       {
          name: 'Menu', href: siteLinkTo(s => s.admin.items), icon: BiBookOpen,
          current: pathname?.includes(links.to(s => s.admin.items)) || pathname?.includes(links.to(s => s.admin.categories)),

@@ -10,7 +10,7 @@ const headingStyles = cva("font-bold text-gray-900", {
       },
    },
    defaultVariants: {
-      size: "xl",
+      size: "lg",
    },
 })
 
@@ -27,7 +27,7 @@ export const PageHeader = React.forwardRef<HTMLDivElement, PageHeaderProps>((pro
    const {
       children,
       className,
-      size = "xl",
+      size = "lg",
       title,
       description,
       action,

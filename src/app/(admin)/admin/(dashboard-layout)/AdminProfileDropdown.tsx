@@ -51,7 +51,7 @@ export const AdminProfileDropdown: React.FC<AdminProfileDropdownProps> = (props)
                      <a
                         onClick={() => signOut()}
                         className={cn(
-                           'block px-4 py-2 text-md text-gray-700',
+                           'block px-4 py-2 text-md text-gray-700 cursor-pointer',
                         )}
                      >
                         Sign out

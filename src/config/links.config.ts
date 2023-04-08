@@ -15,10 +15,16 @@ export const siteLinks = {
       new: {
          href: `/new`,
       },
+      menu: {
+         href: '/r/[slug]',
+      },
    },
    admin: {
       home: {
          href: '/admin',
+      },
+      allOrders: {
+         href: '/admin/all-orders',
       },
       items: {
          href: '/admin/menu/items',

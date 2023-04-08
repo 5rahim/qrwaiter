@@ -1,7 +1,7 @@
 import MenuNavbar from '@/app/(admin)/admin/(dashboard-layout)/MenuNavbar'
 import DashboardShell from '@/app/(admin)/admin/DashboardShell'
 import CategoryList from '@/app/(admin)/admin/menu/categories/CategoryList'
-import { getRestaurantByOwnerId } from '@/graphql/services/restaurant.server'
+import { getRestaurantInAdmin } from '@/graphql/services/restaurant.server'
 import { getCurrentSessionUser } from '@/lib/session'
 import React from 'react'
 
@@ -9,7 +9,7 @@ export default async function Page() {
    
    const sessionUser = await getCurrentSessionUser()
    
-   const restaurant = await getRestaurantByOwnerId(sessionUser?.id)
+   const restaurant = await getRestaurantInAdmin(sessionUser?.id)
    
    return (
       <>

@@ -27,7 +27,7 @@ export const GetHomePageCategories = gql`
   ${ItemFragment}
 
   query GetHomePageCategories($restaurant_id: uuid!) {
-    categories(where: {restaurant_id: {_eq: $restaurant_id}}) {
+    categories(order_by: {order: asc}, where: {restaurant_id: {_eq: $restaurant_id}}) {
       id
       name
       restaurant_id

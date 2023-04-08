@@ -55,7 +55,7 @@ const ItemList: React.FC<ItemListProps> = (props) => {
                   quality={5}
                   alt=""
                   style={{ objectFit: "cover" }}
-                  sizes="100vw"
+                  sizes="5rem"
                /></div>
                <span className="text-lg font-semibold flex-none">{info.getValue() as string}</span>
                <BiEditAlt className="text-lg" />
@@ -102,24 +102,6 @@ const ItemList: React.FC<ItemListProps> = (props) => {
             footer: props => props.column.id,
             size: 90,
          },
-         // {
-         //    id: 'id',
-         //    enableSorting: false,
-         //    enableGlobalFilter: false,
-         //    header: '',
-         //    size: 60,
-         //    cell: info => {
-         //       return (
-         //          <div className="">
-         //             <LinkButton
-         //                size="sm"
-         //                to={links.aware(links.to(s => s.admin.items, { key: 'oid', value: info.row.original.id }))}
-         //                intent="primary-subtle"
-         //             >{t('form:open')}</LinkButton>
-         //          </div>
-         //       )
-         //    },
-         // },
       ]
    }, [categories])
    

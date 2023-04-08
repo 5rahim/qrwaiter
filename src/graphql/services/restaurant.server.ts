@@ -6,7 +6,22 @@ import {
 import { Restaurant } from '@/graphql/types'
 import { useServerQuery } from '@/graphql/use-server-query'
 import { Nullable } from '@/types'
+import { siteLinkTo } from '@/utils/links'
+import { redirect } from 'next/navigation'
 import { cache } from "react"
+
+export const getRestaurantInAdmin = cache(async (userId: Nullable<string>) => {
+   const [restaurantByOwner, restaurantByAdministrator] = await Promise.all([
+      getRestaurantByOwnerId(userId),
+      getRestaurantByAdministratorId(userId),
+   ])
+   
+   if (!restaurantByOwner && !restaurantByAdministrator) {
+      redirect(siteLinkTo(s => s.main.new))
+   }
+   
+   return (restaurantByOwner ?? restaurantByAdministrator)!
+})
 
 export const getRestaurantByOwnerId = cache(async (ownerId: Nullable<string>): Promise<Restaurant | null> => {
    

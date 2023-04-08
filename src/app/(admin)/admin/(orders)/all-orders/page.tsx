@@ -1,9 +1,9 @@
-import MenuNavbar from '@/app/(admin)/admin/(dashboard-layout)/MenuNavbar'
+import OrderNavbar from '@/app/(admin)/admin/(orders)/OrderNavbar'
 import DashboardShell from '@/app/(admin)/admin/DashboardShell'
-import ItemList from '@/app/(admin)/admin/menu/items/ItemList'
 import { getRestaurantInAdmin } from '@/graphql/services/restaurant.server'
 import { getCurrentSessionUser } from '@/lib/session'
 import React from 'react'
+
 
 export default async function Page() {
    
@@ -15,14 +15,14 @@ export default async function Page() {
       <>
          {/*@ts-ignore*/}
          <DashboardShell
-            title="Menu"
+            title="Orders"
             top={
                <div className="bg-white overflow-hidden">
-                  <MenuNavbar />
+                  <OrderNavbar />
                </div>
             }
          >
-            <ItemList rid={restaurant?.id} />
+         
          </DashboardShell>
       </>
    )

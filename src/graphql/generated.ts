@@ -5924,6 +5924,13 @@ export type DB_GetTableOrderQueryVariables = Exact<{
 
 export type DB_GetTableOrderQuery = { __typename?: 'query_root', table_orders_by_pk?: { __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, table?: { __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number } | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> } | null };
 
+export type DB_SubscribeTableOrderSubscriptionVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DB_SubscribeTableOrderSubscription = { __typename?: 'subscription_root', table_orders_by_pk?: { __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, table?: { __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number } | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> } | null };
+
 export type DB_CreateTableOrderMutationVariables = Exact<{
   status: Scalars['String'];
   table_id: Scalars['uuid'];
@@ -5932,6 +5939,13 @@ export type DB_CreateTableOrderMutationVariables = Exact<{
 
 
 export type DB_CreateTableOrderMutation = { __typename?: 'mutation_root', insert_table_orders_one?: { __typename?: 'table_orders', id: any, status: string, tokens: any, table_id?: any | null } | null };
+
+export type DB_GetLatestTableOrderByTableIdQueryVariables = Exact<{
+  table_id: Scalars['uuid'];
+}>;
+
+
+export type DB_GetLatestTableOrderByTableIdQuery = { __typename?: 'query_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, table?: { __typename?: 'tables', no_of_chairs: number, name: string } | null }> };
 
 export type DB_TableFragmentFragment = { __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number };
 
@@ -6108,7 +6122,10 @@ export const SubscribeCategoriesDocument = `
     `
 export const GetHomePageCategoriesDocument = `
     query GetHomePageCategories($restaurant_id: uuid!) {
-  categories(where: {restaurant_id: {_eq: $restaurant_id}}) {
+  categories(
+    order_by: {order: asc}
+    where: {restaurant_id: {_eq: $restaurant_id}}
+  ) {
     id
     name
     restaurant_id
@@ -6610,6 +6627,21 @@ export const useGetTableOrderQuery = <
       fetcher<DB_GetTableOrderQuery, DB_GetTableOrderQueryVariables>(client, GetTableOrderDocument, variables, headers),
       options,
    )
+export const SubscribeTableOrderDocument = `
+    subscription SubscribeTableOrder($id: uuid!) {
+  table_orders_by_pk(id: $id) {
+    ...TableOrderFragment
+    table {
+      ...TableFragment
+    }
+    orders {
+      ...OrderFragment
+    }
+  }
+}
+    ${TableOrderFragmentFragmentDoc}
+${TableFragmentFragmentDoc}
+${OrderFragmentFragmentDoc}`
 export const CreateTableOrderDocument = `
     mutation CreateTableOrder($status: String!, $table_id: uuid!, $tokens: jsonb!) {
   insert_table_orders_one(
@@ -6633,6 +6665,39 @@ export const useCreateTableOrderMutation = <
    useMutation<DB_CreateTableOrderMutation, TError, DB_CreateTableOrderMutationVariables, TContext>(
       ['CreateTableOrder'],
       (variables?: DB_CreateTableOrderMutationVariables) => fetcher<DB_CreateTableOrderMutation, DB_CreateTableOrderMutationVariables>(client, CreateTableOrderDocument, variables, headers)(),
+      options,
+   )
+export const GetLatestTableOrderByTableIdDocument = `
+    query GetLatestTableOrderByTableId($table_id: uuid!) {
+  table_orders(
+    limit: 1
+    order_by: {created_at: desc}
+    where: {table_id: {_eq: $table_id}}
+  ) {
+    id
+    created_at
+    status
+    tokens
+    table_id
+    table {
+      no_of_chairs
+      name
+    }
+  }
+}
+    `
+export const useGetLatestTableOrderByTableIdQuery = <
+   TData = DB_GetLatestTableOrderByTableIdQuery,
+   TError = unknown
+>(
+   client: GraphQLClient,
+   variables: DB_GetLatestTableOrderByTableIdQueryVariables,
+   options?: UseQueryOptions<DB_GetLatestTableOrderByTableIdQuery, TError, TData>,
+   headers?: RequestInit['headers'],
+) =>
+   useQuery<DB_GetLatestTableOrderByTableIdQuery, TError, TData>(
+      ['GetLatestTableOrderByTableId', variables],
+      fetcher<DB_GetLatestTableOrderByTableIdQuery, DB_GetLatestTableOrderByTableIdQueryVariables>(client, GetLatestTableOrderByTableIdDocument, variables, headers),
       options,
    )
 export const GetTablesDocument = `

@@ -1,13 +1,17 @@
-import { useCreateItemMutation, useDeleteItemMutation, useGetItemQuery, useGetItemsQuery, useUpdateItemMutation } from '@/graphql/generated'
-import { Item, Items } from '@/graphql/types'
+import {
+   useCreateItemMutation, useDeleteItemMutation, useGetHomePageCategoriesQuery, useGetItemQuery, useGetItemsQuery, useUpdateItemMutation,
+} from '@/graphql/generated'
+import { HomePageCategories, Item, Items } from '@/graphql/types'
 import { useMutationService } from '@/graphql/use-mutation-service'
 import { useQueryClient } from '@/graphql/use-query-client'
 import { useLinks } from '@/hooks/use-links'
+import { usePriceFormatter } from '@/hooks/use-price-formatter'
 import { InferType, Nullable } from '@/types'
 import { useImageGridHandler } from '@ui/main/forms/image-grid-input/ImageGridInput'
 import { createTypesafeFormSchema } from '@ui/main/forms/typesafe-form/CreateTypesafeFormSchema'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
+import { useMemo } from 'react'
 
 export const useItemService = (restaurantId: Nullable<string>, role: 'create' | 'update' | 'delete', item?: Item, refetchItem?: () => void) => {
    
@@ -132,6 +136,37 @@ export const useItems = (restaurantId: Nullable<string>) => {
          options: !res.isLoading ? items.map(i => ({ value: i.id, label: i.name })) : [{ value: '', label: 'Loading...' }],
          isDisabled: res.isLoading,
       },
+   }
+   
+}
+
+export const useHomePageItems = (restaurantId: Nullable<string>) => {
+   
+   const queryClient = useQueryClient()
+   const priceFormatter = usePriceFormatter()
+   
+   const res = useGetHomePageCategoriesQuery(queryClient.get(), { restaurant_id: restaurantId }, { refetchOnMount: 'always' })
+   
+   const categories: HomePageCategories = res.data?.categories ?? []
+   
+   const list = useMemo(() => categories.filter(n => n.items.length > 0).map(category => {
+      return ({
+         id: category.id,
+         name: category.name,
+         items: category.items.map(item => ({
+            id: item.id,
+            name: item.name,
+            price: priceFormatter.toFormat(item.price),
+            imageSrc: item.images?.main ?? '',
+            description: item.description,
+            
+         })),
+      })
+   }), [res.data])
+   
+   return {
+      list,
+      listLoading: res.isLoading,
    }
    
 }

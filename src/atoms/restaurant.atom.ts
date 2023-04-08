@@ -14,3 +14,5 @@ export const useCurrentRestaurant = () => {
    }
    
 }
+
+export const tableAtom = withImmer(atom<Restaurant | undefined>(undefined))

@@ -8,21 +8,25 @@ interface DashboardShellProps {
    title: string
    top?: React.ReactNode
    backTo?: string
+   action?: React.ReactNode
 }
 
 async function DashboardShell(props: DashboardShellProps) {
    
-   const { children, title, top, backTo, ...rest } = props
+   const { children, title, top, backTo, action, ...rest } = props
    
    return (
       <>
-         {title.length > 0 && <div className="flex w-full items-center mx-auto px-4 sm:px-6 md:px-8 pt-8 pb-2">
-            {backTo && <LinkButton to={backTo} size="xl" intent="primary-basic" className="pl-0"><BiLeftArrowAlt /></LinkButton>}
-             <h1 className="text-3xl w-full font-bold tracking-tight">{title}</h1>
+         {title.length > 0 && <div className="flex w-full items-center mx-auto px-4 sm:px-6 md:px-8 pt-8 pb-2 justify-between">
+             <div>
+                {backTo && <LinkButton to={backTo} size="xl" intent="primary-basic" className="pl-0"><BiLeftArrowAlt /></LinkButton>}
+                 <h1 className="text-3xl w-full font-bold tracking-tight">{title}</h1>
+             </div>
+            {action}
          </div>}
-   
-         <main className="flex-1">
       
+         <main className="flex-1">
+         
             <div className="mx-auto px-4 sm:px-6 md:px-8">
                {top}
                <div className="py-4">
