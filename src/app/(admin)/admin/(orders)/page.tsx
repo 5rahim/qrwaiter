@@ -1,4 +1,5 @@
 import { CreateTableOrder } from '@/app/(admin)/admin/(orders)/CreateTableOrder'
+import { CurrentTableOrders } from '@/app/(admin)/admin/(orders)/CurrentTableOrders'
 import OrderNavbar from '@/app/(admin)/admin/(orders)/OrderNavbar'
 import DashboardShell from '@/app/(admin)/admin/DashboardShell'
 import { getRestaurantInAdmin } from '@/graphql/services/restaurant.server'
@@ -24,7 +25,9 @@ export default async function Page() {
             }
             action={<CreateTableOrder />}
          >
-         
+      
+            <CurrentTableOrders />
+   
          </DashboardShell>
       </>
    )

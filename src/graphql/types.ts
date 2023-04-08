@@ -2,6 +2,7 @@ import {
    DB_GetCategoriesQuery, DB_GetCategoryQuery, DB_GetHomePageCategoriesQuery, DB_GetItemQuery, DB_GetItemsQuery, DB_GetOrderQuery,
    DB_GetRestaurantBySlugQuery, DB_GetTableInfoQuery, DB_GetTableOrderQuery, DB_GetTableOrdersQuery, DB_GetTableQuery, DB_GetTablesQuery,
 } from '@/graphql/generated'
+import { Table_Orders } from '@/lib/hasura/hasura-generated'
 
 export type ItemSelection = {
    id: string
@@ -67,6 +68,7 @@ export type Restaurant = DB_GetRestaurantBySlugQuery['restaurants'][0]
  * Contains: Orders, Table
  */
 export type TableOrder = DB_GetTableOrderQuery['table_orders_by_pk']
+export type TableOrderInfo = Omit<Table_Orders, 'orders_aggregate' | 'orders'>
 /**
  * Does not contain Orders and Table
  */

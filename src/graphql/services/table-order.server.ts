@@ -9,7 +9,7 @@ export type CurrentTableOrder = DB_GetLatestTableOrderByTableIdQuery['table_orde
 export const getLatestTableOrderByTableId = cache(async (tableId: Nullable<string>): Promise<CurrentTableOrder | null> => {
 
     if (tableId) {
-        const res = await useServerQuery<DB_GetLatestTableOrderByTableIdQuery, DB_GetLatestTableOrderByTableIdQueryVariables>(gql`query GetLatestTableOrderByTableId($table_id: uuid!) {
+        const res = await useServerQuery<DB_GetLatestTableOrderByTableIdQuery, DB_GetLatestTableOrderByTableIdQueryVariables>(gql`query GetLatestTableOrder($table_id: uuid!) {
           table_orders(limit: 1, order_by: {created_at: desc}, where: {table_id: {_eq: $table_id}}) {
             id
             created_at

@@ -20,7 +20,7 @@ export const GetItems = gql`
   ${ItemFragment}
 
   query GetItems($restaurant_id: uuid!) {
-    items(where: {restaurant_id: {_eq: $restaurant_id}}) {
+    items(order_by: {created_at: desc}, where: {restaurant_id: {_eq: $restaurant_id}}) {
       ...ItemFragment
     }
   }

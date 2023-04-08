@@ -8,7 +8,11 @@ export const TableOrderFragment = gql`
     created_at
     status
     tokens
+    order_number
     table_id
+    table {
+      name
+    }
   }
 `
 
@@ -58,12 +62,14 @@ export const SubscribeTableOrder = gql`
 `
 
 export const CreateTableOrder = gql`
-  mutation CreateTableOrder($status: String!, $table_id: uuid!, $tokens: jsonb!) {
-    insert_table_orders_one(object: {status: $status, table_id: $table_id, tokens: $tokens}) {
+  mutation CreateTableOrder($status: String!, $table_id: uuid!, $tokens: jsonb!, $order_number: String!) {
+    insert_table_orders_one(object: {status: $status, table_id: $table_id, tokens: $tokens, order_number: $order_number}) {
       id
+      created_at
       status
       tokens
       table_id
+      order_number
     }
   }
 `
@@ -76,6 +82,7 @@ export const GetLatestTableOrderByTableId = gql`
       status
       tokens
       table_id
+      order_number
       table {
         no_of_chairs
         name

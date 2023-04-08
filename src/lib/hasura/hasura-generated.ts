@@ -4573,6 +4573,7 @@ export type Table_Orders = {
    __typename?: 'table_orders';
    created_at: Scalars['timestamptz'];
    id: Scalars['uuid'];
+   order_number?: Maybe<Scalars['String']>;
    /** An array relationship */
    orders: Array<Orders>;
    /** An aggregate relationship */
@@ -4669,6 +4670,7 @@ export type Table_Orders_Bool_Exp = {
    _or?: InputMaybe<Array<Table_Orders_Bool_Exp>>;
    created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
    id?: InputMaybe<Uuid_Comparison_Exp>;
+   order_number?: InputMaybe<String_Comparison_Exp>;
    orders?: InputMaybe<Orders_Bool_Exp>;
    orders_aggregate?: InputMaybe<Orders_Aggregate_Bool_Exp>;
    status?: InputMaybe<String_Comparison_Exp>;
@@ -4701,6 +4703,7 @@ export type Table_Orders_Delete_Key_Input = {
 export type Table_Orders_Insert_Input = {
    created_at?: InputMaybe<Scalars['timestamptz']>;
    id?: InputMaybe<Scalars['uuid']>;
+   order_number?: InputMaybe<Scalars['String']>;
    orders?: InputMaybe<Orders_Arr_Rel_Insert_Input>;
    status?: InputMaybe<Scalars['String']>;
    table?: InputMaybe<Tables_Obj_Rel_Insert_Input>;
@@ -4713,6 +4716,7 @@ export type Table_Orders_Max_Fields = {
    __typename?: 'table_orders_max_fields';
    created_at?: Maybe<Scalars['timestamptz']>;
    id?: Maybe<Scalars['uuid']>;
+   order_number?: Maybe<Scalars['String']>;
    status?: Maybe<Scalars['String']>;
    table_id?: Maybe<Scalars['uuid']>;
 };
@@ -4721,6 +4725,7 @@ export type Table_Orders_Max_Fields = {
 export type Table_Orders_Max_Order_By = {
    created_at?: InputMaybe<Order_By>;
    id?: InputMaybe<Order_By>;
+   order_number?: InputMaybe<Order_By>;
    status?: InputMaybe<Order_By>;
    table_id?: InputMaybe<Order_By>;
 };
@@ -4730,6 +4735,7 @@ export type Table_Orders_Min_Fields = {
    __typename?: 'table_orders_min_fields';
    created_at?: Maybe<Scalars['timestamptz']>;
    id?: Maybe<Scalars['uuid']>;
+   order_number?: Maybe<Scalars['String']>;
    status?: Maybe<Scalars['String']>;
    table_id?: Maybe<Scalars['uuid']>;
 };
@@ -4738,6 +4744,7 @@ export type Table_Orders_Min_Fields = {
 export type Table_Orders_Min_Order_By = {
    created_at?: InputMaybe<Order_By>;
    id?: InputMaybe<Order_By>;
+   order_number?: InputMaybe<Order_By>;
    status?: InputMaybe<Order_By>;
    table_id?: InputMaybe<Order_By>;
 };
@@ -4769,6 +4776,7 @@ export type Table_Orders_On_Conflict = {
 export type Table_Orders_Order_By = {
    created_at?: InputMaybe<Order_By>;
    id?: InputMaybe<Order_By>;
+   order_number?: InputMaybe<Order_By>;
    orders_aggregate?: InputMaybe<Orders_Aggregate_Order_By>;
    status?: InputMaybe<Order_By>;
    table?: InputMaybe<Tables_Order_By>;
@@ -4793,6 +4801,8 @@ export type Table_Orders_Select_Column =
    /** column name */
    | 'id'
    /** column name */
+   | 'order_number'
+   /** column name */
    | 'status'
    /** column name */
    | 'table_id'
@@ -4803,6 +4813,7 @@ export type Table_Orders_Select_Column =
 export type Table_Orders_Set_Input = {
    created_at?: InputMaybe<Scalars['timestamptz']>;
    id?: InputMaybe<Scalars['uuid']>;
+   order_number?: InputMaybe<Scalars['String']>;
    status?: InputMaybe<Scalars['String']>;
    table_id?: InputMaybe<Scalars['uuid']>;
    tokens?: InputMaybe<Scalars['jsonb']>;
@@ -4820,6 +4831,7 @@ export type Table_Orders_Stream_Cursor_Input = {
 export type Table_Orders_Stream_Cursor_Value_Input = {
    created_at?: InputMaybe<Scalars['timestamptz']>;
    id?: InputMaybe<Scalars['uuid']>;
+   order_number?: InputMaybe<Scalars['String']>;
    status?: InputMaybe<Scalars['String']>;
    table_id?: InputMaybe<Scalars['uuid']>;
    tokens?: InputMaybe<Scalars['jsonb']>;
@@ -4831,6 +4843,8 @@ export type Table_Orders_Update_Column =
    | 'created_at'
    /** column name */
    | 'id'
+   /** column name */
+   | 'order_number'
    /** column name */
    | 'status'
    /** column name */

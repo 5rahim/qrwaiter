@@ -41,6 +41,9 @@ export const siteLinks = {
       tables: {
          href: '/admin/tables',
       },
+      tableOrder: {
+         href: '/admin/table-order/[toid]',
+      },
       customization: {
          href: '/admin/customization',
       },
