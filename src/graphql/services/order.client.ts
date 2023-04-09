@@ -1,4 +1,4 @@
-import { useCreateOrdersMutation, useGetOrderQuery } from '@/graphql/generated'
+import { useCreateOrderMutation, useGetOrderQuery, useUpdateOrderMutation } from '@/graphql/generated'
 import { Order } from '@/graphql/types'
 import { useMutationService } from '@/graphql/use-mutation-service'
 import { useQueryClient } from '@/graphql/use-query-client'
@@ -12,26 +12,29 @@ export const useOrder = (id: Nullable<string>) => {
    
    const res = useGetOrderQuery(queryClient.get(), { id }, { refetchOnMount: 'always' })
    
-   const order: Order = res.data?.orders_by_pk
+   const order: Order = res.data?.orders_by_pk ?? null
    
    return {
       order,
       orderLoading: res.isLoading,
+      refetchOrder: res.refetch,
    }
    
 }
 
-export const useCreateOrdersService = (tableOrderId: Nullable<string>) => {
+export const useCreateOrdersService = (onComplete: () => void) => {
    
    const queryClient = useQueryClient()
    const session = useSession()
    
-   const createOrdersMutation = useCreateOrdersMutation(queryClient.get(), {
+   const createOrderMutation = useCreateOrderMutation(queryClient.get(), {
       onSuccess: data => {
-         queryClient.successAlert('Order placed')
+         // queryClient.successAlert('Order placed')
       },
    })
-   useMutationService(createOrdersMutation)
+   useMutationService(createOrderMutation)
+   
+   const updateOrderMutation = useUpdateOrderMutation(queryClient.get())
    
    const orderSchema = createTypesafeFormSchema(({ z, presets }) => z.object({
       chair_number: z.number().min(1),
@@ -44,7 +47,8 @@ export const useCreateOrdersService = (tableOrderId: Nullable<string>) => {
    
    return {
       orderSchema,
-      createOrdersMutation,
+      createOrder: createOrderMutation.mutate,
+      updateOrder: updateOrderMutation.mutate,
    }
    
 }

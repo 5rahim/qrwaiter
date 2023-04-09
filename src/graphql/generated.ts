@@ -5873,6 +5873,32 @@ export type DB_CreateOrdersMutationVariables = Exact<{
 
 export type DB_CreateOrdersMutation = { __typename?: 'mutation_root', insert_orders?: { __typename?: 'orders_mutation_response', affected_rows: number, returning: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> } | null };
 
+export type DB_UpdateOrderMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  chair_number: Scalars['Int'];
+  items: Scalars['jsonb'];
+  subtotal: Scalars['Int'];
+  total: Scalars['Int'];
+  total_tax: Scalars['Int'];
+  table_order_id: Scalars['uuid'];
+}>;
+
+
+export type DB_UpdateOrderMutation = { __typename?: 'mutation_root', update_orders_by_pk?: { __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number } | null };
+
+export type DB_CreateOrderMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  chair_number: Scalars['Int'];
+  items: Scalars['jsonb'];
+  subtotal: Scalars['Int'];
+  total: Scalars['Int'];
+  total_tax: Scalars['Int'];
+  table_order_id: Scalars['uuid'];
+}>;
+
+
+export type DB_CreateOrderMutation = { __typename?: 'mutation_root', insert_orders_one?: { __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number } | null };
+
 export type DB_CreateRestaurantMutationVariables = Exact<{
   slug: Scalars['String'];
   name: Scalars['String'];
@@ -6466,6 +6492,51 @@ export const useCreateOrdersMutation = <
    useMutation<DB_CreateOrdersMutation, TError, DB_CreateOrdersMutationVariables, TContext>(
       ['CreateOrders'],
       (variables?: DB_CreateOrdersMutationVariables) => fetcher<DB_CreateOrdersMutation, DB_CreateOrdersMutationVariables>(client, CreateOrdersDocument, variables, headers)(),
+      options,
+   )
+export const UpdateOrderDocument = `
+    mutation UpdateOrder($id: uuid!, $chair_number: Int!, $items: jsonb!, $subtotal: Int!, $total: Int!, $total_tax: Int!, $table_order_id: uuid!) {
+  update_orders_by_pk(
+    pk_columns: {id: $id}
+    _set: {chair_number: $chair_number, items: $items, subtotal: $subtotal, total: $total, total_tax: $total_tax, table_order_id: $table_order_id}
+  ) {
+    ...OrderFragment
+  }
+}
+    ${OrderFragmentFragmentDoc}`
+export const useUpdateOrderMutation = <
+   TError = unknown,
+   TContext = unknown
+>(
+   client: GraphQLClient,
+   options?: UseMutationOptions<DB_UpdateOrderMutation, TError, DB_UpdateOrderMutationVariables, TContext>,
+   headers?: RequestInit['headers'],
+) =>
+   useMutation<DB_UpdateOrderMutation, TError, DB_UpdateOrderMutationVariables, TContext>(
+      ['UpdateOrder'],
+      (variables?: DB_UpdateOrderMutationVariables) => fetcher<DB_UpdateOrderMutation, DB_UpdateOrderMutationVariables>(client, UpdateOrderDocument, variables, headers)(),
+      options,
+   )
+export const CreateOrderDocument = `
+    mutation CreateOrder($id: uuid!, $chair_number: Int!, $items: jsonb!, $subtotal: Int!, $total: Int!, $total_tax: Int!, $table_order_id: uuid!) {
+  insert_orders_one(
+    object: {id: $id, chair_number: $chair_number, items: $items, subtotal: $subtotal, total: $total, total_tax: $total_tax, table_order_id: $table_order_id}
+  ) {
+    ...OrderFragment
+  }
+}
+    ${OrderFragmentFragmentDoc}`
+export const useCreateOrderMutation = <
+   TError = unknown,
+   TContext = unknown
+>(
+   client: GraphQLClient,
+   options?: UseMutationOptions<DB_CreateOrderMutation, TError, DB_CreateOrderMutationVariables, TContext>,
+   headers?: RequestInit['headers'],
+) =>
+   useMutation<DB_CreateOrderMutation, TError, DB_CreateOrderMutationVariables, TContext>(
+      ['CreateOrder'],
+      (variables?: DB_CreateOrderMutationVariables) => fetcher<DB_CreateOrderMutation, DB_CreateOrderMutationVariables>(client, CreateOrderDocument, variables, headers)(),
       options,
    )
 export const CreateRestaurantDocument = `

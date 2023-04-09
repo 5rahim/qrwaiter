@@ -9,6 +9,7 @@ import { usePriceFormatter } from '@/hooks/use-price-formatter'
 import { InferType, Nullable } from '@/types'
 import { useImageGridHandler } from '@ui/main/forms/image-grid-input/ImageGridInput'
 import { createTypesafeFormSchema } from '@ui/main/forms/typesafe-form/CreateTypesafeFormSchema'
+import _ from 'lodash'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
@@ -166,6 +167,7 @@ export const useHomePageItems = (restaurantId: Nullable<string>) => {
    
    return {
       list,
+      items: _.flatten(res.data?.categories.map(c => [...c.items])),
       listLoading: res.isLoading,
    }
    
