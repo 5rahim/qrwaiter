@@ -1,6 +1,7 @@
 'use client'
 
 import { FloatingCart } from '@/app/(menu)/r/[slug]/table/[toid_chair]/FloatingCart'
+import { CartItem, useOrderCart } from '@/atoms/cart.atom'
 import { useCurrentRestaurant } from '@/atoms/restaurant.atom'
 import { useCurrentTableOrder } from '@/atoms/table-order.atom'
 import { useHomePageItems } from '@/graphql/services/item.client'
@@ -9,14 +10,20 @@ import { useAppTranslation } from '@/hooks/use-app-translation'
 import { useDisclosure } from '@/hooks/use-disclosure'
 import { useLinks } from '@/hooks/use-links'
 import { usePriceFormatter } from '@/hooks/use-price-formatter'
+import { cn } from '@/lib/tailwind/tailwind-utils'
+import { _selectObjectById } from '@/utils/arrays'
+import { _isEmpty } from '@/utils/common'
 import { Dialog, Transition } from '@headlessui/react'
+import { BiBasket } from '@react-icons/all-files/bi/BiBasket'
 import { BiX } from '@react-icons/all-files/bi/BiX'
+import { Button } from '@ui/main/forms/button/Button'
 import { RadioGroup } from '@ui/main/forms/radio/RadioGroup'
 import { DividerWithLabel } from '@ui/main/layout/divider/DividerWithLabel'
 import { LoadingSpinner } from '@ui/shared/loading-spinner/LoadingSpinner'
+import ShowOnly from '@ui/shared/show-only/ShowOnly'
 import _ from 'lodash'
 import Image from 'next/image'
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 
 interface TableItemListProps {
    children?: React.ReactNode
@@ -68,6 +75,18 @@ export const TableItemList: React.FC<TableItemListProps> = (props) => {
    
 }
 
+export const formatItemSelectionDefaultValues = (props: HomePageCategories[number]['items'][number]) => {
+   const variations: ItemVariation[] = props?.variations
+   const options: ItemChoice[] = props?.choices
+   return {
+      variations: !_isEmpty(variations) ? [...variations.map((n) => ({ id: n.id, selected: n.options[0] ? [n.options[0].id!] : [] }))] : [],
+      choices: !_isEmpty(options) ? [...options.map((n) => ({ id: n.id, selected: n.options[0] ? [n.options[0].id!] : [] }))] : [],
+      quantity: 1,
+   }
+}
+
+export type ItemSelection = ReturnType<typeof formatItemSelectionDefaultValues>
+
 interface ItemProps {
    children?: React.ReactNode
    item: HomePageCategories[number]['items'][number]
@@ -80,11 +99,49 @@ const Item = (props: ItemProps) => {
    const modal = useDisclosure(false)
    const priceFormatter = usePriceFormatter()
    
+   const [selection, setSelection] = useState<ItemSelection>(formatItemSelectionDefaultValues(item) as ItemSelection)
+   
+   const { getItems, getItem, addItem, removeItem } = useOrderCart((cart) => {
+      if (!!_selectObjectById<CartItem>(item.id)(cart)?.selection) {
+         setSelection(_selectObjectById<CartItem>(item.id)(cart)!.selection)
+      }
+   })
+   
+   
+   useEffect(() => {
+      if (getItem(item.id)?.selection) {
+         setSelection(getItem(item.id)!.selection)
+      }
+   }, [getItems()])
+   
+   const handleChangeSelection = (type: 'choices' | 'variations', id: string, selected: string[]) => {
+      setSelection(prev => {
+         let target = _.find(selection[type], n => n.id === id)
+         if (target) {
+            const arr = {
+               ...prev,
+               [type]: prev[type].map(n => {
+                  if (n.id === id) {
+                     return { ...n, selected }
+                  }
+               }) as any,
+            }
+            return arr
+         }
+         return prev
+      })
+   }
+   
    
    return <>
       <div className="py-4 sm:flex cursor-pointer" onClick={modal.open}>
          <div className="flex space-x-4 sm:min-w-0 sm:flex-1 sm:space-x-6 lg:space-x-8">
-            <div className="h-24 w-24 flex-none rounded-md object-cover object-center sm:h-24 sm:w-24 relative overflow-hidden">
+            <div
+               className={cn(
+                  "h-24 w-24 flex-none rounded-md object-cover object-center sm:h-24 sm:w-24 relative overflow-hidden",
+                  !!getItem(item.id) && 'border-4 border-brand-500',
+               )}
+            >
                <Image
                   src={item.images.main}
                   alt={item.description ?? ''}
@@ -96,13 +153,23 @@ const Item = (props: ItemProps) => {
                />
             </div>
             <div className="min-w-0 flex-1 pt-1.5 sm:pt-0">
-               <h3 className="text-md font-semibold text-gray-900">
+               <h3
+                  className={cn(
+                     "text-md font-semibold text-gray-900",
+                     !!getItem(item.id) && 'text-brand-500',
+                  )}
+               >
                   <p>{item.name}</p>
                </h3>
                <p className="truncate text-sm text-gray-500">
                   <span>{item.description}</span>
                </p>
-               <p className="mt-1 font-bold text-gray-900">{priceFormatter.toFormat(item.price)}</p>
+               <ShowOnly when={!getItem(item.id)}>
+                  <p className="mt-1 font-bold text-gray-900">{priceFormatter.toFormat(item.price)}</p>
+               </ShowOnly>
+               <ShowOnly when={!!getItem(item.id)}>
+                  <BiBasket className="text-brand-500 mt-3 text-lg" />
+               </ShowOnly>
             </div>
          </div>
       </div>
@@ -143,7 +210,7 @@ const Item = (props: ItemProps) => {
                                  </div>
                               </div>
                               {/* Main */}
-                              <div className="pb-16">
+                              <div className="pb-[8rem]">
                                  <div className="pb-1 sm:pb-6">
                                     <div>
                                        <div className="relative h-56 sm:h-56">
@@ -170,11 +237,12 @@ const Item = (props: ItemProps) => {
                                                 <p className="text-sm text-gray-500">{item.description}</p>
                                              </div>
                                           </div>
+   
                                           <DividerWithLabel></DividerWithLabel>
-                                          
+   
                                           <div className="">
-                                             {(item.choices as ItemChoice[]).filter(n => n.available).map(choice => {
-                                                return <div className="space-y-1 mt-4">
+                                             {(item.choices as ItemChoice[]).filter(n => n.available).map((choice, index) => {
+                                                return <div className="space-y-1 mt-4" key={choice.id}>
                                                    <p className="font-bold mb-2">{choice.name}
                                                       <span className="ml-2.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400">
                                                          <span className="sr-only">Online</span>
@@ -187,17 +255,18 @@ const Item = (props: ItemProps) => {
                                                       radioControlClassName="absolute right-2 top-2 h-5 w-5 text-xs"
                                                       radioLabelClassName="font-medium flex-none flex"
                                                       radioHelpClassName="text-sm"
-                                                      defaultValue={choice.options[0]?.value}
+                                                      value={_.find(selection.choices, n => n.id === choice.id)!.selected[0]}
                                                       options={choice.options.filter(n => n.available).map(option => ({
-                                                         value: option.value,
+                                                         value: option.id,
                                                          label: option.value,
                                                       }))}
+                                                      onChange={v => handleChangeSelection('choices', choice.id, v ? [v] : [])}
                                                    />
                                                 </div>
                                              })}
                                              
                                              {(item.variations as ItemVariation[]).filter(n => n.available).map(variation => {
-                                                return <div className="space-y-1 mt-4">
+                                                return <div className="space-y-1 mt-4" key={variation.id}>
                                                    <p className="font-bold mb-2">{variation.name}
                                                       <span className="ml-2.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400">
                                                          <span className="sr-only">Online</span>
@@ -210,16 +279,40 @@ const Item = (props: ItemProps) => {
                                                       radioControlClassName="absolute right-2 top-2 h-5 w-5 text-xs"
                                                       radioLabelClassName="font-medium flex-none flex"
                                                       radioHelpClassName="text-sm"
-                                                      defaultValue={variation.options[0]?.value}
+                                                      value={_.find(selection.variations, n => n.id === variation.id)!.selected[0]}
                                                       options={variation.options.filter(n => n.available).map(option => ({
-                                                         value: option.value,
+                                                         value: option.id,
                                                          label: <>{option.value}{option.price > 0 && ` (+${priceFormatter.toFormat(option.price)})`}</>,
                                                       }))}
+                                                      onChange={v => handleChangeSelection('variations', variation.id, v ? [v] : [])}
                                                    />
                                                 </div>
                                              })}
                                           </div>
-                                       
+   
+                                          {/*TODO: Quantity*/}
+   
+                                          <ShowOnly when={!getItem(item.id)}>
+                                             <Button
+                                                onClick={() => {
+                                                   addItem(item, selection)
+                                                }}
+                                             >Add item</Button>
+                                          </ShowOnly>
+   
+                                          <ShowOnly when={!!getItem(item.id)}>
+                                             <Button
+                                                intent="primary-outline" onClick={() => {
+                                                addItem(item, selection)
+                                             }} className="mr-2"
+                                             >Update item</Button>
+                                             <Button
+                                                intent="alert-outline" onClick={() => {
+                                                removeItem(item.id)
+                                             }}
+                                             >Remove item</Button>
+                                          </ShowOnly>
+
                                        </div>
                                     </div>
                                  </div>

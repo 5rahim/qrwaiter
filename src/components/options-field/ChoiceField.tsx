@@ -7,7 +7,6 @@ import { IoMdAddCircle } from '@react-icons/all-files/io/IoMdAddCircle'
 import { Button } from '@ui/main/forms/button/Button'
 import { IconButton } from '@ui/main/forms/button/IconButton'
 import { TextInput } from '@ui/main/forms/input/TextInput'
-import { RadioGroup } from '@ui/main/forms/radio/RadioGroup'
 import { Switch } from '@ui/main/forms/switch/Switch'
 import _ from 'lodash'
 import React, { useEffect, useState } from 'react'
@@ -122,18 +121,18 @@ export const ChoiceField = React.forwardRef<HTMLDivElement, ChoiceFieldProps>((p
                               error={choice.options.length > 0 && choice.name.length === 0 ? 'Required' : undefined}
                               //{...register(`${name}.${index}.name` as const)}
                            />
-                           <RadioGroup
-                              fieldClassName="mt-2 flex w-full"
-                              fieldLabelClassName="text-base sm:text-base md:text-base"
-                              stackClassName="flex flex-row gap-2 p-1 bg-gray-100 rounded-md w-[fit-content]"
-                              radioWrapperClassName="block w-[fit-content] py-1 px-3 cursor-pointer transition rounded-md data-checked:bg-white data-checked:shadow-md text-gray-500 data-checked:text-black"
-                              radioControlClassName="hidden"
-                              radioLabelClassName="font-semibold flex-none flex"
-                              radioHelpClassName="text-base"
-                              value={choice.type}
-                              onChange={v => editChoice(choice.id, 'type', v)}
-                              options={[{ value: 'single', label: 'One selection' }, { value: 'multiple', label: 'Multiple selections' }]}
-                           />
+                           {/*<RadioGroup*/}
+                           {/*   fieldClassName="mt-2 flex w-full"*/}
+                           {/*   fieldLabelClassName="text-base sm:text-base md:text-base"*/}
+                           {/*   stackClassName="flex flex-row gap-2 p-1 bg-gray-100 rounded-md w-[fit-content]"*/}
+                           {/*   radioWrapperClassName="block w-[fit-content] py-1 px-3 cursor-pointer transition rounded-md data-checked:bg-white data-checked:shadow-md text-gray-500 data-checked:text-black"*/}
+                           {/*   radioControlClassName="hidden"*/}
+                           {/*   radioLabelClassName="font-semibold flex-none flex"*/}
+                           {/*   radioHelpClassName="text-base"*/}
+                           {/*   value={choice.type}*/}
+                           {/*   onChange={v => editChoice(choice.id, 'type', v)}*/}
+                           {/*   options={[{ value: 'single', label: 'One selection' }, { value: 'multiple', label: 'Multiple selections' }]}*/}
+                           {/*/>*/}
                            <Switch
                               name="available"
                               label="Available"

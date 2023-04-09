@@ -64,11 +64,6 @@ export const RadioGroup = React.forwardRef<HTMLInputElement, RadioGroupProps>((p
       checkedIcon,
    }, basicFieldProps] = extractBasicFieldProps<RadioGroupProps>(props, useId())
    
-   useEffect(() => {
-      defaultValue && api.setValue(defaultValue)
-   }, [])
-   
-   
    const [state, send] = useMachine(radio.machine({
       id: basicFieldProps.id,
       value,
@@ -81,6 +76,16 @@ export const RadioGroup = React.forwardRef<HTMLInputElement, RadioGroupProps>((p
    }))
    
    const api = radio.connect(state, send, normalizeProps)
+   
+   useEffect(() => {
+      defaultValue && api.setValue(defaultValue)
+   }, [])
+   
+   useEffect(() => {
+      if (value) {
+         api.setValue(value)
+      }
+   }, [value])
    
    return (
       <>

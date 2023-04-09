@@ -52,6 +52,7 @@ export type HomePageCategories = DB_GetHomePageCategoriesQuery['categories']
 
 export type Items = DB_GetItemsQuery['items']
 export type Item = DB_GetItemQuery['items_by_pk']
+export type MenuItem = HomePageCategories[number]['items'][number]
 
 //
 
