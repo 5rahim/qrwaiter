@@ -69,6 +69,7 @@
     "react-hot-toast": "^2.4.0",
     "react-i18next": "^12.2.0",
     "react-phone-number-input": "^3.2.19",
+    "react-qr-code": "^2.0.11",
     "react-stately": "^3.21.0",
     "recharts": "^2.4.3",
     "superjson": "1.12.2",
