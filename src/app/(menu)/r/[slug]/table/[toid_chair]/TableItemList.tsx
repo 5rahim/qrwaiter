@@ -235,6 +235,12 @@ const Item = (props: ItemProps) => {
                                                    </span>
                                                 </div>
                                                 <p className="text-sm text-gray-500">{item.description}</p>
+                                                
+                                                {/*Show allergens*/}
+                                                <ShowOnly when={item.allergens.length && item.allergens.length > 0}>
+                                                   <p className="mt-2">Allergens: <span className="font-medium">{item.allergens.join(', ')}</span>.</p>
+                                                </ShowOnly>
+                                                
                                              </div>
                                           </div>
    
