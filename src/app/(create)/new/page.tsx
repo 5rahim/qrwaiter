@@ -45,8 +45,8 @@ export default async function Page() {
                      </h1>
                      
                      <p className="mt-4 leading-relaxed text-gray-500 mb-4">
-                        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi nam
-                        dolorum aliquam, quibusdam aperiam voluptatum.
+                        Simple, fast, effective QR Code restaurant menu for dine-in ordering. Our platform supports group orders, real-time updates
+                        and many more features.
                      </p>
                      
                      
