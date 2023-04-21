@@ -225,7 +225,7 @@ const Item = (props: ItemProps) => {
                                           />
                                        </div>
                                        {/*TODO: Show all images */}
-                                       <div className="mt-6 px-4 sm:mt-8 sm:flex sm:items-end sm:px-6 space-y-4">
+                                       <div className="mt-6 px-4 sm:mt-8 sm:items-end sm:px-6 space-y-4">
                                           <div className="sm:flex-1">
                                              <div>
                                                 <div className="flex items-center">
@@ -250,7 +250,7 @@ const Item = (props: ItemProps) => {
                                                    <RadioGroup
                                                       fieldClassName="flex w-full"
                                                       fieldLabelClassName="text-base sm:text-base md:text-base"
-                                                      stackClassName="flex flex-col md:flex-row gap-2"
+                                                      stackClassName="flex flex-col gap-2"
                                                       radioWrapperClassName="block w-full p-2 cursor-pointer transition border border-gray-200 rounded-md data-checked:bg-white data-checked:ring-2 data-checked:ring-brand-500"
                                                       radioControlClassName="absolute right-2 top-2 h-5 w-5 text-xs"
                                                       radioLabelClassName="font-medium flex-none flex"
@@ -274,7 +274,7 @@ const Item = (props: ItemProps) => {
                                                    <RadioGroup
                                                       fieldClassName="flex w-full"
                                                       fieldLabelClassName="text-base sm:text-base md:text-base"
-                                                      stackClassName="flex flex-col md:flex-row gap-2"
+                                                      stackClassName="flex flex-col gap-2"
                                                       radioWrapperClassName="block w-full p-2 cursor-pointer transition border border-gray-200 rounded-md data-checked:bg-white data-checked:ring-2 data-checked:ring-brand-500"
                                                       radioControlClassName="absolute right-2 top-2 h-5 w-5 text-xs"
                                                       radioLabelClassName="font-medium flex-none flex"
