@@ -1,7 +1,6 @@
-import { useMutation, UseMutationOptions, useQuery, UseQueryOptions } from '@tanstack/react-query'
-import { GraphQLClient } from 'graphql-request'
-import { RequestInit } from 'graphql-request/dist/types.dom'
-
+import { GraphQLClient } from 'graphql-request';
+import { RequestInit } from 'graphql-request/dist/types.dom';
+import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from '@tanstack/react-query';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -12,8 +11,8 @@ function fetcher<TData, TVariables extends { [key: string]: any }>(client: Graph
   return async (): Promise<TData> => client.request({
     document: query,
     variables,
-    requestHeaders,
-  })
+    requestHeaders
+  });
 }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
@@ -210,8 +209,8 @@ export type DB_Accounts_Bool_Exp = {
 
 /** unique or primary key constraints on table "accounts" */
 export type DB_Accounts_Constraint =
-/** unique or primary key constraint on columns "id" */
-   | 'accounts_pkey';
+  /** unique or primary key constraint on columns "id" */
+  | 'accounts_pkey';
 
 /** input type for incrementing numeric columns in table "accounts" */
 export type DB_Accounts_Inc_Input = {
@@ -360,36 +359,36 @@ export type DB_Accounts_Pk_Columns_Input = {
 
 /** select columns of table "accounts" */
 export type DB_Accounts_Select_Column =
-/** column name */
-   | 'access_token'
-   /** column name */
-   | 'expires_at'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'id_token'
-   /** column name */
-   | 'oauth_token'
-   /** column name */
-   | 'oauth_token_secret'
-   /** column name */
-   | 'provider'
-   /** column name */
-   | 'providerAccountId'
-   /** column name */
-   | 'refresh_token'
-   /** column name */
-   | 'refresh_token_expires_in'
-   /** column name */
-   | 'scope'
-   /** column name */
-   | 'session_state'
-   /** column name */
-   | 'token_type'
-   /** column name */
-   | 'type'
-   /** column name */
-   | 'userId';
+  /** column name */
+  | 'access_token'
+  /** column name */
+  | 'expires_at'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'id_token'
+  /** column name */
+  | 'oauth_token'
+  /** column name */
+  | 'oauth_token_secret'
+  /** column name */
+  | 'provider'
+  /** column name */
+  | 'providerAccountId'
+  /** column name */
+  | 'refresh_token'
+  /** column name */
+  | 'refresh_token_expires_in'
+  /** column name */
+  | 'scope'
+  /** column name */
+  | 'session_state'
+  /** column name */
+  | 'token_type'
+  /** column name */
+  | 'type'
+  /** column name */
+  | 'userId';
 
 /** input type for updating data in table "accounts" */
 export type DB_Accounts_Set_Input = {
@@ -491,36 +490,36 @@ export type DB_Accounts_Sum_Order_By = {
 
 /** update columns of table "accounts" */
 export type DB_Accounts_Update_Column =
-/** column name */
-   | 'access_token'
-   /** column name */
-   | 'expires_at'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'id_token'
-   /** column name */
-   | 'oauth_token'
-   /** column name */
-   | 'oauth_token_secret'
-   /** column name */
-   | 'provider'
-   /** column name */
-   | 'providerAccountId'
-   /** column name */
-   | 'refresh_token'
-   /** column name */
-   | 'refresh_token_expires_in'
-   /** column name */
-   | 'scope'
-   /** column name */
-   | 'session_state'
-   /** column name */
-   | 'token_type'
-   /** column name */
-   | 'type'
-   /** column name */
-   | 'userId';
+  /** column name */
+  | 'access_token'
+  /** column name */
+  | 'expires_at'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'id_token'
+  /** column name */
+  | 'oauth_token'
+  /** column name */
+  | 'oauth_token_secret'
+  /** column name */
+  | 'provider'
+  /** column name */
+  | 'providerAccountId'
+  /** column name */
+  | 'refresh_token'
+  /** column name */
+  | 'refresh_token_expires_in'
+  /** column name */
+  | 'scope'
+  /** column name */
+  | 'session_state'
+  /** column name */
+  | 'token_type'
+  /** column name */
+  | 'type'
+  /** column name */
+  | 'userId';
 
 export type DB_Accounts_Updates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -708,8 +707,8 @@ export type DB_Categories_Bool_Exp = {
 
 /** unique or primary key constraints on table "categories" */
 export type DB_Categories_Constraint =
-/** unique or primary key constraint on columns "id" */
-   | 'categories_pkey';
+  /** unique or primary key constraint on columns "id" */
+  | 'categories_pkey';
 
 /** input type for incrementing numeric columns in table "categories" */
 export type DB_Categories_Inc_Input = {
@@ -800,14 +799,14 @@ export type DB_Categories_Pk_Columns_Input = {
 
 /** select columns of table "categories" */
 export type DB_Categories_Select_Column =
-/** column name */
-   | 'id'
-   /** column name */
-   | 'name'
-   /** column name */
-   | 'order'
-   /** column name */
-   | 'restaurant_id';
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'order'
+  /** column name */
+  | 'restaurant_id';
 
 /** input type for updating data in table "categories" */
 export type DB_Categories_Set_Input = {
@@ -879,14 +878,14 @@ export type DB_Categories_Sum_Order_By = {
 
 /** update columns of table "categories" */
 export type DB_Categories_Update_Column =
-/** column name */
-   | 'id'
-   /** column name */
-   | 'name'
-   /** column name */
-   | 'order'
-   /** column name */
-   | 'restaurant_id';
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'order'
+  /** column name */
+  | 'restaurant_id';
 
 export type DB_Categories_Updates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -932,10 +931,10 @@ export type DB_Categories_Variance_Order_By = {
 
 /** ordering argument of a cursor */
 export type DB_Cursor_Ordering =
-/** ascending ordering of the cursor */
-   | 'ASC'
-   /** descending ordering of the cursor */
-   | 'DESC';
+  /** ascending ordering of the cursor */
+  | 'ASC'
+  /** descending ordering of the cursor */
+  | 'DESC';
 
 /** columns and relationships of "items" */
 export type DB_Items = {
@@ -1103,8 +1102,8 @@ export type DB_Items_Bool_Exp = {
 
 /** unique or primary key constraints on table "items" */
 export type DB_Items_Constraint =
-/** unique or primary key constraint on columns "id" */
-   | 'items_pkey';
+  /** unique or primary key constraint on columns "id" */
+  | 'items_pkey';
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type DB_Items_Delete_At_Path_Input = {
@@ -1248,40 +1247,40 @@ export type DB_Items_Prepend_Input = {
 
 /** select columns of table "items" */
 export type DB_Items_Select_Column =
-/** column name */
-   | 'allergens'
-   /** column name */
-   | 'available'
-   /** column name */
-   | 'category_id'
-   /** column name */
-   | 'choices'
-   /** column name */
-   | 'created_at'
-   /** column name */
-   | 'description'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'images'
-   /** column name */
-   | 'name'
-   /** column name */
-   | 'price'
-   /** column name */
-   | 'restaurant_id'
-   /** column name */
-   | 'variations';
+  /** column name */
+  | 'allergens'
+  /** column name */
+  | 'available'
+  /** column name */
+  | 'category_id'
+  /** column name */
+  | 'choices'
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'description'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'images'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'price'
+  /** column name */
+  | 'restaurant_id'
+  /** column name */
+  | 'variations';
 
 /** select "items_aggregate_bool_exp_bool_and_arguments_columns" columns of table "items" */
 export type DB_Items_Select_Column_Items_Aggregate_Bool_Exp_Bool_And_Arguments_Columns =
-/** column name */
-   | 'available';
+  /** column name */
+  | 'available';
 
 /** select "items_aggregate_bool_exp_bool_or_arguments_columns" columns of table "items" */
 export type DB_Items_Select_Column_Items_Aggregate_Bool_Exp_Bool_Or_Arguments_Columns =
-/** column name */
-   | 'available';
+  /** column name */
+  | 'available';
 
 /** input type for updating data in table "items" */
 export type DB_Items_Set_Input = {
@@ -1369,30 +1368,30 @@ export type DB_Items_Sum_Order_By = {
 
 /** update columns of table "items" */
 export type DB_Items_Update_Column =
-/** column name */
-   | 'allergens'
-   /** column name */
-   | 'available'
-   /** column name */
-   | 'category_id'
-   /** column name */
-   | 'choices'
-   /** column name */
-   | 'created_at'
-   /** column name */
-   | 'description'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'images'
-   /** column name */
-   | 'name'
-   /** column name */
-   | 'price'
-   /** column name */
-   | 'restaurant_id'
-   /** column name */
-   | 'variations';
+  /** column name */
+  | 'allergens'
+  /** column name */
+  | 'available'
+  /** column name */
+  | 'category_id'
+  /** column name */
+  | 'choices'
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'description'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'images'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'price'
+  /** column name */
+  | 'restaurant_id'
+  /** column name */
+  | 'variations';
 
 export type DB_Items_Updates = {
   /** append existing jsonb value of filtered columns with new jsonb value */
@@ -2263,18 +2262,18 @@ export type DB_Mutation_RootUpdate_Verification_Tokens_ManyArgs = {
 
 /** column ordering options */
 export type DB_Order_By =
-/** in ascending order, nulls last */
-   | 'asc'
-   /** in ascending order, nulls first */
-   | 'asc_nulls_first'
-   /** in ascending order, nulls last */
-   | 'asc_nulls_last'
-   /** in descending order, nulls first */
-   | 'desc'
-   /** in descending order, nulls first */
-   | 'desc_nulls_first'
-   /** in descending order, nulls last */
-   | 'desc_nulls_last';
+  /** in ascending order, nulls last */
+  | 'asc'
+  /** in ascending order, nulls first */
+  | 'asc_nulls_first'
+  /** in ascending order, nulls last */
+  | 'asc_nulls_last'
+  /** in descending order, nulls first */
+  | 'desc'
+  /** in descending order, nulls first */
+  | 'desc_nulls_first'
+  /** in descending order, nulls last */
+  | 'desc_nulls_last';
 
 /** columns and relationships of "orders" */
 export type DB_Orders = {
@@ -2400,8 +2399,8 @@ export type DB_Orders_Bool_Exp = {
 
 /** unique or primary key constraints on table "orders" */
 export type DB_Orders_Constraint =
-/** unique or primary key constraint on columns "id" */
-   | 'orders_pkey';
+  /** unique or primary key constraint on columns "id" */
+  | 'orders_pkey';
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type DB_Orders_Delete_At_Path_Input = {
@@ -2526,22 +2525,22 @@ export type DB_Orders_Prepend_Input = {
 
 /** select columns of table "orders" */
 export type DB_Orders_Select_Column =
-/** column name */
-   | 'chair_number'
-   /** column name */
-   | 'created_at'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'items'
-   /** column name */
-   | 'subtotal'
-   /** column name */
-   | 'table_order_id'
-   /** column name */
-   | 'total'
-   /** column name */
-   | 'total_tax';
+  /** column name */
+  | 'chair_number'
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'items'
+  /** column name */
+  | 'subtotal'
+  /** column name */
+  | 'table_order_id'
+  /** column name */
+  | 'total'
+  /** column name */
+  | 'total_tax';
 
 /** input type for updating data in table "orders" */
 export type DB_Orders_Set_Input = {
@@ -2645,22 +2644,22 @@ export type DB_Orders_Sum_Order_By = {
 
 /** update columns of table "orders" */
 export type DB_Orders_Update_Column =
-/** column name */
-   | 'chair_number'
-   /** column name */
-   | 'created_at'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'items'
-   /** column name */
-   | 'subtotal'
-   /** column name */
-   | 'table_order_id'
-   /** column name */
-   | 'total'
-   /** column name */
-   | 'total_tax';
+  /** column name */
+  | 'chair_number'
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'items'
+  /** column name */
+  | 'subtotal'
+  /** column name */
+  | 'table_order_id'
+  /** column name */
+  | 'total'
+  /** column name */
+  | 'total_tax';
 
 export type DB_Orders_Updates = {
   /** append existing jsonb value of filtered columns with new jsonb value */
@@ -3154,10 +3153,10 @@ export type DB_Restaurant_Administrators_Bool_Exp = {
 
 /** unique or primary key constraints on table "restaurant_administrators" */
 export type DB_Restaurant_Administrators_Constraint =
-/** unique or primary key constraint on columns "id" */
-   | 'restaurant_administrators_pkey'
-   /** unique or primary key constraint on columns "user_id" */
-   | 'restaurant_administrators_user_id_key';
+  /** unique or primary key constraint on columns "id" */
+  | 'restaurant_administrators_pkey'
+  /** unique or primary key constraint on columns "user_id" */
+  | 'restaurant_administrators_user_id_key';
 
 /** input type for inserting data into table "restaurant_administrators" */
 export type DB_Restaurant_Administrators_Insert_Input = {
@@ -3228,12 +3227,12 @@ export type DB_Restaurant_Administrators_Pk_Columns_Input = {
 
 /** select columns of table "restaurant_administrators" */
 export type DB_Restaurant_Administrators_Select_Column =
-/** column name */
-   | 'id'
-   /** column name */
-   | 'restaurant_id'
-   /** column name */
-   | 'user_id';
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'restaurant_id'
+  /** column name */
+  | 'user_id';
 
 /** input type for updating data in table "restaurant_administrators" */
 export type DB_Restaurant_Administrators_Set_Input = {
@@ -3259,12 +3258,12 @@ export type DB_Restaurant_Administrators_Stream_Cursor_Value_Input = {
 
 /** update columns of table "restaurant_administrators" */
 export type DB_Restaurant_Administrators_Update_Column =
-/** column name */
-   | 'id'
-   /** column name */
-   | 'restaurant_id'
-   /** column name */
-   | 'user_id';
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'restaurant_id'
+  /** column name */
+  | 'user_id';
 
 export type DB_Restaurant_Administrators_Updates = {
   /** sets the columns of the filtered rows to the given values */
@@ -3439,12 +3438,12 @@ export type DB_Restaurants_Bool_Exp = {
 
 /** unique or primary key constraints on table "restaurants" */
 export type DB_Restaurants_Constraint =
-/** unique or primary key constraint on columns "id" */
-   | 'restaurants_id_key'
-   /** unique or primary key constraint on columns "id" */
-   | 'restaurants_pkey'
-   /** unique or primary key constraint on columns "slug" */
-   | 'restaurants_slug_key';
+  /** unique or primary key constraint on columns "id" */
+  | 'restaurants_id_key'
+  /** unique or primary key constraint on columns "id" */
+  | 'restaurants_pkey'
+  /** unique or primary key constraint on columns "slug" */
+  | 'restaurants_slug_key';
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type DB_Restaurants_Delete_At_Path_Input = {
@@ -3546,18 +3545,18 @@ export type DB_Restaurants_Prepend_Input = {
 
 /** select columns of table "restaurants" */
 export type DB_Restaurants_Select_Column =
-/** column name */
-   | 'customization'
-   /** column name */
-   | 'description'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'name'
-   /** column name */
-   | 'owner_id'
-   /** column name */
-   | 'slug';
+  /** column name */
+  | 'customization'
+  /** column name */
+  | 'description'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'owner_id'
+  /** column name */
+  | 'slug';
 
 /** input type for updating data in table "restaurants" */
 export type DB_Restaurants_Set_Input = {
@@ -3589,18 +3588,18 @@ export type DB_Restaurants_Stream_Cursor_Value_Input = {
 
 /** update columns of table "restaurants" */
 export type DB_Restaurants_Update_Column =
-/** column name */
-   | 'customization'
-   /** column name */
-   | 'description'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'name'
-   /** column name */
-   | 'owner_id'
-   /** column name */
-   | 'slug';
+  /** column name */
+  | 'customization'
+  /** column name */
+  | 'description'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'owner_id'
+  /** column name */
+  | 'slug';
 
 export type DB_Restaurants_Updates = {
   /** append existing jsonb value of filtered columns with new jsonb value */
@@ -3691,8 +3690,8 @@ export type DB_Sessions_Bool_Exp = {
 
 /** unique or primary key constraints on table "sessions" */
 export type DB_Sessions_Constraint =
-/** unique or primary key constraint on columns "id" */
-   | 'sessions_pkey';
+  /** unique or primary key constraint on columns "id" */
+  | 'sessions_pkey';
 
 /** input type for inserting data into table "sessions" */
 export type DB_Sessions_Insert_Input = {
@@ -3769,14 +3768,14 @@ export type DB_Sessions_Pk_Columns_Input = {
 
 /** select columns of table "sessions" */
 export type DB_Sessions_Select_Column =
-/** column name */
-   | 'expires'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'sessionToken'
-   /** column name */
-   | 'userId';
+  /** column name */
+  | 'expires'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'sessionToken'
+  /** column name */
+  | 'userId';
 
 /** input type for updating data in table "sessions" */
 export type DB_Sessions_Set_Input = {
@@ -3804,14 +3803,14 @@ export type DB_Sessions_Stream_Cursor_Value_Input = {
 
 /** update columns of table "sessions" */
 export type DB_Sessions_Update_Column =
-/** column name */
-   | 'expires'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'sessionToken'
-   /** column name */
-   | 'userId';
+  /** column name */
+  | 'expires'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'sessionToken'
+  /** column name */
+  | 'userId';
 
 export type DB_Sessions_Updates = {
   /** sets the columns of the filtered rows to the given values */
@@ -4350,8 +4349,8 @@ export type DB_Supermarket_Items_Bool_Exp = {
 
 /** unique or primary key constraints on table "supermarket_items" */
 export type DB_Supermarket_Items_Constraint =
-/** unique or primary key constraint on columns "id" */
-   | 'supermarket_items_pkey';
+  /** unique or primary key constraint on columns "id" */
+  | 'supermarket_items_pkey';
 
 /** input type for incrementing numeric columns in table "supermarket_items" */
 export type DB_Supermarket_Items_Inc_Input = {
@@ -4437,24 +4436,24 @@ export type DB_Supermarket_Items_Pk_Columns_Input = {
 
 /** select columns of table "supermarket_items" */
 export type DB_Supermarket_Items_Select_Column =
-/** column name */
-   | 'code'
-   /** column name */
-   | 'created_at'
-   /** column name */
-   | 'description'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'name'
-   /** column name */
-   | 'price'
-   /** column name */
-   | 'quantity'
-   /** column name */
-   | 'quantity_sold'
-   /** column name */
-   | 'supplier';
+  /** column name */
+  | 'code'
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'description'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'price'
+  /** column name */
+  | 'quantity'
+  /** column name */
+  | 'quantity_sold'
+  /** column name */
+  | 'supplier';
 
 /** input type for updating data in table "supermarket_items" */
 export type DB_Supermarket_Items_Set_Input = {
@@ -4524,24 +4523,24 @@ export type DB_Supermarket_Items_Sum_Fields = {
 
 /** update columns of table "supermarket_items" */
 export type DB_Supermarket_Items_Update_Column =
-/** column name */
-   | 'code'
-   /** column name */
-   | 'created_at'
-   /** column name */
-   | 'description'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'name'
-   /** column name */
-   | 'price'
-   /** column name */
-   | 'quantity'
-   /** column name */
-   | 'quantity_sold'
-   /** column name */
-   | 'supplier';
+  /** column name */
+  | 'code'
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'description'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'price'
+  /** column name */
+  | 'quantity'
+  /** column name */
+  | 'quantity_sold'
+  /** column name */
+  | 'supplier';
 
 export type DB_Supermarket_Items_Updates = {
   /** increments the numeric columns with given value of the filtered values */
@@ -4689,8 +4688,8 @@ export type DB_Table_Orders_Bool_Exp = {
 
 /** unique or primary key constraints on table "table_orders" */
 export type DB_Table_Orders_Constraint =
-/** unique or primary key constraint on columns "id" */
-   | 'table_orders_pkey';
+  /** unique or primary key constraint on columns "id" */
+  | 'table_orders_pkey';
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type DB_Table_Orders_Delete_At_Path_Input = {
@@ -4804,18 +4803,18 @@ export type DB_Table_Orders_Prepend_Input = {
 
 /** select columns of table "table_orders" */
 export type DB_Table_Orders_Select_Column =
-/** column name */
-   | 'created_at'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'order_number'
-   /** column name */
-   | 'status'
-   /** column name */
-   | 'table_id'
-   /** column name */
-   | 'tokens';
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'order_number'
+  /** column name */
+  | 'status'
+  /** column name */
+  | 'table_id'
+  /** column name */
+  | 'tokens';
 
 /** input type for updating data in table "table_orders" */
 export type DB_Table_Orders_Set_Input = {
@@ -4847,18 +4846,18 @@ export type DB_Table_Orders_Stream_Cursor_Value_Input = {
 
 /** update columns of table "table_orders" */
 export type DB_Table_Orders_Update_Column =
-/** column name */
-   | 'created_at'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'order_number'
-   /** column name */
-   | 'status'
-   /** column name */
-   | 'table_id'
-   /** column name */
-   | 'tokens';
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'order_number'
+  /** column name */
+  | 'status'
+  /** column name */
+  | 'table_id'
+  /** column name */
+  | 'tokens';
 
 export type DB_Table_Orders_Updates = {
   /** append existing jsonb value of filtered columns with new jsonb value */
@@ -5019,8 +5018,8 @@ export type DB_Tables_Bool_Exp = {
 
 /** unique or primary key constraints on table "tables" */
 export type DB_Tables_Constraint =
-/** unique or primary key constraint on columns "id" */
-   | 'tables_pkey';
+  /** unique or primary key constraint on columns "id" */
+  | 'tables_pkey';
 
 /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
 export type DB_Tables_Delete_At_Path_Input = {
@@ -5140,18 +5139,18 @@ export type DB_Tables_Prepend_Input = {
 
 /** select columns of table "tables" */
 export type DB_Tables_Select_Column =
-/** column name */
-   | 'id'
-   /** column name */
-   | 'name'
-   /** column name */
-   | 'no_of_chairs'
-   /** column name */
-   | 'order'
-   /** column name */
-   | 'qr_codes'
-   /** column name */
-   | 'restaurant_id';
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'no_of_chairs'
+  /** column name */
+  | 'order'
+  /** column name */
+  | 'qr_codes'
+  /** column name */
+  | 'restaurant_id';
 
 /** input type for updating data in table "tables" */
 export type DB_Tables_Set_Input = {
@@ -5235,18 +5234,18 @@ export type DB_Tables_Sum_Order_By = {
 
 /** update columns of table "tables" */
 export type DB_Tables_Update_Column =
-/** column name */
-   | 'id'
-   /** column name */
-   | 'name'
-   /** column name */
-   | 'no_of_chairs'
-   /** column name */
-   | 'order'
-   /** column name */
-   | 'qr_codes'
-   /** column name */
-   | 'restaurant_id';
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'no_of_chairs'
+  /** column name */
+  | 'order'
+  /** column name */
+  | 'qr_codes'
+  /** column name */
+  | 'restaurant_id';
 
 export type DB_Tables_Updates = {
   /** append existing jsonb value of filtered columns with new jsonb value */
@@ -5421,10 +5420,10 @@ export type DB_Users_Bool_Exp = {
 
 /** unique or primary key constraints on table "users" */
 export type DB_Users_Constraint =
-/** unique or primary key constraint on columns "email" */
-   | 'users_email_key'
-   /** unique or primary key constraint on columns "id" */
-   | 'users_pkey';
+  /** unique or primary key constraint on columns "email" */
+  | 'users_email_key'
+  /** unique or primary key constraint on columns "id" */
+  | 'users_pkey';
 
 /** input type for inserting data into table "users" */
 export type DB_Users_Insert_Input = {
@@ -5506,20 +5505,20 @@ export type DB_Users_Pk_Columns_Input = {
 
 /** select columns of table "users" */
 export type DB_Users_Select_Column =
-/** column name */
-   | 'created_at'
-   /** column name */
-   | 'email'
-   /** column name */
-   | 'emailVerified'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'image'
-   /** column name */
-   | 'name'
-   /** column name */
-   | 'role';
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'email'
+  /** column name */
+  | 'emailVerified'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'image'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'role';
 
 /** input type for updating data in table "users" */
 export type DB_Users_Set_Input = {
@@ -5553,20 +5552,20 @@ export type DB_Users_Stream_Cursor_Value_Input = {
 
 /** update columns of table "users" */
 export type DB_Users_Update_Column =
-/** column name */
-   | 'created_at'
-   /** column name */
-   | 'email'
-   /** column name */
-   | 'emailVerified'
-   /** column name */
-   | 'id'
-   /** column name */
-   | 'image'
-   /** column name */
-   | 'name'
-   /** column name */
-   | 'role';
+  /** column name */
+  | 'created_at'
+  /** column name */
+  | 'email'
+  /** column name */
+  | 'emailVerified'
+  /** column name */
+  | 'id'
+  /** column name */
+  | 'image'
+  /** column name */
+  | 'name'
+  /** column name */
+  | 'role';
 
 export type DB_Users_Updates = {
   /** sets the columns of the filtered rows to the given values */
@@ -5630,8 +5629,8 @@ export type DB_Verification_Tokens_Bool_Exp = {
 
 /** unique or primary key constraints on table "verification_tokens" */
 export type DB_Verification_Tokens_Constraint =
-/** unique or primary key constraint on columns "token" */
-   | 'verification_tokens_pkey';
+  /** unique or primary key constraint on columns "token" */
+  | 'verification_tokens_pkey';
 
 /** input type for inserting data into table "verification_tokens" */
 export type DB_Verification_Tokens_Insert_Input = {
@@ -5686,12 +5685,12 @@ export type DB_Verification_Tokens_Pk_Columns_Input = {
 
 /** select columns of table "verification_tokens" */
 export type DB_Verification_Tokens_Select_Column =
-/** column name */
-   | 'expires'
-   /** column name */
-   | 'identifier'
-   /** column name */
-   | 'token';
+  /** column name */
+  | 'expires'
+  /** column name */
+  | 'identifier'
+  /** column name */
+  | 'token';
 
 /** input type for updating data in table "verification_tokens" */
 export type DB_Verification_Tokens_Set_Input = {
@@ -5717,12 +5716,12 @@ export type DB_Verification_Tokens_Stream_Cursor_Value_Input = {
 
 /** update columns of table "verification_tokens" */
 export type DB_Verification_Tokens_Update_Column =
-/** column name */
-   | 'expires'
-   /** column name */
-   | 'identifier'
-   /** column name */
-   | 'token';
+  /** column name */
+  | 'expires'
+  /** column name */
+  | 'identifier'
+  /** column name */
+  | 'token';
 
 export type DB_Verification_Tokens_Updates = {
   /** sets the columns of the filtered rows to the given values */
@@ -5930,6 +5929,14 @@ export type DB_GetRestaurantByAdministratorIdQueryVariables = Exact<{
 
 
 export type DB_GetRestaurantByAdministratorIdQuery = { __typename?: 'query_root', restaurant_administrators: Array<{ __typename?: 'restaurant_administrators', id: any, user_id: any, restaurant_id: any, restaurant: { __typename?: 'restaurants', id: any, description?: string | null, customization: any, name: string, owner_id: any, slug: string } }> };
+
+export type DB_AddRestaurantAdministratorMutationVariables = Exact<{
+  restaurant_id: Scalars['uuid'];
+  user_id: Scalars['uuid'];
+}>;
+
+
+export type DB_AddRestaurantAdministratorMutation = { __typename?: 'mutation_root', insert_restaurant_administrators_one?: { __typename?: 'restaurant_administrators', id: any, user_id: any, restaurant_id: any, restaurant: { __typename?: 'restaurants', id: any, description?: string | null, customization: any, name: string, owner_id: any, slug: string } } | null };
 
 export type DB_UpdateRestaurantThemeMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -6148,7 +6155,7 @@ export const TableFragmentFragmentDoc = `
   name
   order
 }
-    `
+    `;
 export const GetCategoriesDocument = `
     query GetCategories($restaurant_id: uuid!) {
   categories(
@@ -6161,21 +6168,21 @@ export const GetCategoriesDocument = `
     order
   }
 }
-    `
+    `;
 export const useGetCategoriesQuery = <
-   TData = DB_GetCategoriesQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetCategoriesQueryVariables,
-   options?: UseQueryOptions<DB_GetCategoriesQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetCategoriesQuery, TError, TData>(
+      TData = DB_GetCategoriesQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetCategoriesQueryVariables,
+      options?: UseQueryOptions<DB_GetCategoriesQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetCategoriesQuery, TError, TData>(
       ['GetCategories', variables],
       fetcher<DB_GetCategoriesQuery, DB_GetCategoriesQueryVariables>(client, GetCategoriesDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const SubscribeCategoriesDocument = `
     subscription SubscribeCategories($restaurant_id: uuid!) {
   categories(where: {restaurant_id: {_eq: $restaurant_id}}) {
@@ -6185,7 +6192,7 @@ export const SubscribeCategoriesDocument = `
     order
   }
 }
-    `
+    `;
 export const GetHomePageCategoriesDocument = `
     query GetHomePageCategories($restaurant_id: uuid!) {
   categories(
@@ -6200,21 +6207,21 @@ export const GetHomePageCategoriesDocument = `
     }
   }
 }
-    ${ItemFragmentFragmentDoc}`
+    ${ItemFragmentFragmentDoc}`;
 export const useGetHomePageCategoriesQuery = <
-   TData = DB_GetHomePageCategoriesQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetHomePageCategoriesQueryVariables,
-   options?: UseQueryOptions<DB_GetHomePageCategoriesQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetHomePageCategoriesQuery, TError, TData>(
+      TData = DB_GetHomePageCategoriesQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetHomePageCategoriesQueryVariables,
+      options?: UseQueryOptions<DB_GetHomePageCategoriesQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetHomePageCategoriesQuery, TError, TData>(
       ['GetHomePageCategories', variables],
       fetcher<DB_GetHomePageCategoriesQuery, DB_GetHomePageCategoriesQueryVariables>(client, GetHomePageCategoriesDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const GetCategoryDocument = `
     query GetCategory($id: uuid!) {
   categories_by_pk(id: $id) {
@@ -6224,21 +6231,21 @@ export const GetCategoryDocument = `
     order
   }
 }
-    `
+    `;
 export const useGetCategoryQuery = <
-   TData = DB_GetCategoryQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetCategoryQueryVariables,
-   options?: UseQueryOptions<DB_GetCategoryQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetCategoryQuery, TError, TData>(
+      TData = DB_GetCategoryQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetCategoryQueryVariables,
+      options?: UseQueryOptions<DB_GetCategoryQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetCategoryQuery, TError, TData>(
       ['GetCategory', variables],
       fetcher<DB_GetCategoryQuery, DB_GetCategoryQueryVariables>(client, GetCategoryDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const CreateCategoryDocument = `
     mutation CreateCategory($name: String!, $restaurant_id: uuid!, $order: Int!) {
   insert_categories_one(
@@ -6247,20 +6254,20 @@ export const CreateCategoryDocument = `
     id
   }
 }
-    `
+    `;
 export const useCreateCategoryMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_CreateCategoryMutation, TError, DB_CreateCategoryMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_CreateCategoryMutation, TError, DB_CreateCategoryMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_CreateCategoryMutation, TError, DB_CreateCategoryMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_CreateCategoryMutation, TError, DB_CreateCategoryMutationVariables, TContext>(
       ['CreateCategory'],
       (variables?: DB_CreateCategoryMutationVariables) => fetcher<DB_CreateCategoryMutation, DB_CreateCategoryMutationVariables>(client, CreateCategoryDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const UpdateCategoryDocument = `
     mutation UpdateCategory($id: uuid!, $name: String!) {
   update_categories_by_pk(pk_columns: {id: $id}, _set: {name: $name}) {
@@ -6270,40 +6277,40 @@ export const UpdateCategoryDocument = `
     order
   }
 }
-    `
+    `;
 export const useUpdateCategoryMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_UpdateCategoryMutation, TError, DB_UpdateCategoryMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_UpdateCategoryMutation, TError, DB_UpdateCategoryMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_UpdateCategoryMutation, TError, DB_UpdateCategoryMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_UpdateCategoryMutation, TError, DB_UpdateCategoryMutationVariables, TContext>(
       ['UpdateCategory'],
       (variables?: DB_UpdateCategoryMutationVariables) => fetcher<DB_UpdateCategoryMutation, DB_UpdateCategoryMutationVariables>(client, UpdateCategoryDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const UpdateCategoryOrderDocument = `
     mutation UpdateCategoryOrder($order: [categories_updates!]!) {
   update_categories_many(updates: $order) {
     affected_rows
   }
 }
-    `
+    `;
 export const useUpdateCategoryOrderMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_UpdateCategoryOrderMutation, TError, DB_UpdateCategoryOrderMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_UpdateCategoryOrderMutation, TError, DB_UpdateCategoryOrderMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_UpdateCategoryOrderMutation, TError, DB_UpdateCategoryOrderMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_UpdateCategoryOrderMutation, TError, DB_UpdateCategoryOrderMutationVariables, TContext>(
       ['UpdateCategoryOrder'],
       (variables?: DB_UpdateCategoryOrderMutationVariables) => fetcher<DB_UpdateCategoryOrderMutation, DB_UpdateCategoryOrderMutationVariables>(client, UpdateCategoryOrderDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const DeleteCategoryDocument = `
     mutation DeleteCategory($id: uuid!) {
   delete_categories_by_pk(id: $id) {
@@ -6313,20 +6320,20 @@ export const DeleteCategoryDocument = `
     affected_rows
   }
 }
-    `
+    `;
 export const useDeleteCategoryMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_DeleteCategoryMutation, TError, DB_DeleteCategoryMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_DeleteCategoryMutation, TError, DB_DeleteCategoryMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_DeleteCategoryMutation, TError, DB_DeleteCategoryMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_DeleteCategoryMutation, TError, DB_DeleteCategoryMutationVariables, TContext>(
       ['DeleteCategory'],
       (variables?: DB_DeleteCategoryMutationVariables) => fetcher<DB_DeleteCategoryMutation, DB_DeleteCategoryMutationVariables>(client, DeleteCategoryDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const GetItemsDocument = `
     query GetItems($restaurant_id: uuid!) {
   items(
@@ -6336,49 +6343,49 @@ export const GetItemsDocument = `
     ...ItemFragment
   }
 }
-    ${ItemFragmentFragmentDoc}`
+    ${ItemFragmentFragmentDoc}`;
 export const useGetItemsQuery = <
-   TData = DB_GetItemsQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetItemsQueryVariables,
-   options?: UseQueryOptions<DB_GetItemsQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetItemsQuery, TError, TData>(
+      TData = DB_GetItemsQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetItemsQueryVariables,
+      options?: UseQueryOptions<DB_GetItemsQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetItemsQuery, TError, TData>(
       ['GetItems', variables],
       fetcher<DB_GetItemsQuery, DB_GetItemsQueryVariables>(client, GetItemsDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const SubscribeItemsDocument = `
     subscription SubscribeItems($restaurant_id: uuid!) {
   items(where: {restaurant_id: {_eq: $restaurant_id}}) {
     ...ItemFragment
   }
 }
-    ${ItemFragmentFragmentDoc}`
+    ${ItemFragmentFragmentDoc}`;
 export const GetItemDocument = `
     query GetItem($id: uuid!) {
   items_by_pk(id: $id) {
     ...ItemFragment
   }
 }
-    ${ItemFragmentFragmentDoc}`
+    ${ItemFragmentFragmentDoc}`;
 export const useGetItemQuery = <
-   TData = DB_GetItemQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetItemQueryVariables,
-   options?: UseQueryOptions<DB_GetItemQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetItemQuery, TError, TData>(
+      TData = DB_GetItemQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetItemQueryVariables,
+      options?: UseQueryOptions<DB_GetItemQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetItemQuery, TError, TData>(
       ['GetItem', variables],
       fetcher<DB_GetItemQuery, DB_GetItemQueryVariables>(client, GetItemDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const CreateItemDocument = `
     mutation CreateItem($available: Boolean!, $category_id: uuid!, $choices: jsonb!, $description: String, $images: jsonb!, $name: String!, $price: Int!, $allergens: jsonb!, $restaurant_id: uuid!, $variations: jsonb!) {
   insert_items_one(
@@ -6387,20 +6394,20 @@ export const CreateItemDocument = `
     ...ItemFragment
   }
 }
-    ${ItemFragmentFragmentDoc}`
+    ${ItemFragmentFragmentDoc}`;
 export const useCreateItemMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_CreateItemMutation, TError, DB_CreateItemMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_CreateItemMutation, TError, DB_CreateItemMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_CreateItemMutation, TError, DB_CreateItemMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_CreateItemMutation, TError, DB_CreateItemMutationVariables, TContext>(
       ['CreateItem'],
       (variables?: DB_CreateItemMutationVariables) => fetcher<DB_CreateItemMutation, DB_CreateItemMutationVariables>(client, CreateItemDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const UpdateItemDocument = `
     mutation UpdateItem($id: uuid!, $available: Boolean!, $category_id: uuid!, $choices: jsonb!, $description: String, $images: jsonb!, $name: String!, $price: Int!, $allergens: jsonb!, $variations: jsonb!) {
   update_items_by_pk(
@@ -6410,40 +6417,40 @@ export const UpdateItemDocument = `
     ...ItemFragment
   }
 }
-    ${ItemFragmentFragmentDoc}`
+    ${ItemFragmentFragmentDoc}`;
 export const useUpdateItemMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_UpdateItemMutation, TError, DB_UpdateItemMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_UpdateItemMutation, TError, DB_UpdateItemMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_UpdateItemMutation, TError, DB_UpdateItemMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_UpdateItemMutation, TError, DB_UpdateItemMutationVariables, TContext>(
       ['UpdateItem'],
       (variables?: DB_UpdateItemMutationVariables) => fetcher<DB_UpdateItemMutation, DB_UpdateItemMutationVariables>(client, UpdateItemDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const DeleteItemDocument = `
     mutation DeleteItem($id: uuid!) {
   delete_items_by_pk(id: $id) {
     id
   }
 }
-    `
+    `;
 export const useDeleteItemMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_DeleteItemMutation, TError, DB_DeleteItemMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_DeleteItemMutation, TError, DB_DeleteItemMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_DeleteItemMutation, TError, DB_DeleteItemMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_DeleteItemMutation, TError, DB_DeleteItemMutationVariables, TContext>(
       ['DeleteItem'],
       (variables?: DB_DeleteItemMutationVariables) => fetcher<DB_DeleteItemMutation, DB_DeleteItemMutationVariables>(client, DeleteItemDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const GetOrderDocument = `
     query GetOrder($id: uuid!) {
   orders_by_pk(id: $id) {
@@ -6454,21 +6461,21 @@ export const GetOrderDocument = `
   }
 }
     ${OrderFragmentFragmentDoc}
-${TableOrderFragmentFragmentDoc}`
+${TableOrderFragmentFragmentDoc}`;
 export const useGetOrderQuery = <
-   TData = DB_GetOrderQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetOrderQueryVariables,
-   options?: UseQueryOptions<DB_GetOrderQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetOrderQuery, TError, TData>(
+      TData = DB_GetOrderQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetOrderQueryVariables,
+      options?: UseQueryOptions<DB_GetOrderQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetOrderQuery, TError, TData>(
       ['GetOrder', variables],
       fetcher<DB_GetOrderQuery, DB_GetOrderQueryVariables>(client, GetOrderDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const CreateOrdersDocument = `
     mutation CreateOrders($chair_number: Int!, $items: jsonb!, $subtotal: Int!, $total: Int!, $total_tax: Int!, $table_order_id: uuid!) {
   insert_orders(
@@ -6480,20 +6487,20 @@ export const CreateOrdersDocument = `
     }
   }
 }
-    ${OrderFragmentFragmentDoc}`
+    ${OrderFragmentFragmentDoc}`;
 export const useCreateOrdersMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_CreateOrdersMutation, TError, DB_CreateOrdersMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_CreateOrdersMutation, TError, DB_CreateOrdersMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_CreateOrdersMutation, TError, DB_CreateOrdersMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_CreateOrdersMutation, TError, DB_CreateOrdersMutationVariables, TContext>(
       ['CreateOrders'],
       (variables?: DB_CreateOrdersMutationVariables) => fetcher<DB_CreateOrdersMutation, DB_CreateOrdersMutationVariables>(client, CreateOrdersDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const UpdateOrderDocument = `
     mutation UpdateOrder($id: uuid!, $chair_number: Int!, $items: jsonb!, $subtotal: Int!, $total: Int!, $total_tax: Int!, $table_order_id: uuid!) {
   update_orders_by_pk(
@@ -6503,20 +6510,20 @@ export const UpdateOrderDocument = `
     ...OrderFragment
   }
 }
-    ${OrderFragmentFragmentDoc}`
+    ${OrderFragmentFragmentDoc}`;
 export const useUpdateOrderMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_UpdateOrderMutation, TError, DB_UpdateOrderMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_UpdateOrderMutation, TError, DB_UpdateOrderMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_UpdateOrderMutation, TError, DB_UpdateOrderMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_UpdateOrderMutation, TError, DB_UpdateOrderMutationVariables, TContext>(
       ['UpdateOrder'],
       (variables?: DB_UpdateOrderMutationVariables) => fetcher<DB_UpdateOrderMutation, DB_UpdateOrderMutationVariables>(client, UpdateOrderDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const CreateOrderDocument = `
     mutation CreateOrder($id: uuid!, $chair_number: Int!, $items: jsonb!, $subtotal: Int!, $total: Int!, $total_tax: Int!, $table_order_id: uuid!) {
   insert_orders_one(
@@ -6525,20 +6532,20 @@ export const CreateOrderDocument = `
     ...OrderFragment
   }
 }
-    ${OrderFragmentFragmentDoc}`
+    ${OrderFragmentFragmentDoc}`;
 export const useCreateOrderMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_CreateOrderMutation, TError, DB_CreateOrderMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_CreateOrderMutation, TError, DB_CreateOrderMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_CreateOrderMutation, TError, DB_CreateOrderMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_CreateOrderMutation, TError, DB_CreateOrderMutationVariables, TContext>(
       ['CreateOrder'],
       (variables?: DB_CreateOrderMutationVariables) => fetcher<DB_CreateOrderMutation, DB_CreateOrderMutationVariables>(client, CreateOrderDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const CreateRestaurantDocument = `
     mutation CreateRestaurant($slug: String!, $name: String!, $owner_id: uuid!, $description: String, $customization: jsonb!) {
   insert_restaurants_one(
@@ -6548,20 +6555,20 @@ export const CreateRestaurantDocument = `
     slug
   }
 }
-    `
+    `;
 export const useCreateRestaurantMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_CreateRestaurantMutation, TError, DB_CreateRestaurantMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_CreateRestaurantMutation, TError, DB_CreateRestaurantMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_CreateRestaurantMutation, TError, DB_CreateRestaurantMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_CreateRestaurantMutation, TError, DB_CreateRestaurantMutationVariables, TContext>(
       ['CreateRestaurant'],
       (variables?: DB_CreateRestaurantMutationVariables) => fetcher<DB_CreateRestaurantMutation, DB_CreateRestaurantMutationVariables>(client, CreateRestaurantDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const GetRestaurantBySlugDocument = `
     query GetRestaurantBySlug($slug: String!) {
   restaurants(where: {slug: {_eq: $slug}}) {
@@ -6573,21 +6580,21 @@ export const GetRestaurantBySlugDocument = `
     slug
   }
 }
-    `
+    `;
 export const useGetRestaurantBySlugQuery = <
-   TData = DB_GetRestaurantBySlugQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetRestaurantBySlugQueryVariables,
-   options?: UseQueryOptions<DB_GetRestaurantBySlugQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetRestaurantBySlugQuery, TError, TData>(
+      TData = DB_GetRestaurantBySlugQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetRestaurantBySlugQueryVariables,
+      options?: UseQueryOptions<DB_GetRestaurantBySlugQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetRestaurantBySlugQuery, TError, TData>(
       ['GetRestaurantBySlug', variables],
       fetcher<DB_GetRestaurantBySlugQuery, DB_GetRestaurantBySlugQueryVariables>(client, GetRestaurantBySlugDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const GetRestaurantByOwnerIdDocument = `
     query GetRestaurantByOwnerId($owner_id: uuid!) {
   restaurants(where: {owner_id: {_eq: $owner_id}}) {
@@ -6599,21 +6606,21 @@ export const GetRestaurantByOwnerIdDocument = `
     slug
   }
 }
-    `
+    `;
 export const useGetRestaurantByOwnerIdQuery = <
-   TData = DB_GetRestaurantByOwnerIdQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetRestaurantByOwnerIdQueryVariables,
-   options?: UseQueryOptions<DB_GetRestaurantByOwnerIdQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetRestaurantByOwnerIdQuery, TError, TData>(
+      TData = DB_GetRestaurantByOwnerIdQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetRestaurantByOwnerIdQueryVariables,
+      options?: UseQueryOptions<DB_GetRestaurantByOwnerIdQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetRestaurantByOwnerIdQuery, TError, TData>(
       ['GetRestaurantByOwnerId', variables],
       fetcher<DB_GetRestaurantByOwnerIdQuery, DB_GetRestaurantByOwnerIdQueryVariables>(client, GetRestaurantByOwnerIdDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const GetRestaurantByAdministratorIdDocument = `
     query GetRestaurantByAdministratorId($user_id: uuid!) {
   restaurant_administrators(where: {user_id: {_eq: $user_id}}) {
@@ -6630,21 +6637,53 @@ export const GetRestaurantByAdministratorIdDocument = `
     }
   }
 }
-    `
+    `;
 export const useGetRestaurantByAdministratorIdQuery = <
-   TData = DB_GetRestaurantByAdministratorIdQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetRestaurantByAdministratorIdQueryVariables,
-   options?: UseQueryOptions<DB_GetRestaurantByAdministratorIdQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetRestaurantByAdministratorIdQuery, TError, TData>(
+      TData = DB_GetRestaurantByAdministratorIdQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetRestaurantByAdministratorIdQueryVariables,
+      options?: UseQueryOptions<DB_GetRestaurantByAdministratorIdQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetRestaurantByAdministratorIdQuery, TError, TData>(
       ['GetRestaurantByAdministratorId', variables],
       fetcher<DB_GetRestaurantByAdministratorIdQuery, DB_GetRestaurantByAdministratorIdQueryVariables>(client, GetRestaurantByAdministratorIdDocument, variables, headers),
-      options,
-   )
+      options
+    );
+export const AddRestaurantAdministratorDocument = `
+    mutation AddRestaurantAdministrator($restaurant_id: uuid!, $user_id: uuid!) {
+  insert_restaurant_administrators_one(
+    object: {user_id: $user_id, restaurant_id: $restaurant_id}
+  ) {
+    id
+    user_id
+    restaurant_id
+    restaurant {
+      id
+      description
+      customization
+      name
+      owner_id
+      slug
+    }
+  }
+}
+    `;
+export const useAddRestaurantAdministratorMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_AddRestaurantAdministratorMutation, TError, DB_AddRestaurantAdministratorMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_AddRestaurantAdministratorMutation, TError, DB_AddRestaurantAdministratorMutationVariables, TContext>(
+      ['AddRestaurantAdministrator'],
+      (variables?: DB_AddRestaurantAdministratorMutationVariables) => fetcher<DB_AddRestaurantAdministratorMutation, DB_AddRestaurantAdministratorMutationVariables>(client, AddRestaurantAdministratorDocument, variables, headers)(),
+      options
+    );
 export const UpdateRestaurantThemeDocument = `
     mutation UpdateRestaurantTheme($id: uuid!, $customization: jsonb!) {
   update_restaurants_by_pk(
@@ -6654,20 +6693,20 @@ export const UpdateRestaurantThemeDocument = `
     customization
   }
 }
-    `
+    `;
 export const useUpdateRestaurantThemeMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_UpdateRestaurantThemeMutation, TError, DB_UpdateRestaurantThemeMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_UpdateRestaurantThemeMutation, TError, DB_UpdateRestaurantThemeMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_UpdateRestaurantThemeMutation, TError, DB_UpdateRestaurantThemeMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_UpdateRestaurantThemeMutation, TError, DB_UpdateRestaurantThemeMutationVariables, TContext>(
       ['UpdateRestaurantTheme'],
       (variables?: DB_UpdateRestaurantThemeMutationVariables) => fetcher<DB_UpdateRestaurantThemeMutation, DB_UpdateRestaurantThemeMutationVariables>(client, UpdateRestaurantThemeDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const UpdateRestaurantDetailsDocument = `
     mutation UpdateRestaurantDetails($id: uuid!, $name: String!, $description: String) {
   update_restaurants_by_pk(
@@ -6677,41 +6716,41 @@ export const UpdateRestaurantDetailsDocument = `
     customization
   }
 }
-    `
+    `;
 export const useUpdateRestaurantDetailsMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_UpdateRestaurantDetailsMutation, TError, DB_UpdateRestaurantDetailsMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_UpdateRestaurantDetailsMutation, TError, DB_UpdateRestaurantDetailsMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_UpdateRestaurantDetailsMutation, TError, DB_UpdateRestaurantDetailsMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_UpdateRestaurantDetailsMutation, TError, DB_UpdateRestaurantDetailsMutationVariables, TContext>(
       ['UpdateRestaurantDetails'],
       (variables?: DB_UpdateRestaurantDetailsMutationVariables) => fetcher<DB_UpdateRestaurantDetailsMutation, DB_UpdateRestaurantDetailsMutationVariables>(client, UpdateRestaurantDetailsDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const GetTableOrdersDocument = `
     query GetTableOrders($restaurant_id: uuid!) {
   table_orders(where: {table: {restaurant_id: {_eq: $restaurant_id}}}) {
     ...TableOrderFragment
   }
 }
-    ${TableOrderFragmentFragmentDoc}`
+    ${TableOrderFragmentFragmentDoc}`;
 export const useGetTableOrdersQuery = <
-   TData = DB_GetTableOrdersQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetTableOrdersQueryVariables,
-   options?: UseQueryOptions<DB_GetTableOrdersQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetTableOrdersQuery, TError, TData>(
+      TData = DB_GetTableOrdersQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetTableOrdersQueryVariables,
+      options?: UseQueryOptions<DB_GetTableOrdersQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetTableOrdersQuery, TError, TData>(
       ['GetTableOrders', variables],
       fetcher<DB_GetTableOrdersQuery, DB_GetTableOrdersQueryVariables>(client, GetTableOrdersDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const GetTableOrderDocument = `
     query GetTableOrder($id: uuid!) {
   table_orders_by_pk(id: $id) {
@@ -6726,21 +6765,21 @@ export const GetTableOrderDocument = `
 }
     ${TableOrderFragmentFragmentDoc}
 ${TableFragmentFragmentDoc}
-${OrderFragmentFragmentDoc}`
+${OrderFragmentFragmentDoc}`;
 export const useGetTableOrderQuery = <
-   TData = DB_GetTableOrderQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetTableOrderQueryVariables,
-   options?: UseQueryOptions<DB_GetTableOrderQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetTableOrderQuery, TError, TData>(
+      TData = DB_GetTableOrderQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetTableOrderQueryVariables,
+      options?: UseQueryOptions<DB_GetTableOrderQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetTableOrderQuery, TError, TData>(
       ['GetTableOrder', variables],
       fetcher<DB_GetTableOrderQuery, DB_GetTableOrderQueryVariables>(client, GetTableOrderDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const SubscribeTableOrderDocument = `
     subscription SubscribeTableOrder($id: uuid!) {
   table_orders_by_pk(id: $id) {
@@ -6755,7 +6794,7 @@ export const SubscribeTableOrderDocument = `
 }
     ${TableOrderFragmentFragmentDoc}
 ${TableFragmentFragmentDoc}
-${OrderFragmentFragmentDoc}`
+${OrderFragmentFragmentDoc}`;
 export const CreateTableOrderDocument = `
     mutation CreateTableOrder($status: String!, $table_id: uuid!, $tokens: jsonb!, $order_number: String!) {
   insert_table_orders_one(
@@ -6769,20 +6808,20 @@ export const CreateTableOrderDocument = `
     order_number
   }
 }
-    `
+    `;
 export const useCreateTableOrderMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_CreateTableOrderMutation, TError, DB_CreateTableOrderMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_CreateTableOrderMutation, TError, DB_CreateTableOrderMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_CreateTableOrderMutation, TError, DB_CreateTableOrderMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_CreateTableOrderMutation, TError, DB_CreateTableOrderMutationVariables, TContext>(
       ['CreateTableOrder'],
       (variables?: DB_CreateTableOrderMutationVariables) => fetcher<DB_CreateTableOrderMutation, DB_CreateTableOrderMutationVariables>(client, CreateTableOrderDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const GetLatestTableOrderByTableIdDocument = `
     query GetLatestTableOrderByTableId($table_id: uuid!) {
   table_orders(
@@ -6802,63 +6841,63 @@ export const GetLatestTableOrderByTableIdDocument = `
     }
   }
 }
-    `
+    `;
 export const useGetLatestTableOrderByTableIdQuery = <
-   TData = DB_GetLatestTableOrderByTableIdQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetLatestTableOrderByTableIdQueryVariables,
-   options?: UseQueryOptions<DB_GetLatestTableOrderByTableIdQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetLatestTableOrderByTableIdQuery, TError, TData>(
+      TData = DB_GetLatestTableOrderByTableIdQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetLatestTableOrderByTableIdQueryVariables,
+      options?: UseQueryOptions<DB_GetLatestTableOrderByTableIdQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetLatestTableOrderByTableIdQuery, TError, TData>(
       ['GetLatestTableOrderByTableId', variables],
       fetcher<DB_GetLatestTableOrderByTableIdQuery, DB_GetLatestTableOrderByTableIdQueryVariables>(client, GetLatestTableOrderByTableIdDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const GetTablesDocument = `
     query GetTables($restaurant_id: uuid!) {
   tables(order_by: {order: asc}, where: {restaurant_id: {_eq: $restaurant_id}}) {
     ...TableFragment
   }
 }
-    ${TableFragmentFragmentDoc}`
+    ${TableFragmentFragmentDoc}`;
 export const useGetTablesQuery = <
-   TData = DB_GetTablesQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetTablesQueryVariables,
-   options?: UseQueryOptions<DB_GetTablesQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetTablesQuery, TError, TData>(
+      TData = DB_GetTablesQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetTablesQueryVariables,
+      options?: UseQueryOptions<DB_GetTablesQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetTablesQuery, TError, TData>(
       ['GetTables', variables],
       fetcher<DB_GetTablesQuery, DB_GetTablesQueryVariables>(client, GetTablesDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const GetTableInfoDocument = `
     query GetTableInfo($id: uuid!) {
   tables_by_pk(id: $id) {
     ...TableFragment
   }
 }
-    ${TableFragmentFragmentDoc}`
+    ${TableFragmentFragmentDoc}`;
 export const useGetTableInfoQuery = <
-   TData = DB_GetTableInfoQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetTableInfoQueryVariables,
-   options?: UseQueryOptions<DB_GetTableInfoQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetTableInfoQuery, TError, TData>(
+      TData = DB_GetTableInfoQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetTableInfoQueryVariables,
+      options?: UseQueryOptions<DB_GetTableInfoQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetTableInfoQuery, TError, TData>(
       ['GetTableInfo', variables],
       fetcher<DB_GetTableInfoQuery, DB_GetTableInfoQueryVariables>(client, GetTableInfoDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const GetTableDocument = `
     query GetTable($id: uuid!) {
   tables_by_pk(id: $id) {
@@ -6873,28 +6912,28 @@ export const GetTableDocument = `
 }
     ${TableFragmentFragmentDoc}
 ${TableOrderFragmentFragmentDoc}
-${OrderFragmentFragmentDoc}`
+${OrderFragmentFragmentDoc}`;
 export const useGetTableQuery = <
-   TData = DB_GetTableQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetTableQueryVariables,
-   options?: UseQueryOptions<DB_GetTableQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetTableQuery, TError, TData>(
+      TData = DB_GetTableQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetTableQueryVariables,
+      options?: UseQueryOptions<DB_GetTableQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetTableQuery, TError, TData>(
       ['GetTable', variables],
       fetcher<DB_GetTableQuery, DB_GetTableQueryVariables>(client, GetTableDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const SubscribeTablesDocument = `
     subscription SubscribeTables($restaurant_id: uuid!) {
   tables(order_by: {order: asc}, where: {restaurant_id: {_eq: $restaurant_id}}) {
     ...TableFragment
   }
 }
-    ${TableFragmentFragmentDoc}`
+    ${TableFragmentFragmentDoc}`;
 export const CreateTableDocument = `
     mutation CreateTable($no_of_chairs: Int!, $qr_codes: jsonb, $restaurant_id: uuid!, $name: String!, $order: Int) {
   insert_tables_one(
@@ -6903,20 +6942,20 @@ export const CreateTableDocument = `
     id
   }
 }
-    `
+    `;
 export const useCreateTableMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_CreateTableMutation, TError, DB_CreateTableMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_CreateTableMutation, TError, DB_CreateTableMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_CreateTableMutation, TError, DB_CreateTableMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_CreateTableMutation, TError, DB_CreateTableMutationVariables, TContext>(
       ['CreateTable'],
       (variables?: DB_CreateTableMutationVariables) => fetcher<DB_CreateTableMutation, DB_CreateTableMutationVariables>(client, CreateTableDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const UpdateTableDocument = `
     mutation UpdateTable($id: uuid!, $no_of_chairs: Int!, $name: String!, $qr_codes: jsonb, $order: Int) {
   update_tables_by_pk(
@@ -6926,40 +6965,40 @@ export const UpdateTableDocument = `
     id
   }
 }
-    `
+    `;
 export const useUpdateTableMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_UpdateTableMutation, TError, DB_UpdateTableMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_UpdateTableMutation, TError, DB_UpdateTableMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_UpdateTableMutation, TError, DB_UpdateTableMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_UpdateTableMutation, TError, DB_UpdateTableMutationVariables, TContext>(
       ['UpdateTable'],
       (variables?: DB_UpdateTableMutationVariables) => fetcher<DB_UpdateTableMutation, DB_UpdateTableMutationVariables>(client, UpdateTableDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const UpdateTableOrderDocument = `
     mutation UpdateTableOrder($order: [tables_updates!]!) {
   update_tables_many(updates: $order) {
     affected_rows
   }
 }
-    `
+    `;
 export const useUpdateTableOrderMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_UpdateTableOrderMutation, TError, DB_UpdateTableOrderMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_UpdateTableOrderMutation, TError, DB_UpdateTableOrderMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_UpdateTableOrderMutation, TError, DB_UpdateTableOrderMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_UpdateTableOrderMutation, TError, DB_UpdateTableOrderMutationVariables, TContext>(
       ['UpdateTableOrder'],
       (variables?: DB_UpdateTableOrderMutationVariables) => fetcher<DB_UpdateTableOrderMutation, DB_UpdateTableOrderMutationVariables>(client, UpdateTableOrderDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const DeleteTableDocument = `
     mutation DeleteTable($id: uuid!) {
   delete_tables_by_pk(id: $id) {
@@ -6969,20 +7008,20 @@ export const DeleteTableDocument = `
     affected_rows
   }
 }
-    `
+    `;
 export const useDeleteTableMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_DeleteTableMutation, TError, DB_DeleteTableMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_DeleteTableMutation, TError, DB_DeleteTableMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_DeleteTableMutation, TError, DB_DeleteTableMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_DeleteTableMutation, TError, DB_DeleteTableMutationVariables, TContext>(
       ['DeleteTable'],
       (variables?: DB_DeleteTableMutationVariables) => fetcher<DB_DeleteTableMutation, DB_DeleteTableMutationVariables>(client, DeleteTableDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const SubscribeTableOrdersDocument = `
     subscription SubscribeTableOrders($restaurant_id: uuid!) {
   table_orders(
@@ -7000,7 +7039,7 @@ export const SubscribeTableOrdersDocument = `
     }
   }
 }
-    `
+    `;
 export const GetLatestTableOrderDocument = `
     query GetLatestTableOrder($table_id: uuid!) {
   table_orders(
@@ -7019,21 +7058,21 @@ export const GetLatestTableOrderDocument = `
     }
   }
 }
-    `
+    `;
 export const useGetLatestTableOrderQuery = <
-   TData = DB_GetLatestTableOrderQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetLatestTableOrderQueryVariables,
-   options?: UseQueryOptions<DB_GetLatestTableOrderQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetLatestTableOrderQuery, TError, TData>(
+      TData = DB_GetLatestTableOrderQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetLatestTableOrderQueryVariables,
+      options?: UseQueryOptions<DB_GetLatestTableOrderQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetLatestTableOrderQuery, TError, TData>(
       ['GetLatestTableOrder', variables],
       fetcher<DB_GetLatestTableOrderQuery, DB_GetLatestTableOrderQueryVariables>(client, GetLatestTableOrderDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const GetTableOrderInfoDocument = `
     query GetTableOrderInfo($id: uuid!) {
   table_orders(limit: 1, order_by: {created_at: desc}, where: {id: {_eq: $id}}) {
@@ -7048,21 +7087,21 @@ export const GetTableOrderInfoDocument = `
     }
   }
 }
-    `
+    `;
 export const useGetTableOrderInfoQuery = <
-   TData = DB_GetTableOrderInfoQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetTableOrderInfoQueryVariables,
-   options?: UseQueryOptions<DB_GetTableOrderInfoQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetTableOrderInfoQuery, TError, TData>(
+      TData = DB_GetTableOrderInfoQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetTableOrderInfoQueryVariables,
+      options?: UseQueryOptions<DB_GetTableOrderInfoQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetTableOrderInfoQuery, TError, TData>(
       ['GetTableOrderInfo', variables],
       fetcher<DB_GetTableOrderInfoQuery, DB_GetTableOrderInfoQueryVariables>(client, GetTableOrderInfoDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const GetUserByIdDocument = `
     query GetUserById($id: uuid!) {
   users_by_pk(id: $id) {
@@ -7075,58 +7114,58 @@ export const GetUserByIdDocument = `
     role
   }
 }
-    `
+    `;
 export const useGetUserByIdQuery = <
-   TData = DB_GetUserByIdQuery,
-   TError = unknown
->(
-   client: GraphQLClient,
-   variables: DB_GetUserByIdQueryVariables,
-   options?: UseQueryOptions<DB_GetUserByIdQuery, TError, TData>,
-   headers?: RequestInit['headers'],
-) =>
-   useQuery<DB_GetUserByIdQuery, TError, TData>(
+      TData = DB_GetUserByIdQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetUserByIdQueryVariables,
+      options?: UseQueryOptions<DB_GetUserByIdQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetUserByIdQuery, TError, TData>(
       ['GetUserById', variables],
       fetcher<DB_GetUserByIdQuery, DB_GetUserByIdQueryVariables>(client, GetUserByIdDocument, variables, headers),
-      options,
-   )
+      options
+    );
 export const UpdateUserProfilePictureDocument = `
     mutation UpdateUserProfilePicture($id: uuid!, $image: String!) {
   update_users(where: {id: {_eq: $id}}, _set: {image: $image}) {
     affected_rows
   }
 }
-    `
+    `;
 export const useUpdateUserProfilePictureMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_UpdateUserProfilePictureMutation, TError, DB_UpdateUserProfilePictureMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_UpdateUserProfilePictureMutation, TError, DB_UpdateUserProfilePictureMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_UpdateUserProfilePictureMutation, TError, DB_UpdateUserProfilePictureMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_UpdateUserProfilePictureMutation, TError, DB_UpdateUserProfilePictureMutationVariables, TContext>(
       ['UpdateUserProfilePicture'],
       (variables?: DB_UpdateUserProfilePictureMutationVariables) => fetcher<DB_UpdateUserProfilePictureMutation, DB_UpdateUserProfilePictureMutationVariables>(client, UpdateUserProfilePictureDocument, variables, headers)(),
-      options,
-   )
+      options
+    );
 export const UpdateUserDetailsDocument = `
     mutation UpdateUserDetails($id: uuid!, $name: String!, $email: String!) {
   update_users(where: {id: {_eq: $id}}, _set: {name: $name, email: $email}) {
     affected_rows
   }
 }
-    `
+    `;
 export const useUpdateUserDetailsMutation = <
-   TError = unknown,
-   TContext = unknown
->(
-   client: GraphQLClient,
-   options?: UseMutationOptions<DB_UpdateUserDetailsMutation, TError, DB_UpdateUserDetailsMutationVariables, TContext>,
-   headers?: RequestInit['headers'],
-) =>
-   useMutation<DB_UpdateUserDetailsMutation, TError, DB_UpdateUserDetailsMutationVariables, TContext>(
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_UpdateUserDetailsMutation, TError, DB_UpdateUserDetailsMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_UpdateUserDetailsMutation, TError, DB_UpdateUserDetailsMutationVariables, TContext>(
       ['UpdateUserDetails'],
       (variables?: DB_UpdateUserDetailsMutationVariables) => fetcher<DB_UpdateUserDetailsMutation, DB_UpdateUserDetailsMutationVariables>(client, UpdateUserDetailsDocument, variables, headers)(),
-      options,
-   )
+      options
+    );

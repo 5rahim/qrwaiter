@@ -70,7 +70,7 @@ export default async function Page({ params: { lng } }: { params: { lng: string 
                      </p>
                      <div className="mt-10 flex items-center justify-center gap-x-6">
                         <RawLink href={siteLinkTo(s => s.main.new)}>
-                           <ResponsiveButton sizes={["md", "xl", "xl"]} rounded>Create a restaurant menu</ResponsiveButton>
+                           <ResponsiveButton sizes={["md", "xl", "xl"]} rounded>Create my restaurant</ResponsiveButton>
                         </RawLink>
                      </div>
                   </div>
