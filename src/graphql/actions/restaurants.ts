@@ -50,6 +50,23 @@ export const GetRestaurantByAdministratorId = gql`
     }
   }
 `
+export const AddRestaurantAdministrator = gql`
+  query AddRestaurantAdministrator($restaurant_id: uuid!, $user_id: uuid!) {
+    insert_restaurant_administrators_one(object: { user_id: $user_id, restaurant_id: $restaurant_id}) {
+      id
+      user_id
+      restaurant_id
+      restaurant {
+        id
+        description
+        customization
+        name
+        owner_id
+        slug
+      }
+    }
+  }
+`
 
 export const UpdateRestaurantTheme = gql`
   mutation UpdateRestaurantTheme($id: uuid!, $customization: jsonb!) {
