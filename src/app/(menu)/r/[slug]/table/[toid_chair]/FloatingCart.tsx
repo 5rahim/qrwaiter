@@ -104,7 +104,7 @@ export const FloatingCart: React.FC<FloatingCartProps> = (props) => {
                                        
                                        <Divider />
                                        
-                                       <p>/* Show other group's cart here */</p>
+                                       <p>/* Show group's cart here */</p>
                                        
                                     </div>
                                  
