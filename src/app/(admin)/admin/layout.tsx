@@ -6,6 +6,7 @@ import { getRestaurantInAdmin } from '@/graphql/services/restaurant.server'
 import { getCurrentSessionUser } from '@/lib/session'
 import { siteLinkTo } from '@/utils/links'
 import { BiLinkExternal } from '@react-icons/all-files/bi/BiLinkExternal'
+import { Button } from '@ui/main/forms/button/Button'
 import LinkButton from '@ui/main/forms/button/LinkButton'
 import React from 'react'
 
@@ -25,13 +26,14 @@ export default async function Layout({ children }: { children: React.ReactNode }
                   <OpenAdminNavButton />
                   <div className="flex flex-1 justify-between px-4">
                      <div className="flex flex-1 items-center">
-                        <LinkButton
-                           to={siteLinkTo(s => s.main.menu, { key: 'slug', value: restaurant.slug })}
-                           rightIcon={<BiLinkExternal />}
-                           intent="primary-basic"
-                        >
-                           Preview the menu
-                        </LinkButton>
+                        <a href={siteLinkTo(s => s.main.menu, { key: 'slug', value: restaurant.slug })} target="_blank">
+                           <Button
+                              rightIcon={<BiLinkExternal />}
+                              intent="primary-basic"
+                           >
+                              Preview the menu
+                           </Button>
+                        </a>
                      </div>
                      <div className="ml-4 flex items-center md:ml-6">
       
