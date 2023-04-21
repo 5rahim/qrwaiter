@@ -25,7 +25,8 @@ export default async function Layout({ children }: { children: React.ReactNode }
                <div className="sticky top-0 z-10 flex h-16 flex-shrink-0 bg-white shadow">
                   <OpenAdminNavButton />
                   <div className="flex flex-1 justify-between px-4">
-                     <div className="flex flex-1 items-center">
+                     <div className="flex flex-1 items-center gap-3">
+                        <p className="text-lg font-semibold">{restaurant.name}</p>
                         <a href={siteLinkTo(s => s.main.menu, { key: 'slug', value: restaurant.slug })} target="_blank">
                            <Button
                               rightIcon={<BiLinkExternal />}
