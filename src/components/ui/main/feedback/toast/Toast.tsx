@@ -50,7 +50,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>((props, ref) =
    
 })
 
-export const ToastProvider: React.FC<{}> = () => {
+const ToastProvider: React.FC<{}> = () => {
    return (
       <Toaster>
          {(t) => (
@@ -59,3 +59,5 @@ export const ToastProvider: React.FC<{}> = () => {
       </Toaster>
    )
 }
+
+export default ToastProvider

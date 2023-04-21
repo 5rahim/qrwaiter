@@ -6,11 +6,13 @@ import { currentUserAtom } from '@/atoms/user.atom'
 import { User } from '@/graphql/users/types'
 import { clientSession } from '@/lib/session'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ToastProvider } from '@ui/main/feedback/toast/Toast'
 import { useHydrateAtoms } from 'jotai/react/utils'
 import { SessionProvider } from 'next-auth/react'
+import dynamic from 'next/dynamic'
 import React from 'react'
 import { SSRProvider } from 'react-aria'
+
+const ToastProvider = dynamic(import('@ui/main/feedback/toast/Toast'), { ssr: false })
 
 interface ClientProvidersProps {
    children?: React.ReactNode

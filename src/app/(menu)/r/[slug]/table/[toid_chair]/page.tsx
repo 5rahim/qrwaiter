@@ -10,10 +10,10 @@ export default async function Page({ params: { lng, slug, tid_chair } }: { param
    
    return (
       <>
-         <div className="mx-auto max-w-3xl px-4 py-4 sm:px-6 lg:px-8 bg-gray-50 border-b flex items-center justify-between">
+         <div className="mx-auto max-w-3xl px-4 py-4 sm:px-6 lg:px-8 bg-gray-50 border-b flex items-center justify-between border-l border-r">
             <p className="text-xl font-bold">{restaurant?.name}</p>
          </div>
-         <main className="mx-auto max-w-3xl px-4 py-4 sm:px-6 lg:px-8">
+         <main className="mx-auto max-w-3xl px-4 py-4 sm:px-6 lg:px-8 border-l border-r">
             <TableItemList />
          </main>
       </>
