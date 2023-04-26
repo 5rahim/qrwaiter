@@ -2,7 +2,7 @@
 
 import { FloatingCart } from '@/app/(menu)/r/[slug]/table/[toid_chair]/FloatingCart'
 import { ItemPanel } from '@/app/(menu)/r/[slug]/table/[toid_chair]/ItemPanel'
-import { CartItem, useOrderCart } from '@/atoms/cart.atom'
+import { useOrderCart } from '@/atoms/cart.atom'
 import { useCurrentRestaurant } from '@/atoms/restaurant.atom'
 import { useCurrentTableOrder } from '@/atoms/table-order.atom'
 import { useHomePageItems } from '@/graphql/services/item.client'
@@ -12,20 +12,13 @@ import { useDisclosure } from '@/hooks/use-disclosure'
 import { useLinks } from '@/hooks/use-links'
 import { usePriceFormatter } from '@/hooks/use-price-formatter'
 import { cn } from '@/lib/tailwind/tailwind-utils'
-import { _selectObjectById } from '@/utils/arrays'
 import { _isEmpty } from '@/utils/common'
-import { Dialog, Transition } from '@headlessui/react'
 import { BiBasket } from '@react-icons/all-files/bi/BiBasket'
-import { BiX } from '@react-icons/all-files/bi/BiX'
-import { Button } from '@ui/main/forms/button/Button'
-import { CheckboxGroup } from '@ui/main/forms/checkbox/CheckboxGroup'
-import { RadioGroup } from '@ui/main/forms/radio/RadioGroup'
-import { DividerWithLabel } from '@ui/main/layout/divider/DividerWithLabel'
 import { LoadingSpinner } from '@ui/shared/loading-spinner/LoadingSpinner'
 import ShowOnly from '@ui/shared/show-only/ShowOnly'
 import _ from 'lodash'
 import Image from 'next/image'
-import React, { Fragment, useEffect, useMemo, useState } from 'react'
+import React from 'react'
 
 interface TableItemListProps {
    children?: React.ReactNode
@@ -54,7 +47,7 @@ export const TableItemList: React.FC<TableItemListProps> = (props) => {
          <div className="space-y-4 pb-24">
             <div className="text-center text-lg font-medium">
                <p>{tableOrder?.table?.name}</p>
-               <p className="text-xs text-gray-500">{chair?.orderToken}</p>
+               <p className="text-xs text-gray-500">Chair {chair?.chairNo}</p>
             </div>
             
             {list.map((category) => (
@@ -149,8 +142,8 @@ const Item = (props: ItemProps) => {
       </div>
       
       <ItemPanel isOpen={modal.isOpen} close={modal.close} item={item} />
-      
-      
+   
+   
    </>
    
 }

@@ -1,7 +1,8 @@
 'use client'
 
 import { ItemSelection } from '@/app/(menu)/r/[slug]/table/[toid_chair]/TableItemList'
-import { useCurrentTableOrder } from '@/atoms/table-order.atom'
+import { useCurrentChair, useCurrentTableOrder } from '@/atoms/table-order.atom'
+import { useOrderByTableOrder, useOrderService } from '@/graphql/services/order.client'
 import { Item, ItemVariation, MenuItem } from '@/graphql/types'
 import { Nullable } from '@/types'
 import { _insertObject, _removeObjectById, _selectObjectById, _updateObjectById } from '@/utils/arrays'
@@ -11,6 +12,7 @@ import { withImmer } from 'jotai-immer'
 import _ from 'lodash'
 import { useCallback, useEffect } from 'react'
 import toast from 'react-hot-toast'
+import { v4 } from 'uuid'
 
 export interface CartItem {
    id: string,
@@ -26,8 +28,12 @@ export const orderCartAtom = withImmer(atom<OrderCart>([]))
 export const useOrderCart = (onCurrentCartLoaded?: (cart: OrderCart) => void) => {
    
    const { tableOrder } = useCurrentTableOrder()
+   const { chair } = useCurrentChair()
    
    const [cart, setCart] = useAtom(orderCartAtom)
+   
+   const { createOrder } = useOrderService(() => {
+   })
    
    useEffect(() => {
       if (cart.length === 0 && typeof window !== 'undefined' && localStorage) {
@@ -47,6 +53,18 @@ export const useOrderCart = (onCurrentCartLoaded?: (cart: OrderCart) => void) =>
       if (!_isEmpty(cart)) localStorage.setItem(`qrwaiter-cart-${tableOrder?.id}`, JSON.stringify(cart))
    }, [cart])
    
+   const pushUpdate = useCallback((cart: CartItem[]) => {
+      createOrder({
+         id: chair?.orderToken,
+         chair_number: chair?.chairNo ?? 0,
+         items: cart,
+         total: cart.reduce((n, i) => n + calculateItemPrice(i.item, i.selection), 0),
+         total_tax: 0,
+         subtotal: cart.reduce((n, i) => n + calculateItemPrice(i.item, i.selection), 0),
+         table_order_id: tableOrder?.id,
+      })
+   }, [tableOrder, chair])
+   
    return {
       addItem: useCallback((item: MenuItem, params: ItemSelection) => {
          if (item) {
@@ -55,11 +73,19 @@ export const useOrderCart = (onCurrentCartLoaded?: (cart: OrderCart) => void) =>
             if (_isEmpty(existingItem)) {
                // Add
                toast.success('Item added')
-               setCart(_insertObject<CartItem>({ id: item.id, item, selection: params })(cart))
+               setCart(cart => {
+                  const newCart = _insertObject<CartItem>({ id: item.id, item, selection: params })(cart)
+                  pushUpdate(newCart)
+                  return newCart
+               })
             } else {
                // Update
                toast.success('Item updated')
-               setCart(_updateObjectById<CartItem>(item.id, 'selection', params)(cart))
+               setCart(cart => {
+                  const newCart = _updateObjectById<CartItem>(item.id, 'selection', params)(cart)
+                  pushUpdate(newCart)
+                  return newCart
+               })
             }
          }
       }, [cart]),
@@ -68,6 +94,7 @@ export const useOrderCart = (onCurrentCartLoaded?: (cart: OrderCart) => void) =>
        * Get an item from the cart
        * Used to populate field in item overview
        */
+      canOrder: tableOrder?.status === 'ordering',
       getItem: (itemId: Nullable<string>) => {
          // Get the item that is already in
          return _selectObjectById<CartItem>(itemId)(cart)
@@ -78,7 +105,11 @@ export const useOrderCart = (onCurrentCartLoaded?: (cart: OrderCart) => void) =>
       removeItem: (itemId: Nullable<string>) => {
          // Get the item that is already in
          toast.success('Item removed')
-         setCart(_removeObjectById<CartItem>(itemId)(cart))
+         setCart(cart => {
+            const newCart = _removeObjectById<CartItem>(itemId)(cart)
+            pushUpdate(newCart)
+            return newCart
+         })
       },
       updateItemQuantity: (itemId: Nullable<string>, quantity: number) => {
          if (itemId) {
@@ -119,7 +150,7 @@ export const useOrderCart = (onCurrentCartLoaded?: (cart: OrderCart) => void) =>
    
 }
 
-function calculateItemPrice(item: Item, selection: ItemSelection) {
+export function calculateItemPrice(item: Item, selection: ItemSelection) {
    if (!item) return 0
    if(!selection) return item.price
    let total = item.price

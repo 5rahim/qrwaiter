@@ -44,18 +44,31 @@ export const GetTableOrder = gql`
   }
 `
 export const SubscribeTableOrder = gql`
-  ${TableFragment}
-  ${TableOrderFragment}
-  ${OrderFragment}
   
   subscription SubscribeTableOrder($id: uuid!) {
     table_orders_by_pk(id: $id) {
-      ...TableOrderFragment
+      id
+      created_at
+      status
+      tokens
+      order_number
+      table_id
       table {
-        ...TableFragment
+        id
+        no_of_chairs
+        restaurant_id
+        name
+        order
       }
       orders {
-        ...OrderFragment
+        chair_number
+        created_at
+        id
+        items
+        subtotal
+        table_order_id
+        total
+        total_tax
       }
     }
   }
@@ -73,6 +86,19 @@ export const CreateTableOrder = gql`
     }
   }
 `
+export const UpdateCurrentTableOrder = gql`
+  mutation UpdateCurrentTableOrder($id: uuid!, $set: table_orders_set_input) {
+    update_table_orders_by_pk(pk_columns: {id: $id}, _set: $set) {
+      id
+      created_at
+      status
+      tokens
+      table_id
+      order_number
+    }
+  }
+  
+`
 
 export const GetLatestTableOrderByTableId = gql`
   query GetLatestTableOrderByTableId($table_id: uuid!) {
@@ -81,11 +107,24 @@ export const GetLatestTableOrderByTableId = gql`
       created_at
       status
       tokens
-      table_id
       order_number
+      table_id
       table {
+        id
         no_of_chairs
+        restaurant_id
         name
+        order
+      }
+      orders {
+        chair_number
+        created_at
+        id
+        items
+        subtotal
+        table_order_id
+        total
+        total_tax
       }
     }
   }

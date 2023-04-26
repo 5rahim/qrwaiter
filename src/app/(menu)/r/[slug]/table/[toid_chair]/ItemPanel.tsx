@@ -32,6 +32,7 @@ export const ItemPanel: React.FC<ItemPanelProps> = (props) => {
    const links = useLinks()
    const t = useAppTranslation()
    const priceFormatter = usePriceFormatter()
+   const { canOrder } = useOrderCart()
     
     const [selection, setSelection] = useState<ItemSelection>(formatItemSelectionDefaultValues(item) as ItemSelection)
     
@@ -73,7 +74,7 @@ export const ItemPanel: React.FC<ItemPanelProps> = (props) => {
    return (
       <>
           <Transition.Root show={props.isOpen} as={Fragment}>
-              <Dialog as="div" className="relative z-10" onClose={props.close}>
+              <Dialog as="div" className="relative z-40" onClose={props.close}>
                   <div className="fixed inset-0" />
                   
                   <div className="fixed inset-0 overflow-hidden">
@@ -231,32 +232,34 @@ export const ItemPanel: React.FC<ItemPanelProps> = (props) => {
                                                           </div>
                                                           
                                                           {/*TODO: Quantity*/}
-                                                          
-                                                          <ShowOnly when={!getItem(item.id)}>
-                                                              <Button
-                                                                 onClick={() => {
+                                                         
+                                                         <ShowOnly when={canOrder}>
+                                                            <ShowOnly when={!getItem(item.id)}>
+                                                               <Button
+                                                                  onClick={() => {
                                                                      addItem(item, selection)
-                                                                 }}
-                                                              >Add item</Button>
-                                                          </ShowOnly>
-                                                          
-                                                          <ShowOnly when={!!getItem(item.id)}>
-                                                              <Button
-                                                                 intent="primary" isDisabled={!selectionsDiffer} onClick={() => {
+                                                                  }}
+                                                               >Add item</Button>
+                                                            </ShowOnly>
+                                                            
+                                                            <ShowOnly when={!!getItem(item.id)}>
+                                                               <Button
+                                                                  intent="primary" isDisabled={!selectionsDiffer} onClick={() => {
                                                                   addItem(item, selection)
-                                                              }} className={cn(
-                                                                 "mr-2",
-                                                                 {
+                                                               }} className={cn(
+                                                                  "mr-2",
+                                                                  {
                                                                      "animate-bounce": selectionsDiffer
-                                                                 }
-                                                              )}
-                                                              >Update item</Button>
-                                                              <Button
-                                                                 intent="alert-outline" onClick={() => {
+                                                                  }
+                                                               )}
+                                                               >Update item</Button>
+                                                               <Button
+                                                                  intent="alert-outline" onClick={() => {
                                                                   removeItem(item.id)
-                                                              }}
-                                                              >Remove item</Button>
-                                                          </ShowOnly>
+                                                               }}
+                                                               >Remove item</Button>
+                                                            </ShowOnly>
+                                                         </ShowOnly>
                                                       
                                                       </div>
                                                   </div>

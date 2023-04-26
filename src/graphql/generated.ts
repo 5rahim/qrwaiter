@@ -5860,6 +5860,14 @@ export type DB_GetOrderQueryVariables = Exact<{
 
 export type DB_GetOrderQuery = { __typename?: 'query_root', orders_by_pk?: { __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number, table_order: { __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, order_number?: string | null, table_id?: any | null, table?: { __typename?: 'tables', name: string } | null } } | null };
 
+export type DB_GetOrderByTableOrderQueryVariables = Exact<{
+  table_order_id: Scalars['uuid'];
+  chair_number: Scalars['Int'];
+}>;
+
+
+export type DB_GetOrderByTableOrderQuery = { __typename?: 'query_root', orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number, table_order: { __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, order_number?: string | null, table_id?: any | null, table?: { __typename?: 'tables', name: string } | null } }> };
+
 export type DB_CreateOrdersMutationVariables = Exact<{
   chair_number: Scalars['Int'];
   items: Scalars['jsonb'];
@@ -5896,7 +5904,7 @@ export type DB_CreateOrderMutationVariables = Exact<{
 }>;
 
 
-export type DB_CreateOrderMutation = { __typename?: 'mutation_root', insert_orders_one?: { __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number } | null };
+export type DB_CreateOrderMutation = { __typename?: 'mutation_root', insert_orders_one?: { __typename?: 'orders', id: any } | null };
 
 export type DB_CreateRestaurantMutationVariables = Exact<{
   slug: Scalars['String'];
@@ -5976,7 +5984,7 @@ export type DB_SubscribeTableOrderSubscriptionVariables = Exact<{
 }>;
 
 
-export type DB_SubscribeTableOrderSubscription = { __typename?: 'subscription_root', table_orders_by_pk?: { __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, order_number?: string | null, table_id?: any | null, table?: { __typename?: 'tables', name: string, id: any, no_of_chairs: number, restaurant_id: any, order: number } | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> } | null };
+export type DB_SubscribeTableOrderSubscription = { __typename?: 'subscription_root', table_orders_by_pk?: { __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, order_number?: string | null, table_id?: any | null, table?: { __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number } | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> } | null };
 
 export type DB_CreateTableOrderMutationVariables = Exact<{
   status: Scalars['String'];
@@ -5988,12 +5996,20 @@ export type DB_CreateTableOrderMutationVariables = Exact<{
 
 export type DB_CreateTableOrderMutation = { __typename?: 'mutation_root', insert_table_orders_one?: { __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, order_number?: string | null } | null };
 
+export type DB_UpdateCurrentTableOrderMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  set?: InputMaybe<DB_Table_Orders_Set_Input>;
+}>;
+
+
+export type DB_UpdateCurrentTableOrderMutation = { __typename?: 'mutation_root', update_table_orders_by_pk?: { __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, order_number?: string | null } | null };
+
 export type DB_GetLatestTableOrderByTableIdQueryVariables = Exact<{
   table_id: Scalars['uuid'];
 }>;
 
 
-export type DB_GetLatestTableOrderByTableIdQuery = { __typename?: 'query_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, order_number?: string | null, table?: { __typename?: 'tables', no_of_chairs: number, name: string } | null }> };
+export type DB_GetLatestTableOrderByTableIdQuery = { __typename?: 'query_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, order_number?: string | null, table_id?: any | null, table?: { __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number } | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> }> };
 
 export type DB_TableFragmentFragment = { __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number };
 
@@ -6068,19 +6084,12 @@ export type DB_SubscribeTableOrdersSubscriptionVariables = Exact<{
 
 export type DB_SubscribeTableOrdersSubscription = { __typename?: 'subscription_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, order_number?: string | null, table?: { __typename?: 'tables', name: string } | null }> };
 
-export type DB_GetLatestTableOrderQueryVariables = Exact<{
-  table_id: Scalars['uuid'];
-}>;
-
-
-export type DB_GetLatestTableOrderQuery = { __typename?: 'query_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, table?: { __typename?: 'tables', no_of_chairs: number, name: string } | null }> };
-
 export type DB_GetTableOrderInfoQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type DB_GetTableOrderInfoQuery = { __typename?: 'query_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, table_id?: any | null, table?: { __typename?: 'tables', no_of_chairs: number, name: string } | null }> };
+export type DB_GetTableOrderInfoQuery = { __typename?: 'query_root', table_orders: Array<{ __typename?: 'table_orders', id: any, created_at: any, status: string, tokens: any, order_number?: string | null, table_id?: any | null, table?: { __typename?: 'tables', id: any, no_of_chairs: number, restaurant_id: any, name: string, order: number } | null, orders: Array<{ __typename?: 'orders', chair_number: number, created_at: any, id: any, items?: any | null, subtotal: number, table_order_id: any, total: number, total_tax: number }> }> };
 
 export type DB_GetUserByIdQueryVariables = Exact<{
   id: Scalars['uuid'];
@@ -6476,6 +6485,33 @@ export const useGetOrderQuery = <
       fetcher<DB_GetOrderQuery, DB_GetOrderQueryVariables>(client, GetOrderDocument, variables, headers),
       options
     );
+export const GetOrderByTableOrderDocument = `
+    query GetOrderByTableOrder($table_order_id: uuid!, $chair_number: Int!) {
+  orders(
+    where: {_and: {table_order_id: {_eq: $table_order_id}, chair_number: {_eq: $chair_number}}}
+  ) {
+    ...OrderFragment
+    table_order {
+      ...TableOrderFragment
+    }
+  }
+}
+    ${OrderFragmentFragmentDoc}
+${TableOrderFragmentFragmentDoc}`;
+export const useGetOrderByTableOrderQuery = <
+      TData = DB_GetOrderByTableOrderQuery,
+      TError = unknown
+    >(
+      client: GraphQLClient,
+      variables: DB_GetOrderByTableOrderQueryVariables,
+      options?: UseQueryOptions<DB_GetOrderByTableOrderQuery, TError, TData>,
+      headers?: RequestInit['headers']
+    ) =>
+    useQuery<DB_GetOrderByTableOrderQuery, TError, TData>(
+      ['GetOrderByTableOrder', variables],
+      fetcher<DB_GetOrderByTableOrderQuery, DB_GetOrderByTableOrderQueryVariables>(client, GetOrderByTableOrderDocument, variables, headers),
+      options
+    );
 export const CreateOrdersDocument = `
     mutation CreateOrders($chair_number: Int!, $items: jsonb!, $subtotal: Int!, $total: Int!, $total_tax: Int!, $table_order_id: uuid!) {
   insert_orders(
@@ -6528,11 +6564,12 @@ export const CreateOrderDocument = `
     mutation CreateOrder($id: uuid!, $chair_number: Int!, $items: jsonb!, $subtotal: Int!, $total: Int!, $total_tax: Int!, $table_order_id: uuid!) {
   insert_orders_one(
     object: {id: $id, chair_number: $chair_number, items: $items, subtotal: $subtotal, total: $total, total_tax: $total_tax, table_order_id: $table_order_id}
+    on_conflict: {constraint: orders_pkey, update_columns: [items, subtotal, total, total_tax]}
   ) {
-    ...OrderFragment
+    id
   }
 }
-    ${OrderFragmentFragmentDoc}`;
+    `;
 export const useCreateOrderMutation = <
       TError = unknown,
       TContext = unknown
@@ -6783,18 +6820,32 @@ export const useGetTableOrderQuery = <
 export const SubscribeTableOrderDocument = `
     subscription SubscribeTableOrder($id: uuid!) {
   table_orders_by_pk(id: $id) {
-    ...TableOrderFragment
+    id
+    created_at
+    status
+    tokens
+    order_number
+    table_id
     table {
-      ...TableFragment
+      id
+      no_of_chairs
+      restaurant_id
+      name
+      order
     }
     orders {
-      ...OrderFragment
+      chair_number
+      created_at
+      id
+      items
+      subtotal
+      table_order_id
+      total
+      total_tax
     }
   }
 }
-    ${TableOrderFragmentFragmentDoc}
-${TableFragmentFragmentDoc}
-${OrderFragmentFragmentDoc}`;
+    `;
 export const CreateTableOrderDocument = `
     mutation CreateTableOrder($status: String!, $table_id: uuid!, $tokens: jsonb!, $order_number: String!) {
   insert_table_orders_one(
@@ -6822,6 +6873,31 @@ export const useCreateTableOrderMutation = <
       (variables?: DB_CreateTableOrderMutationVariables) => fetcher<DB_CreateTableOrderMutation, DB_CreateTableOrderMutationVariables>(client, CreateTableOrderDocument, variables, headers)(),
       options
     );
+export const UpdateCurrentTableOrderDocument = `
+    mutation UpdateCurrentTableOrder($id: uuid!, $set: table_orders_set_input) {
+  update_table_orders_by_pk(pk_columns: {id: $id}, _set: $set) {
+    id
+    created_at
+    status
+    tokens
+    table_id
+    order_number
+  }
+}
+    `;
+export const useUpdateCurrentTableOrderMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(
+      client: GraphQLClient,
+      options?: UseMutationOptions<DB_UpdateCurrentTableOrderMutation, TError, DB_UpdateCurrentTableOrderMutationVariables, TContext>,
+      headers?: RequestInit['headers']
+    ) =>
+    useMutation<DB_UpdateCurrentTableOrderMutation, TError, DB_UpdateCurrentTableOrderMutationVariables, TContext>(
+      ['UpdateCurrentTableOrder'],
+      (variables?: DB_UpdateCurrentTableOrderMutationVariables) => fetcher<DB_UpdateCurrentTableOrderMutation, DB_UpdateCurrentTableOrderMutationVariables>(client, UpdateCurrentTableOrderDocument, variables, headers)(),
+      options
+    );
 export const GetLatestTableOrderByTableIdDocument = `
     query GetLatestTableOrderByTableId($table_id: uuid!) {
   table_orders(
@@ -6833,11 +6909,24 @@ export const GetLatestTableOrderByTableIdDocument = `
     created_at
     status
     tokens
-    table_id
     order_number
+    table_id
     table {
+      id
       no_of_chairs
+      restaurant_id
       name
+      order
+    }
+    orders {
+      chair_number
+      created_at
+      id
+      items
+      subtotal
+      table_order_id
+      total
+      total_tax
     }
   }
 }
@@ -7040,39 +7129,6 @@ export const SubscribeTableOrdersDocument = `
   }
 }
     `;
-export const GetLatestTableOrderDocument = `
-    query GetLatestTableOrder($table_id: uuid!) {
-  table_orders(
-    limit: 1
-    order_by: {created_at: desc}
-    where: {table_id: {_eq: $table_id}}
-  ) {
-    id
-    created_at
-    status
-    tokens
-    table_id
-    table {
-      no_of_chairs
-      name
-    }
-  }
-}
-    `;
-export const useGetLatestTableOrderQuery = <
-      TData = DB_GetLatestTableOrderQuery,
-      TError = unknown
-    >(
-      client: GraphQLClient,
-      variables: DB_GetLatestTableOrderQueryVariables,
-      options?: UseQueryOptions<DB_GetLatestTableOrderQuery, TError, TData>,
-      headers?: RequestInit['headers']
-    ) =>
-    useQuery<DB_GetLatestTableOrderQuery, TError, TData>(
-      ['GetLatestTableOrder', variables],
-      fetcher<DB_GetLatestTableOrderQuery, DB_GetLatestTableOrderQueryVariables>(client, GetLatestTableOrderDocument, variables, headers),
-      options
-    );
 export const GetTableOrderInfoDocument = `
     query GetTableOrderInfo($id: uuid!) {
   table_orders(limit: 1, order_by: {created_at: desc}, where: {id: {_eq: $id}}) {
@@ -7080,10 +7136,24 @@ export const GetTableOrderInfoDocument = `
     created_at
     status
     tokens
+    order_number
     table_id
     table {
+      id
       no_of_chairs
+      restaurant_id
       name
+      order
+    }
+    orders {
+      chair_number
+      created_at
+      id
+      items
+      subtotal
+      table_order_id
+      total
+      total_tax
     }
   }
 }

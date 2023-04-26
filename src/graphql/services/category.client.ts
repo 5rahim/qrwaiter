@@ -110,7 +110,7 @@ export const useCategories = (restaurantId: Nullable<string>) => {
    
    const queryClient = useQueryClient()
    
-   const res = useGetCategoriesQuery(queryClient.get(), { restaurant_id: restaurantId }, { refetchOnMount: 'always' })
+   const res = useGetCategoriesQuery(queryClient.get(), { restaurant_id: restaurantId }, { refetchOnMount: false, refetchOnWindowFocus: false })
    // const res = useSubscriptionQuery<DB_SubscribeCategoriesSubscription, DB_SubscribeCategoriesSubscriptionVariables>(SubscribeCategories, {
    // restaurant_id: restaurantId })
    

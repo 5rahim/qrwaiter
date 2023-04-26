@@ -8,29 +8,6 @@ import { cache } from 'react'
 
 export type CurrentTableOrder = DB_GetLatestTableOrderByTableIdQuery['table_orders'][number]
 
-export const getLatestTableOrderByTableId = cache(async (tableId: Nullable<string>): Promise<CurrentTableOrder | null> => {
-
-    if (tableId) {
-        const res = await useServerQuery<DB_GetLatestTableOrderByTableIdQuery, DB_GetLatestTableOrderByTableIdQueryVariables>(gql`query GetLatestTableOrder($table_id: uuid!) {
-          table_orders(limit: 1, order_by: {created_at: desc}, where: {table_id: {_eq: $table_id}}) {
-            id
-            created_at
-            status
-            tokens
-            table_id
-            table {
-              no_of_chairs
-              name
-            }
-          }
-        }`, { table_id: tableId })
-       return res?.table_orders[0] ?? null
-    }
-   
-   return null
-
-})
-
 export const getTableOrder = cache(async (id: Nullable<string>): Promise<CurrentTableOrder | null> => {
 
     if (id) {
@@ -40,10 +17,24 @@ export const getTableOrder = cache(async (id: Nullable<string>): Promise<Current
             created_at
             status
             tokens
+            order_number
             table_id
             table {
+              id
               no_of_chairs
+              restaurant_id
               name
+              order
+            }
+            orders {
+              chair_number
+              created_at
+              id
+              items
+              subtotal
+              table_order_id
+              total
+              total_tax
             }
           }
         }`, { id: id })

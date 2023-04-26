@@ -1,5 +1,8 @@
+import { useCurrentTableOrder } from '@/atoms/table-order.atom'
+import { SubscribeTableOrder } from '@/graphql/actions/table-orders'
 import {
-   DB_SubscribeTableOrdersSubscription, DB_SubscribeTableOrdersSubscriptionVariables, useCreateTableOrderMutation,
+   DB_SubscribeTableOrdersSubscription, DB_SubscribeTableOrdersSubscriptionVariables, DB_SubscribeTableOrderSubscription,
+   DB_SubscribeTableOrderSubscriptionVariables, useCreateTableOrderMutation,
    useGetLatestTableOrderByTableIdQuery, useGetTableOrderQuery, useGetTableOrdersQuery,
 } from '@/graphql/generated'
 import { TableOrder, TableOrders } from '@/graphql/types'
@@ -104,6 +107,49 @@ export const useTableOrder = (id: Nullable<string>) => {
    const queryClient = useQueryClient()
    
    const res = useGetTableOrderQuery(queryClient.get(), { id }, { refetchOnMount: 'always' })
+   
+   const tableOrder: TableOrder = res.data?.table_orders_by_pk
+   
+   return {
+      tableOrder,
+      tableOrderLoading: res.isLoading,
+   }
+   
+}
+
+export const useCurrentTableOrderSubscription = () => {
+   
+   const queryClient = useQueryClient()
+   const { tableOrder: ctb } = useCurrentTableOrder()
+   
+   const res =  useSubscriptionQuery<DB_SubscribeTableOrderSubscription, DB_SubscribeTableOrderSubscriptionVariables>(gql`
+     subscription SubscribeTableOrder($id: uuid!) {
+       table_orders_by_pk(id: $id) {
+         id
+         created_at
+         status
+         tokens
+         order_number
+         table_id
+         table {
+           id
+           no_of_chairs
+           restaurant_id
+           name
+           order
+         }
+         orders {
+           chair_number
+           created_at
+           id
+           items
+           subtotal
+           table_order_id
+           total
+           total_tax
+         }
+       }
+     }`, { id: ctb?.id })
    
    const tableOrder: TableOrder = res.data?.table_orders_by_pk
    

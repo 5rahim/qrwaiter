@@ -146,7 +146,7 @@ export const useHomePageItems = (restaurantId: Nullable<string>) => {
    const queryClient = useQueryClient()
    const priceFormatter = usePriceFormatter()
    
-   const res = useGetHomePageCategoriesQuery(queryClient.get(), { restaurant_id: restaurantId }, { refetchOnMount: 'always' })
+   const res = useGetHomePageCategoriesQuery(queryClient.get(), { restaurant_id: restaurantId }, { refetchOnMount: false, refetchOnWindowFocus: false })
    
    const categories: HomePageCategories = res.data?.categories ?? []
    

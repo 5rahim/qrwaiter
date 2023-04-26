@@ -6,6 +6,7 @@ import React, { CSSProperties } from 'react'
 const buttonStyles = cva(`py-2 px-4 shadow-sm`, {
    variants: {
       intent: {
+         'black': 'bg-black hover:bg-gray-900 active:bg-gray-900 border border-transparent',
          'primary': 'bg-brand-500 hover:bg-brand-600 active:bg-brand-700 border border-transparent',
          'primary-outline': 'text-brand-500 border border-brand-200 bg-transparent hover:bg-brand-500 active:bg-brand-600 hover:text-white',
          'primary-subtle': 'text-brand-600 border border-brand-500 bg-brand-50 border-transparent hover:bg-brand-100 active:bg-brand-50',
