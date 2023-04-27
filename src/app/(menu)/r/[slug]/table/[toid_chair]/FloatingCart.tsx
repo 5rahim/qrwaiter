@@ -38,7 +38,11 @@ export const FloatingCart: React.FC<FloatingCartProps> = (props) => {
    
    const { getItems, getItem, getItemPrice, getItemCount, getSubtotal, canOrder } = useOrderCart()
    
-   const updateTableOrder = useUpdateCurrentTableOrderMutation(queryClient.get())
+   const updateTableOrder = useUpdateCurrentTableOrderMutation(queryClient.get(), {
+      onSuccess: () => {
+         queryClient.successAlert()
+      }
+   })
    
    /**
     * In future versions whenever the cart is updated locally, we push the updates in the database
@@ -101,6 +105,8 @@ export const FloatingCart: React.FC<FloatingCartProps> = (props) => {
                                           </button>
                                        </div>
                                     </div>
+                                    
+                                    {/* TODO: Show order status */}
                                     
                                     <div className="mt-4 space-y-4">
                                        {getItems().map(cartItem => {

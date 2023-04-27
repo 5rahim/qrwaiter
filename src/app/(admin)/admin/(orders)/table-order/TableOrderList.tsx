@@ -4,6 +4,7 @@ import { TableOrders } from '@/graphql/types'
 import { useAppTranslation } from '@/hooks/use-app-translation'
 import { useDateFormatter } from '@/hooks/use-date-formatter'
 import { useLinks } from '@/hooks/use-links'
+import { BiAlarm } from '@react-icons/all-files/bi/BiAlarm'
 import { HiCursorClick } from '@react-icons/all-files/hi/HiCursorClick'
 import { ColumnDef } from '@tanstack/react-table'
 import { Badge } from '@ui/main/data-display/badge/Badge'
@@ -53,7 +54,17 @@ export const TableOrderList: React.FC<TableOrderListProps> = (props) => {
             accessorKey: 'status',
             header: 'Status',
             enableSorting: false,
-            cell: info => <Badge intent="success-solid" className="animate-pulse">{_.capitalize(info.getValue() as string)}</Badge>,
+            cell: info => {
+               switch (info.getValue()) {
+                  case 'ordering':
+                     return <Badge intent="gray-solid" className="animate-pulse">{_.capitalize(info.getValue() as string)}</Badge>
+                     break
+                  case 'confirmed':
+                     return <Badge intent="alert-solid" className="animate-bounce" leftIcon={<BiAlarm />}>{_.capitalize(info.getValue() as string)}</Badge>
+                     break
+                  
+               }
+            },
             footer: props => props.column.id,
             size: 90,
          },

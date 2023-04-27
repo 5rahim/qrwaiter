@@ -170,3 +170,33 @@ export function calculateItemPrice(item: Item, selection: ItemSelection) {
    total += additionalAmount
    return total
 }
+
+export function getItemChoices(item: Item, selection: ItemSelection) {
+   if(!item || !selection) return { choices: '', variations: '' }
+   let choices: string[] = []
+   let variations: string[] = []
+
+   selection?.choices.map(selection => {
+      const choice: ItemVariation = _.find(item.choices, n => n.id === selection.id)
+      selection.selected.map(optionId => {
+         const option = _.find(choice.options, n => n.id === optionId)
+         if (option) {
+            choices.push(`${choice.name}: ` + option.value)
+         }
+      })
+   })
+
+   selection?.variations.map(selection => {
+      const variation: ItemVariation = _.find(item.variations, n => n.id === selection.id)
+      selection.selected.map(optionId => {
+         const option = _.find(variation.options, n => n.id === optionId)
+         if (option) {
+            variations.push(`${variation.name}: ` + option.value)
+         }
+      })
+   })
+   return {
+      choices: choices.join(', '),
+      variations: variations.join(', '),
+   }
+}

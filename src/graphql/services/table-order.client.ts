@@ -160,6 +160,48 @@ export const useCurrentTableOrderSubscription = () => {
    
 }
 
+export const useTableOrderSubscription = (id: string) => {
+   
+   const queryClient = useQueryClient()
+   
+   const res =  useSubscriptionQuery<DB_SubscribeTableOrderSubscription, DB_SubscribeTableOrderSubscriptionVariables>(gql`
+     subscription SubscribeTableOrder($id: uuid!) {
+       table_orders_by_pk(id: $id) {
+         id
+         created_at
+         status
+         tokens
+         order_number
+         table_id
+         table {
+           id
+           no_of_chairs
+           restaurant_id
+           name
+           order
+         }
+         orders {
+           chair_number
+           created_at
+           id
+           items
+           subtotal
+           table_order_id
+           total
+           total_tax
+         }
+       }
+     }`, { id: id })
+   
+   const tableOrder: TableOrder = res.data?.table_orders_by_pk
+   
+   return {
+      tableOrder,
+      tableOrderLoading: res.isLoading,
+   }
+   
+}
+
 
 export const useTableOrders = (restaurantId: Nullable<string>) => {
    
