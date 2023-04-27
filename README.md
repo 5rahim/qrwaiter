@@ -11,6 +11,7 @@ Next.js 13, NextAuth.js, Hasura, GraphQL, Tailwind, Google Cloud Storage.
 - Log in with Google
 - On the restaurant creation page click "Join demo restaurant"
 
+![alt status](https://media.discordapp.net/attachments/932762343987879966/1100971185375805460/image.png?width=307&height=609)
 ![alt status](https://media.discordapp.net/attachments/932762343987879966/1099047010746773614/image.png?width=441&height=609)
 
 
