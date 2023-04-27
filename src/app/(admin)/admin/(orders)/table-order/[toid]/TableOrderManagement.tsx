@@ -8,6 +8,7 @@ import { useAppTranslation } from '@/hooks/use-app-translation'
 import { useLinks } from '@/hooks/use-links'
 import { usePriceFormatter } from '@/hooks/use-price-formatter'
 import { cn } from '@/lib/tailwind/tailwind-utils'
+import { BiFoodTag } from '@react-icons/all-files/bi/BiFoodTag'
 import { Select } from '@ui/main/forms/select/Select'
 import { LoadingSpinner } from '@ui/shared/loading-spinner/LoadingSpinner'
 import ShowOnly from '@ui/shared/show-only/ShowOnly'
@@ -46,6 +47,7 @@ export const TableOrderManagement: React.FC<TableOrderManagementProps> = (props)
                label="Change the status of the order"
                size="lg"
                intent="basic"
+               leftIcon={<BiFoodTag />}
                onChange={(e) => {
                   updateTableOrder.mutate({
                      id: tableOrder?.id,

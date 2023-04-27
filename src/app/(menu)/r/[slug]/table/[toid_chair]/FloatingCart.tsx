@@ -107,6 +107,27 @@ export const FloatingCart: React.FC<FloatingCartProps> = (props) => {
                                     </div>
                                     
                                     {/* TODO: Show order status */}
+                                    <ShowOnly when={tableOrder?.status === 'confirmed' || tableOrder?.status === 'preparing' || tableOrder?.status === 'ready'}>
+                                       <div className="flex mt-6 p-4 rounded-md bg-gray-50">
+                                          {<div className="h-24 w-24 mr-4 flex-none rounded-md object-cover object-center relative overflow-hidden animate-bounce">
+                                             <Image
+                                                src={'/assets/images/frying-pan.png'}
+                                                alt={""}
+                                                fill
+                                                quality={100}
+                                                priority
+                                                sizes="10rem"
+                                                className="object-cover object-center"
+                                             />
+                                          </div>}
+                                          <div>
+                                             <h2 className="text-lg font-semibold">Preparing your order...</h2>
+                                             {tableOrder?.status === 'confirmed' && <p className="text-md">The restaurant has received your order.</p>}
+                                             {(tableOrder?.status === 'preparing') && <p className="text-md">The restaurant is working on your order.</p>}
+                                             {(tableOrder?.status === 'ready') && <p className="text-md">Your order is ready.</p>}
+                                          </div>
+                                       </div>
+                                    </ShowOnly>
                                     
                                     <div className="mt-4 space-y-4">
                                        {getItems().map(cartItem => {
