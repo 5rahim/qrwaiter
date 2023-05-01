@@ -17,7 +17,7 @@ async function DashboardShell(props: DashboardShellProps) {
    
    return (
       <>
-         {title.length > 0 && <div className="flex w-full items-center mx-auto px-4 sm:px-6 md:px-8 pt-8 pb-2 justify-between">
+         {title.length > 0 && <div className="flex w-full items-center mx-auto px-4 sm:px-6 md:px-8 pt-8 pb-8 justify-between bg-brand-500 text-white">
              <div>
                 {backTo && <LinkButton to={backTo} size="xl" intent="primary-basic" className="pl-0"><BiLeftArrowAlt /></LinkButton>}
                  <h1 className="text-3xl w-full font-bold tracking-tight">{title}</h1>

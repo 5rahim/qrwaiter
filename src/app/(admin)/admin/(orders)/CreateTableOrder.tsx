@@ -45,7 +45,7 @@ export const CreateTableOrder: React.FC<CreateTableOrderProps> = (props) => {
    
    return (
       <>
-         <Button leftIcon={<FaUserPlus />} onClick={createModal.open}>New table order</Button>
+         <Button leftIcon={<FaUserPlus />} onClick={createModal.open} intent="white">New table order</Button>
          
          <Modal isOpen={createModal.isOpen} onClose={createModal.close} size="xl">
             <div className="flex items-center">

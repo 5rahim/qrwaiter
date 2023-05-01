@@ -62,6 +62,11 @@ export const TableOrderList: React.FC<TableOrderListProps> = (props) => {
                   case 'confirmed':
                      return <Badge intent="alert-solid" className="animate-bounce" leftIcon={<BiAlarm />}>{_.capitalize(info.getValue() as string)}</Badge>
                      break
+                  case 'complete':
+                     return <Badge intent="gray" className="">{_.capitalize(info.getValue() as string)}</Badge>
+                     break
+                  default:
+                     return <Badge intent="success" className="">{_.capitalize(info.getValue() as string)}</Badge>
                   
                }
             },

@@ -14,6 +14,7 @@ import { BiX } from '@react-icons/all-files/bi/BiX'
 import RawLink from '@ui/shared/links/RawLink'
 import { atom, useAtom } from 'jotai'
 import { withImmer } from 'jotai-immer'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import React, { Fragment, useMemo } from 'react'
 
@@ -145,7 +146,19 @@ const AdminNav: React.FC<AdminNavProps> = (props) => {
             {/* Sidebar component, swap this element with another sidebar if you like */}
             <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
                <div className="flex flex-shrink-0 items-center px-4">
-                  <p className="font-bold text-lg">QR Waiter</p>
+                  <div className="font-bold text-lg">
+                     {<div className="h-12 w-40 flex-none rounded-md object-cover object-center relative overflow-hidden">
+                        <Image
+                           src={'/assets/images/logo.png'}
+                           alt={""}
+                           fill
+                           quality={70}
+                           priority
+                           sizes="10rem"
+                           className="object-cover object-center"
+                        />
+                     </div>}
+                  </div>
                </div>
                <div className="mt-5 flex flex-grow flex-col">
                   <nav className="flex-1 space-y-1 px-2 pb-4">

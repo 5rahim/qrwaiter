@@ -20,11 +20,7 @@ export const CurrentTableOrders: React.FC<CurrentTableOrdersProps> = (props) => 
    
    const { tableOrders, tableOrdersLoading } = useTableOrdersSubscription(restaurant?.id)
    
-   const currentTableOrders = tableOrders.filter(n => n.status !== 'completed')
-   
-   useEffect(() => {
-      console.log(tableOrders)
-   }, [tableOrders])
+   const currentTableOrders = tableOrders.filter(n => n.status !== 'complete')
    
    return (
       <>
