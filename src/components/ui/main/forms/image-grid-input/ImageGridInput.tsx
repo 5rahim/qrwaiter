@@ -12,7 +12,7 @@ import { BasicField, BasicFieldOptions, extractBasicFieldProps } from '@ui/main/
 import { IconButton } from '@ui/main/forms/button/IconButton'
 import { getFormError } from '@ui/main/forms/typesafe-form/Field'
 import { cva } from 'class-variance-authority'
-import _ from 'lodash'
+import _isEqual from 'lodash/isEqual'
 import React, { useEffect, useId, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useController, useFormContext } from 'react-hook-form'
@@ -102,7 +102,7 @@ const ImageGridInput: React.FC<ImageGridInputProps> = (props) => {
       const newArr = mainImageFile?.file ? [mainImageFile.file, ...imageFiles.map(o => o.file)] : []
       
       function formatOutput() {
-         if (!_.isEqual(fieldArr, newArr)) {
+         if (!_isEqual(fieldArr, newArr)) {
             if (mainImageFile) {
                controller.field.onChange([mainImageFile?.file, ...imageFiles.map(o => o.file)])
                handler.populateFiles(mainImageFile, imageFiles)
@@ -266,7 +266,8 @@ function dataURLtoFile(dataurl: any, filename: string) {
  *    if (image) mutate({ ...data, profile_picture: image.url })
  * }
  */
-export const useImageGridHandler = () => {
+export const useImageGridHandler = (defaultImages?: { main: string, additional: string[] }) => {
+   
    
    const [mainFile, setMainFile] = useState<File | null>(null)
    const [additionalFiles, setAdditionalFiles] = useState<File[]>([])
@@ -307,6 +308,16 @@ export const useImageGridHandler = () => {
          let uploadedAdditional: string[] = []
          let uploadedMain: string | null = null
          
+         // TODO: Edit this
+         const arrToBeUploaded = [`https://storage.googleapis.com/qrwaiter-storage/${mainFile?.name}`,
+            ...additionalFiles.map(o => `https://storage.googleapis.com/qrwaiter-storage/${o.name}`)]
+         const arrUploaded = defaultImages?.additional ? [defaultImages?.main, ...defaultImages?.additional] : [defaultImages?.main]
+         
+         if (_isEqual(arrToBeUploaded, arrUploaded)) {
+            return defaultImages
+         }
+         
+         
          ml.setMutationLoading(true)
          
          /**
@@ -329,7 +340,7 @@ export const useImageGridHandler = () => {
          /**
           * Upload additional images
           */
-         if (additionalFiles.length > 0) {
+         if ((additionalFiles ?? []).length > 0) {
             
             setIsUploading(true)
             const { objects, error } = await gcs_uploadFiles(additionalFiles)

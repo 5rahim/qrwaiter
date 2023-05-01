@@ -147,7 +147,7 @@ const AdminNav: React.FC<AdminNavProps> = (props) => {
             <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
                <div className="flex flex-shrink-0 items-center px-4">
                   <div className="font-bold text-lg">
-                     {<div className="h-12 w-40 flex-none rounded-md object-cover object-center relative overflow-hidden">
+                     {<div className="h-9 w-32 flex-none rounded-md object-cover object-center relative overflow-hidden">
                         <Image
                            src={'/assets/images/logo.png'}
                            alt={""}
