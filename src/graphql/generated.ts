@@ -6075,7 +6075,7 @@ export type DB_DeleteTableMutationVariables = Exact<{
 }>;
 
 
-export type DB_DeleteTableMutation = { __typename?: 'mutation_root', delete_tables_by_pk?: { __typename?: 'tables', id: any } | null, update_table_orders?: { __typename?: 'table_orders_mutation_response', affected_rows: number } | null };
+export type DB_DeleteTableMutation = { __typename?: 'mutation_root', delete_tables_by_pk?: { __typename?: 'tables', id: any } | null };
 
 export type DB_SubscribeTableOrdersSubscriptionVariables = Exact<{
   restaurant_id: Scalars['uuid'];
@@ -7092,9 +7092,6 @@ export const DeleteTableDocument = `
     mutation DeleteTable($id: uuid!) {
   delete_tables_by_pk(id: $id) {
     id
-  }
-  update_table_orders(where: {table_id: {_eq: $id}}, _set: {table_id: null}) {
-    affected_rows
   }
 }
     `;

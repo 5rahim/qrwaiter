@@ -69,7 +69,11 @@ export const useTableService = (restaurantId: Nullable<string>, role: 'create' |
       name: '',
    }
    
-   const deleteTable = () => deleteTableMutation.mutate({ id: table?.id })
+   const deleteTable = () => {
+      if(table?.id) {
+         deleteTableMutation.mutate({ id: table?.id })
+      }
+   }
    
    return {
       mutateTable: role === 'create' ? createTable : updateTable,

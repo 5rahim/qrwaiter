@@ -38,15 +38,15 @@ const TableForm: React.FC<TableFormProps> = (props) => {
             <Field.Text name="name" label="Table name" placeholder="e.g: Table 1 or Table A" />
             <Field.Number name="no_of_chairs" label="Number of chairs" help="This number is used to generate QR codes the a table." min={1} />
             <Field.Submit role={role} />
-            <ShowOnly when={role === 'update'}>
-               <DangerZone
-                  action="Delete this table" onDelete={() => {
-                  deleteTable()
-                  onSuccess()
-               }} className="mt-4"
-               />
-            </ShowOnly>
          </TypesafeForm>
+         <ShowOnly when={role === 'update'}>
+            <DangerZone
+               action="Delete this table" onDelete={() => {
+               deleteTable()
+               // onSuccess()
+            }} className="mt-4"
+            />
+         </ShowOnly>
       </>
    )
    
