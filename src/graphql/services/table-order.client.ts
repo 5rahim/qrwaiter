@@ -52,7 +52,7 @@ export const useCreateTableOrderService = (onComplete?: (tableOrderId: string | 
    
    const createTableOrder = (data: InferType<typeof createTableOrderSchema>) => {
       
-      if (!latestTableOrder || latestTableOrder.status === 'completed') {
+      if (!latestTableOrder || latestTableOrder.status === 'complete') {
          
          const tokens: TableOrderToken[] = []
          for (let i = 0; i < chairNo; i++) {

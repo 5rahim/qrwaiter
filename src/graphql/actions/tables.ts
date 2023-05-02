@@ -89,8 +89,7 @@ export const DeleteTable = gql`
     delete_tables_by_pk(id: $id) {
       id
     }
-
-#    update_table_orders(where: {table_id: {_eq: $id}}, _set: {table_id: null}) {
+#    delete_table_orders_by_pk(pk_columns: {id: $id}) {
 #      affected_rows
 #    }
   }

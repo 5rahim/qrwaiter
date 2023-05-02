@@ -16,7 +16,7 @@ export default async function Layout({
    
    const tableOrder = await getTableOrder(tid)
    
-   if (!tableOrder || !chairNumber || !tableOrder.tokens[parseInt(chairNumber) - 1]?.token || tableOrder.status === 'completed') {
+   if (!tableOrder || !chairNumber || !tableOrder.tokens[parseInt(chairNumber) - 1]?.token || tableOrder.status === 'complete') {
       redirect(siteLinkTo(s => s.main.home))
    }
    

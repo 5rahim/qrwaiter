@@ -46,6 +46,9 @@ export const ItemPanel: React.FC<ItemPanelProps> = (props) => {
         return !_.isEqual(selection, getItem(item.id)?.selection)
     }, [getItems(), selection])
     
+   useEffect(() => {
+       item.name === 'Cheeseburger' && console.log(selection)
+   }, [selection])
     
     useEffect(() => {
         if (getItem(item.id)?.selection) {
@@ -55,13 +58,16 @@ export const ItemPanel: React.FC<ItemPanelProps> = (props) => {
     
     const handleChangeSelection = (type: 'choices' | 'variations', id: string, selected: string[]) => {
         setSelection(prev => {
-            let target = _.find(selection[type], n => n.id === id)
+            let target = _.find(selection[type], n => n?.id === id)
+           console.log(selection[type], target)
             if (target) {
                 const arr = {
                     ...prev,
                     [type]: prev[type].map(n => {
-                        if (n.id === id) {
+                        if (n?.id === id) {
                             return { ...n, selected }
+                        } else {
+                           return { ...n }
                         }
                     }) as any,
                 }
@@ -153,6 +159,7 @@ export const ItemPanel: React.FC<ItemPanelProps> = (props) => {
                                                           
                                                           <div className="">
                                                               {(item.choices as ItemChoice[]).filter(n => n.available).map((choice, index) => {
+                                                                 // item.name === 'Cheeseburger' && console.log(selection.choices, _.find(selection.choices, n => n?.id === choice?.id)?.selected?.[0])
                                                                   return <div className="space-y-1 mt-4" key={choice.id}>
                                                                       <p className="font-bold mb-2">{choice.name}
                                                                           <span className="ml-2.5 inline-block h-2 w-2 flex-shrink-0 rounded-full bg-green-400">
@@ -166,12 +173,14 @@ export const ItemPanel: React.FC<ItemPanelProps> = (props) => {
                                                                          radioControlClassName="absolute right-2 top-2 h-5 w-5 text-xs"
                                                                          radioLabelClassName="font-medium flex-none flex"
                                                                          radioHelpClassName="text-sm"
-                                                                         value={_.find(selection.choices, n => n.id === choice.id)!.selected[0]}
+                                                                         value={_.find(selection.choices, n => n?.id === choice?.id)?.selected?.[0]}
                                                                          options={choice.options.filter(n => n.available).map(option => ({
                                                                              value: option.id,
                                                                              label: option.value,
                                                                          }))}
-                                                                         onChange={v => handleChangeSelection('choices', choice.id, v ? [v] : [])}
+                                                                         onChange={v => {
+                                                                            handleChangeSelection('choices', choice.id, v ? [v] : [])
+                                                                         }}
                                                                       />}
                                                                       {choice.type === "multiple" && <CheckboxGroup
                                                                          fieldClassName="flex w-full overflow-hidden"
@@ -181,7 +190,7 @@ export const ItemPanel: React.FC<ItemPanelProps> = (props) => {
                                                                          checkboxControlClassName="absolute right-2 top-2 h-5 w-5 text-xs"
                                                                          checkboxLabelClassName="font-medium flex-none flex"
                                                                          // checkboxHelpClassName="text-sm"
-                                                                         defaultValues={_.find(selection.choices, n => n.id === choice.id)!.selected}
+                                                                         defaultValues={_.find(selection.choices, n => n?.id === choice.id)!.selected}
                                                                          options={choice.options.filter(n => n.available).map(option => ({
                                                                              value: option.id,
                                                                              label: option.value,
@@ -205,7 +214,7 @@ export const ItemPanel: React.FC<ItemPanelProps> = (props) => {
                                                                          radioControlClassName="absolute right-2 top-2 h-5 w-5 text-xs"
                                                                          radioLabelClassName="font-medium flex-none flex"
                                                                          radioHelpClassName="text-sm"
-                                                                         value={_.find(selection.variations, n => n.id === variation.id)!.selected[0]}
+                                                                         value={_.find(selection.variations, n => n?.id === variation?.id)?.selected?.[0]}
                                                                          options={variation.options.filter(n => n.available).map(option => ({
                                                                              value: option.id,
                                                                              label: <>{option.value}{option.price > 0 && ` (+${priceFormatter.toFormat(option.price)})`}</>,
@@ -220,7 +229,7 @@ export const ItemPanel: React.FC<ItemPanelProps> = (props) => {
                                                                          checkboxControlClassName="absolute right-2 top-2 h-5 w-5 text-xs"
                                                                          checkboxLabelClassName="font-medium flex-none flex"
                                                                          // checkboxHelpClassName="text-sm"
-                                                                         defaultValues={_.find(selection.variations, n => n.id === variation.id)!.selected}
+                                                                         defaultValues={_.find(selection.variations, n => n?.id === variation.id)!.selected}
                                                                          options={variation.options.filter(n => n.available).map(option => ({
                                                                              value: option.id,
                                                                              label: <>{option.value}{option.price > 0 && ` (+${priceFormatter.toFormat(option.price)})`}</>,
