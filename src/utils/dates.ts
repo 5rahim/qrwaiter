@@ -22,7 +22,7 @@ export const Dates = {
       return new Date(date as string)
    },
    shortFormat: (date: Nullable<string>, lng: string) => {
-      return date ? format(new Date(date), "dd/MM/yyyy", { locale: getLocale(lng) }) : ''
+      return date ? format(new Date(date), "MM/dd/yyyy", { locale: getLocale(lng) }) : ''
    },
    
    mergeDateAndTime(date: Nullable<Date>, time: Nullable<number>) {

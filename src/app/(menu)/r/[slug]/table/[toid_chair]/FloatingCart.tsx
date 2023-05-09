@@ -4,6 +4,7 @@ import { ItemPanel } from '@/app/(menu)/r/[slug]/table/[toid_chair]/ItemPanel'
 import { calculateItemPrice, CartItem, useOrderCart } from '@/atoms/cart.atom'
 import { useCurrentChair, useCurrentTableOrder } from '@/atoms/table-order.atom'
 import { useUpdateCurrentTableOrderMutation } from '@/graphql/generated'
+import { useCurrentTableOrderSubscription } from '@/graphql/services/table-order.client'
 import { useQueryClient } from '@/graphql/use-query-client'
 import { useAppTranslation } from '@/hooks/use-app-translation'
 import { useDisclosure } from '@/hooks/use-disclosure'
@@ -30,7 +31,7 @@ export const FloatingCart: React.FC<FloatingCartProps> = (props) => {
    const t = useAppTranslation()
    const modal = useDisclosure(false)
    const priceFormatter = usePriceFormatter()
-   const { tableOrder } = useCurrentTableOrder()
+   const { tableOrder } = useCurrentTableOrderSubscription()
    const { chair } = useCurrentChair()
    const queryClient = useQueryClient()
    
@@ -106,7 +107,6 @@ export const FloatingCart: React.FC<FloatingCartProps> = (props) => {
                                        </div>
                                     </div>
                                     
-                                    {/* TODO: Show order status */}
                                     <ShowOnly when={tableOrder?.status === 'confirmed' || tableOrder?.status === 'preparing' || tableOrder?.status === 'ready'}>
                                        <div className="flex mt-6 p-4 rounded-md bg-gray-50">
                                           {<div className="h-24 w-24 mr-4 flex-none rounded-md object-cover object-center relative overflow-hidden animate-bounce">
