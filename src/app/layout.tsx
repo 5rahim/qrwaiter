@@ -4,8 +4,6 @@ import { DB_GetUserByIdQuery, DB_GetUserByIdQueryVariables } from '@/graphql/gen
 import { useServerQuery } from '@/graphql/use-server-query'
 import { GetUserById } from '@/graphql/users/actions/users'
 import { User } from '@/graphql/users/types'
-import ClientProviders from '@/lib/client-providers'
-import { getCurrentSessionUser } from '@/lib/session'
 import { cn } from '@/lib/tailwind/tailwind-utils'
 import "@/styles/globals.css"
 import { Nullable } from '@/types'
@@ -50,10 +48,6 @@ export default async function RootLayout({
    children: React.ReactNode
 }) {
    
-   const sessionUser = await getCurrentSessionUser()
-   
-   const user = await getUser(sessionUser?.id)
-   
    return (
       <html
          className={cn(
@@ -63,9 +57,7 @@ export default async function RootLayout({
       >
       <head />
       <body className="h-full">
-      <ClientProviders user={user} sessionUser={sessionUser} locale="en">
-         {children}
-      </ClientProviders>
+      {children}
       </body>
       </html>
    )
