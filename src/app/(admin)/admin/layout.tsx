@@ -7,15 +7,14 @@ import { getCurrentSessionUser } from '@/lib/session'
 import { siteLinkTo } from '@/utils/links'
 import { BiLinkExternal } from '@react-icons/all-files/bi/BiLinkExternal'
 import { Button } from '@ui/main/forms/button/Button'
-import LinkButton from '@ui/main/forms/button/LinkButton'
 import React from 'react'
 
 export default async function Layout({ children }: { children: React.ReactNode }) {
-   
+
    const sessionUser = await getCurrentSessionUser()
-   
+
    const restaurant = await getRestaurantInAdmin(sessionUser?.id)
-   
+
    return (
       <>
          <AtomPreloader restaurant={restaurant} />
@@ -37,13 +36,13 @@ export default async function Layout({ children }: { children: React.ReactNode }
                         </a>
                      </div>
                      <div className="ml-4 flex items-center md:ml-6">
-      
+
                         {/* Profile dropdown */}
                         <AdminProfileDropdown />
                      </div>
                   </div>
                </div>
-               
+
                {children}
             </div>
          </div>
